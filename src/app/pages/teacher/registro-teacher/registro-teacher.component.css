@@ -1,0 +1,27 @@
+/* .ed-grid div{
+    background-color: red;
+
+} */
+
+.m-datos-personales{
+    margin-bottom: 8px;
+}
+
+.m-registro-content{
+    border: 2px solid #E0E0E0;
+    padding: 4%;
+    margin: 0 auto;
+    max-width: 85%;
+    background-color: #F0F0F0;
+}
+.m-form-content{
+    margin-top:40px;
+    border: 2px solid #E0E0E0;
+    background-color: #ffffff;
+    padding: 2%;
+}
+
+
+.m-politicas{
+    text-align: center;
+}

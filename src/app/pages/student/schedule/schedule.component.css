@@ -1,0 +1,12 @@
+.m-horario-tab{
+    border-bottom:2px solid blue;
+    cursor: pointer;
+}
+.m-teacher-tab{
+    border-bottom:2px solid red;
+   cursor: pointer;
+}
+.m-horario-content{
+    margin: 0 auto;
+    max-width: 1300px;
+}

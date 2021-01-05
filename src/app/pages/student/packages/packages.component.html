@@ -1,0 +1,24 @@
+
+<section class="m-package-content ">
+    <article class="ed-grid rows-gap s-gap-3 m-gap-3 s-grid-1 m-grid-2 lg-grid-4">
+        <div class="m-cols-4 m-main-center">
+            <select class="form-control m-combo-person" (change)="changePerson()" [(ngModel)]="model.countPerson">
+                <option value="1">1 persona</option>
+                <option value="2">Grupo de 2 personas</option>
+                <option value="3">Grupo de 3 personas</option>
+                <option value="4">Grupo de 4 personas</option>
+            </select>
+        </div>
+        <div class="m-package" *ngFor="let package of packages">
+            <div>{{package.hours}} h</div>
+            <div>S/. {{package.pricePerHour}} por hora</div>
+            <div>- Vigencia {{package.expireMonth}} meses</div>
+            <div>- Plataforma Virtual</div>
+            <div>- Todos los materiales </div>
+            <br>
+            <div>S/. {{package.total}}</div>
+            <br>
+            <button (click)="selectPaquete(package)" class="btn btn-danger">Quiero este</button>
+        </div>
+    </article>
+</section>

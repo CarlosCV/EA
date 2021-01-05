@@ -1,0 +1,35 @@
+<section class="m-pay-content ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+    <div class="m-cols-2 m-main-end">Pago</div>
+    <div class="m-cols-2">
+        <div>Transferencia Bancaria</div>
+        <hr>
+    </div>
+    <div>
+        <div style="width: 59%;">Tiene que realizar el deposito en la cuenta de banco XXXX y con número de cuenta XXXXXXXXX.</div>
+    </div>
+    <div class="m-rows-2">
+        <article class="m-summary-content ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div class="m-cols-2">Summary</div>
+            <div>Original Price</div>
+            <div> $ {{paquete.total}}</div>
+            <div>Total</div>
+            <div> $ {{paquete.total}}</div>
+        </article>
+    </div>
+    <div>
+        <div style="width: 59%;">
+            Luego de que efectúes el pago, asegúrate de enviar el comprobante a xxxxx para que
+            podamos verificar tu compra y activar tu cuenta.
+        </div>
+    </div>
+    <div >
+        <div style="width: 59%;">
+            Una vez verificado tu transferencia podras continuar con el examen de evaluación de Ingles.
+        </div>
+    </div>
+    <div></div>
+    <div class="m-cols-2 m-main-end">
+        <button (click)="tabEvaluacion()"  class="btn btn-primary">Siguiente</button>
+    </div>
+    
+</section>

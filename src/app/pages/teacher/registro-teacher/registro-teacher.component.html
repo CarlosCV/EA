@@ -1,0 +1,314 @@
+
+<section class="m-registro-content">
+    <h3>Solicitud de profesor</h3>
+    <div>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+        literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+        College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
+        going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum
+        comes
+        from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+        written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The
+        first
+        line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections
+        1.10.32
+        and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form,
+        accompanied by English versions from the 1914 translation by H. Rackham.</div>
+    <section class="m-form-content">
+        <h6> {{ 'registroProfesor.titlePersonalDate' | translate }}</h6>
+        <hr>
+        <section class="m-datos-personales ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
+            <div class="lg-cols-2">
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.name" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.fullname' | translate }}</label>
+                </div>
+            </div>
+            <div class="lg-cols-2">
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.lastName" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.fullsurnames' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.birthday" type="number" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.day' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.birthmonth" type="number" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.month' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.birthyear" type="number" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.year' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.gender" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.gender' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.paypalId" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.idPaypal' | translate }}</label>
+                </div>
+            </div>
+            <div >
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.paypalEmail" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.paypalEmail' | translate }}</label>
+                </div>
+            </div>
+            <div class="lg-cols-2">
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.cellphone" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.phone' | translate }}</label>
+                </div>
+            </div>
+            <div class="lg-cols-2">
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.email" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.email' | translate }}</label>
+                </div>
+            </div>
+            <div class="">
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.timeZone" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.timeZone' | translate }}</label>
+                </div>
+            </div>
+        </section>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-3 ">
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.countryOrigin" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.countryOrigen' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.cityOrigin" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.country' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.countryLiving" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.countrylive' | translate }}</label>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input [(ngModel)]="modelteacher.cityLiving" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.country' | translate }}</label>
+                </div>
+            </div>
+
+            <div class="m-cols-2 lg-cols-3">
+                <div class="group">
+                    <input  [(ngModel)]="modelteacher.address" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'registroProfesor.address' | translate }}</label>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class="m-form-content">
+        <h6>{{ 'registroProfesor.photoperfil' | translate }}</h6>
+        <hr>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2" style="align-items: center;">
+            <div class="lg-main-end" style="margin-right: 50px;">
+                <img class="rounded-circle" height="300px" width="200px" alt="avatar" id="photoperfil" src="../../../assets/img/avatar.jpg">
+            </div>
+            <div class="s-main-center">
+                <div>Editar Foto de Perfil</div>
+                <div>* 600 x 600 pixeles como mínimo</div>
+                <div>* El formato debe ser JPG, PNG</div>
+                <br>
+               <app-upload-file allowedfiles="jpg,png"  typeUpload="profile" nameGroup="profilePic" folder="teacher_cv_doc" (responseData)="getDataFiles($event)" ></app-upload-file>
+            </div>
+
+            <div class="m-cols-2" style="text-align: center;">
+                <hr>
+                <div>Tu foto debe cumplir con lo siguiente:</div>
+                <br>
+                <div>* Debe mostrar tu rostro de manera clara.</div>
+                <div>* Tu foto tiene que resaltar tu profesionalismo</div>
+                <div>* No cargar fotos sociales, ni personales, ni familiares.</div>
+                <div>* Tu foto debe ser alegre y real.</div>
+            </div>
+        </section>
+    </section>
+
+    <section class="m-form-content">
+        <h6>VIDEO DE PRESENTACIÓN</h6>
+        <hr>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div style="display: grid; align-self: center;">
+                <div>
+                    <span>Ingresa el link de video para tu presentación.</span>
+                    <div class="group">
+                        <input [(ngModel)]="modelteacher.videoPresentation" placeholder="Si tu foto es parecida a estas, bievenido...!!!!!!" type="text" required>
+                    </div>
+                </div>
+            </div>
+            <div class="m-main-end">
+                <div style="float: left;margin-right: 20px;margin-left: 20px;">
+                    <div style="height: 100px;align-items: center;display: grid;">Icono</div>
+                </div>
+                <div class="m-text-video ">
+                    Please record a trial class of 3-5 minutes.
+                    You may choose any grammar topic. Please explain the use and structures of the form you choose and
+                    what activities you will use to get students to produce the language.
+                </div>
+            </div>
+        </section>
+
+        <h6>EXPERIENCIA LABORAL</h6>
+        <hr>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div>
+                <app-upload-file allowedfiles="jpg,pdf"   nameGroup="cv" folder="teacher_cv_doc" (responseData)="getDataFiles($event)" ></app-upload-file>
+            </div>
+            <div class="m-main-end">
+                <div class="m-icon-content">
+                    <div class="m-icon-info">Icono</div>
+                </div>
+                <div class="m-text-video ">
+                    Característica de archivo.
+                    Máximo de 2 MB
+                    Archivo PDF o JPG
+                    Visible solo para el personal de italki
+                </div>
+            </div>
+        </section>
+
+        <h6>CERTIFICADOS</h6>
+        <hr>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div>
+                <app-upload-file allowedfiles="jpg,pdf"  nameGroup="certificados" folder="teacher_cv_doc" (responseData)="getDataFiles($event)" ></app-upload-file>
+            </div>
+            <div class="m-main-end">
+                <div class="m-icon-content">
+                    <div class="m-icon-info">Icono</div>
+                </div>
+                <div class="m-text-video ">
+                    Característica de archivo.
+                    * Máximo de 2 MB
+                    * Archivo PDF ó JPG
+                    * Visible solo para el personal de English Advance
+                </div>
+            </div>
+        </section>
+
+        <h6>TITULOS</h6>
+        <hr>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div>
+                <app-upload-file allowedfiles="jpg,pdf"  nameGroup="titulos" folder="teacher_cv_doc" (responseData)="getDataFiles($event)" ></app-upload-file>
+            </div>
+            <div class="m-main-end">
+                <div class="m-icon-content">
+                    <div class="m-icon">Icono</div>
+                </div>
+                <div class="m-text-video ">
+                    Característica de archivo.
+                    * Máximo de 2 MB
+                    * Archivo PDF ó JPG
+                    * Visible solo para el personal de English Advance
+                </div>
+            </div>
+        </section>
+
+        <h6>ESPECIALIDADES</h6>
+        <hr>
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-5">
+            <div *ngFor="let item of Specializations; let i = index">
+                <input [(ngModel)]="item.checked" class="m-espe-checkbox" type="checkbox">
+                <span>{{item.englishName}}</span>
+            </div>
+        </section>
+   
+        <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-2 lg-grid-5" style="align-items: center;">
+            <div>
+                <h6 style="margin-top: -27px">Tipo de Inglés </h6>
+                <input [(ngModel)]="modelteacher.englishType" name="type" class="m-espe-checkbox" value="Inglés Americano" type="radio" >
+                <span>Inglés Americano</span>
+            </div>
+            <div>
+                <div></div>
+                <input [(ngModel)]="modelteacher.englishType" name="type" class="m-espe-checkbox" value="Inglés Británic" type="radio">
+                <span>Inglés Británico</span>
+            </div>
+            <div></div>
+            <div class="s-rows-2 s-cols-2">
+                <h6 style="float: left;" >Sobre mi</h6>
+                <div style="text-align: right;font-size: 10px;">
+                    <span>(500)</span>
+                </div>
+                <textarea [(ngModel)]="modelteacher.aboutMe" class="form-control" name="textarea" rows="5" cols="50"></textarea>
+            </div>
+           
+            <ng-container *ngFor="let item of edades;  let i = index ">
+                <div>
+                    <h6 *ngIf="i == 0" style="margin-top: -27px">Edades</h6>
+                    <input [(ngModel)]="item.checked"  class="m-espe-checkbox" type="checkbox">
+                    <span>{{item.englishName}}</span>
+                </div>
+            </ng-container>
+        </section> 
+        <hr>
+        <div class="m-politicas">
+            <div>Al registrar tu información y enviar la solicitud aceptarás nuestras</div>
+            <div>
+                <div style="text-align: right; display: inline-block;margin-right: 10px;">
+                    <input style="width: 13px;float: left;" type="checkbox"> 
+                </div>
+                <a href="#">política de privacidad</a> <span> y </span> <a href="#">   Condiciones de servicio.</a>
+            </div>
+            <br>
+            <button (click)="SendInformation(modelteacher)" class="btn btn-primary">Enviar información</button>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,59 @@
+<section class="m-login-content">
+  <p>Inscribete y comienza a aprender</p>
+  <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+    <div class="group">
+      <input [(ngModel)]="model.lastName" type="text" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Apellidos</label>
+    </div>
+    <div class="group">
+      <input [(ngModel)]="model.name" type="text" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Nombres</label>
+    </div>
+    <div class="group">
+      <input [(ngModel)]="model.prefix" type="text" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>+51</label>
+    </div>
+    <div class="group">
+      <input [(ngModel)]="model.cellphone" type="text" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Telefóno</label>
+    </div>
+    <div class="group lg-cols-2">
+      <input [(ngModel)]="model.email" type="text" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Correo electrónico</label>
+    </div>
+    <div class="group lg-cols-2">
+      <input [(ngModel)]="model.password" type="password" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+    </div>
+    <div class="lg-cols-2">
+      <input class="m-espe-checkbox" type="checkbox">
+      <span>Yes! I want to get the most out of Eglish Advance by receiving emails with exclusive deals, personal
+        recommendations and learning tips!
+      </span>
+    </div>
+  </section>
+  <button (click)="registrarUser()" class="m-btn-login">Register</button>
+  <div>
+    <input class="m-espe-checkbox" type="checkbox">
+    <span>By signing up, you agree to our Terms of Use and Privacy Policy.
+    </span>
+    <div>
+      <a routerLink="/login">Do you already have an account? </a>
+    </div>
+
+  <!--   <span>Sign Up</span>
+ -->
+  </div>
+</section>

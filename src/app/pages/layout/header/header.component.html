@@ -1,0 +1,70 @@
+<section class="m-header" [class.m-expanded]="expanded">
+  <nav class="shadow-sm">
+    <div style="float: left;padding: 15px;">
+      <img class="m-btn-movil" style="height: 40px;display: none;" src="../../../../assets/img/logo_color.png"
+        alt="English Advance" />
+    </div>
+    <div style="display: flex;justify-content:flex-end">
+      <div class="m-header-grid">
+ 
+        <div>
+          <a class="m-english m-btn-web" (click)="traducir('en')">English</a>
+        </div>
+        <div>
+          <a class="m-spanish m-btn-web" (click)="traducir('es')">Español</a>
+        </div>
+        <div>
+          <span routerLink="/notifications" class="material-icons m-notification">
+            notifications_none
+          </span>
+        </div>
+        <div>
+          <div class="dropdown ">
+            <div class="m-circle-profile" style="cursor: pointer;" data-toggle="dropdown">
+              <span style="color: white;"> {{user.name | slice:0:1}}{{user.lastName | slice:0:1}}</span>
+            </div>
+            <div class="dropdown-menu dropdown-menu-right m-profile-content">
+              <section class="m-grid-profile">
+                <div class="dropdown-item ">
+                  <div class="m-circle-profile">
+                    <span style="color: white;"> {{user.name | slice:0:1}}{{user.lastName | slice:0:1}}</span>
+                  </div>
+                </div>
+                <div style="font-size: 15px;font-weight: 700;">
+                  {{user.name }} {{user.lastName}}
+                </div>
+              </section>
+              <hr>
+              <section class="m-grid-profile">
+                <div class="dropdown-item">
+                  <span class="material-icons" style="color: #4452ab;">
+                    account_circle
+                  </span>
+                </div>
+                <div>
+                  <span style="font-size: 15px;cursor: pointer;" routerLink="/profile">Ver Perfil</span>
+                </div>
+              </section>
+              <hr>
+              <section class="m-grid-profile">
+                <div class="dropdown-item">
+                  <span class="material-icons" style="color: #bf1628;">
+                    login
+                  </span>
+                </div>
+                <div style="font-size: 15px;cursor: pointer;" (click)="close_sesion()">
+                  Cerrar Sesión
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a class="m-btn-movil" style="display: none;" type="button" (click)="expanded2 = !expanded2;siderbarView()">
+            <span class="material-icons m-icon-menu">menu</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</section>

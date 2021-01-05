@@ -1,0 +1,50 @@
+<div class="action-bar m-fixed-sidebar" [class.action-bar-expanded]="expanded"
+  [ngClass]="expanded2 == false ? 'siderbarNone' : ' action-bar-expanded'">
+  <!-- Menu Button -->
+  <div class="action-bar-item shadow-sm" (click)="expanded = !expanded; menuClickExpand()">
+    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
+      <img src="../../../../assets/img/logo_dash.png" alt="logoEnglish">
+    </span>
+    <span class="action-bar-item-text">English
+      <div>Advance</div>
+    </span>
+  </div>
+  <br>
+  <br>
+  <div class="action-bar-item shadow-sm" (click)="activePage(0)" [class.m-line-module]="active.dashboard">
+    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
+      <span class="material-icons m-icons-pag" routerLink="/teacher">
+        view_comfy
+      </span>
+    </span>
+    <span class="action-bar-item-text"><a routerLink="/teacher">Dashboard</a></span>
+  </div>
+
+  <div class="action-bar-item shadow-sm" (click)="activePage(1)" [class.m-line-module]="active.finanzas">
+    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
+      <span routerLink="/sales" class="material-icons m-icons-pag">
+        attach_money
+      </span>
+    </span>
+    <span class="action-bar-item-text"><a routerLink="/sales">Finanzas</a></span>
+  </div>
+
+  <div class="action-bar-item shadow-sm " (click)="activePage(2)" [class.m-line-module]="active.examenes">
+    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
+      <span class="material-icons m-icons-pag" routerLink="/evaluations">
+        sticky_note_2
+        </span>
+    </span>
+    <span class="action-bar-item-text"> <a routerLink="/evaluations">Exámenes</a></span>
+  </div>
+
+  <div class="action-bar-item shadow-sm " (click)="activePage(3)" [class.m-line-module]="active.talleres">
+    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0"><a>
+        <span class="material-icons m-icons-pag" routerLink="talleres">
+          people
+        </span>
+      </a></span>
+    <span class="action-bar-item-text"> <a routerLink="talleres">Talleres</a></span>
+  </div>
+  <ng-content></ng-content>
+</div>

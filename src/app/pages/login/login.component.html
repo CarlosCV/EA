@@ -1,0 +1,136 @@
+<div class="m-back-page">
+  <div class="m-back-grid">
+    <a href="https://englishadvance.com.pe/">
+      <span class="material-icons m-back">
+        keyboard_arrow_left
+      </span>
+    </a>
+    <a class="m-btn-web" href="https://englishadvance.com.pe/">Volver a la Página Principal</a>
+  </div>
+  <section class="m-login-content">
+    <div class="m-logo-content">
+      <img src="../../../assets/img/logo_color.png">
+      <p>Ingreso</p>
+      <hr>
+    </div>
+    <div class="m-input-box">
+      <span class="m-label-title">Usuario</span>
+      <div class="input-group group">
+        <input class="form-control" [(ngModel)]="model.email" type="text" required>
+        <div>
+          <span class="material-icons">
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="m-input-box">
+      <span class="m-label-title">Contraseña</span>
+      <div class="input-group group">
+        <input class="form-control" [(ngModel)]="model.password" type="password" required>
+        <div>
+          <span class="material-icons">
+            vpn_key
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button (click)="login()" class="btn btn-info">Ingresar</button>
+    <div class="m-forget">
+      <div>
+        <a routerLink="/registrate">¿Nuevo Usuario? Regístrate</a>
+      </div>
+      <div>
+        <a style="color: #383838;" routerLink="/forgot-password">¿Olvidaste la contraseña?</a>
+      </div>
+
+      <div style="color: #000000;">
+        2021 English Advance. All rights reserved.
+      </div>
+
+    </div>
+    <br>
+    <div *ngIf="statusRequest.error" class="alert alert-danger">
+      <strong>Danger!</strong> El usuario no existe.
+    </div>
+    <div *ngIf="statusRequest.emailError" class="alert alert-danger">
+      <strong>Danger!</strong> El email es incorrecto.
+    </div>
+    <div *ngIf="statusRequest.success" class="alert alert-success">
+      <strong>Success!</strong> Credenciales correctas.
+    </div>
+  </section>
+</div>
+
+<!--   <re-captcha class="center-recaptcha" (resolved)="resolved($event)" siteKey="6Le-wyoUAAAAAAx0Y_Qm056BbPa3kOPIDAnA0O-E">
+  </re-captcha> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section style="margin-bottom: 8px;" class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
+    <div class="lg-cols-2">1</div>
+    <div class="lg-cols-2">2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div  class="lg-cols-2">7</div>
+    <div  class="lg-cols-2">8</div>
+</section>
+<section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-3 ">
+    <div >9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div class="m-cols-2 lg-cols-3">1</div>
+</section> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form [formGroup]="aFormGroup">
+    <ngx-recaptcha2 #captchaElem
+      [siteKey]="siteKey"
+      (reset)="handleReset()"
+      (expire)="handleExpire()"
+      (load)="handleLoad()"
+      (success)="handleSuccess($event)"
+      [useGlobalDomain]="false"
+      [size]="size"
+      [hl]="lang"
+      [theme]="theme"
+      [type]="type"
+      formControlName="recaptcha">
+    </ngx-recaptcha2>
+  </form> -->

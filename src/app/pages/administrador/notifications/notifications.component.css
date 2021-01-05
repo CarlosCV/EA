@@ -1,0 +1,27 @@
+.m-item-notify{
+    background-color: #f2f2f2;
+    padding: 16px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+
+}
+.m-content-notify{
+border: 1px solid #cfcfcf;
+border-radius: 5px;
+}
+.m-title-notify{
+    color: #4baccb;
+    font-weight: 600;
+    font-size: 18px;
+}
+.m-text-date{
+    color: #aeaeae;
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 60px;
+}
+.close{
+    color: #bf1628;
+    font-weight: 600;
+    opacity: 1;
+}

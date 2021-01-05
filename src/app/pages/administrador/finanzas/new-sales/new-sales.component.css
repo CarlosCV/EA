@@ -1,0 +1,16 @@
+.m-total{
+    padding: 7px 16px 8px 19px;
+    border-radius: 4px;
+    background-color: #05beee;
+    height: 33px;
+    color: #ffffff;
+    margin: 0px 200px 0px 27px;
+}
+.m-deben{
+    border-radius: 4px;
+    border: solid 1px #797979;
+    font-size: 20.6px;
+    font-weight: 700;
+    color: #bf1628;
+    padding: 0 7px;
+}

@@ -1,0 +1,10 @@
+<section class="m-horario-content">
+    <h4>Encuentra a tus profes</h4>
+    <div class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2">
+        <div (click)="OpenCalendar()" class="m-horario-tab m-main-center">Encuentra por un horario</div>
+        <div (click)="OpenTeachers()" class="m-teacher-tab m-main-center">Encuentra por un Teacher</div>
+    </div>
+    <br>
+    <app-calendar *ngIf="model.calendar"></app-calendar>
+    <app-teachers *ngIf="model.teachers"></app-teachers>
+</section>

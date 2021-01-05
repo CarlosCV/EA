@@ -1,0 +1,608 @@
+<div class="bredcrumbs">
+    <span routerLink="/teacher">Dashboard</span>
+    <span class="material-icons">
+        keyboard_arrow_right
+    </span>
+    <span> Agregar Profesor</span>
+</div>
+<form #teacherform="ngForm">
+    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
+        <article>
+            <aside class="m-border-content m-main-center">
+                <div style="text-align: center;">
+                    <img src="../../../../assets/img/avatar.jpg" class="m-photo" id="photoperfil">
+                    <div class="m-btn-perfil">
+                        <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
+                            folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
+                    </div>
+                </div>
+            </aside>
+            <aside class="m-btn-web">
+                <button (click)="SendInformation(modelteacher)" [disabled]="!teacherform.form.valid"
+                    class="btn btn-primary">
+                    Agregar Profesor</button><br><br>
+                    <button routerLink="/teacher" class="btn btn-danger">Cancelar</button>
+            </aside>
+        </article>
+
+        <article class="m-cols-4">
+            <aside class="m-header-admin">
+                <aside class="m-title-admin s-main-center" style="border-bottom: none;">
+                    <ul class="nav nav-tabs m-content-tabs-item s-main-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#informacionPersonal" role="tab"
+                                data-toggle="tab">Información
+                                personal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#informacionPago" role="tab" data-toggle="tab">Información de
+                                cuenta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#informacionLaboral" role="tab" data-toggle="tab">Información
+                                Laboral</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Horarios" role="tab" data-toggle="tab">Disponibilidad</a>
+                        </li>
+                    </ul>
+                </aside>
+            </aside>
+
+            <aside class="m-content-admin m-overflow"
+                style="border-top: none;border-top-right-radius: 0;border-top-left-radius: 0;">
+                <div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active show" id="informacionPersonal">
+                            <section
+                                class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
+                                <div class="m-cols-1 lg-cols-2">
+                                    <div class="group">
+                                        <input type="text"
+                                            placeholder="{{ 'registroProfesor.fullsurnames' | translate }}"
+                                            name="lastName" [(ngModel)]="modelteacher.lastName" #lastName=ngModel
+                                            required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'registroProfesor.fullname' | translate }}</label>
+                                        <div class="m-error-input"
+                                            *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                                            <span *ngIf='lastName.errors.required'>El Apellido es requerido.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-cols-1 lg-cols-2">
+                                    <div class="group">
+                                        <input type="text" placeholder="{{ 'registroProfesor.fullname' | translate }}"
+                                            name="name" [(ngModel)]="modelteacher.name" #name=ngModel required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="m-error-input" *ngIf="name.invalid && (name.dirty || name.touched)">
+                                            <span *ngIf='name.errors.required'>El Nombre es requerido.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-cols-1 lg-cols-2">
+                                </div>
+                                <div class="m-cols-1 lg-cols-1">
+                                    <div class="m-title-input">{{ 'registroProfesor.birthdate' | translate }}</div>
+                                    <br><br>
+                              
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select name="birthday" class="filter-select"  placeholder="{{ 'registroProfesor.day' | translate }}*"
+                                                [(ngModel)]="modelteacher.birthday"  >
+                                                <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">{{birth.num}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                    <div class="m-error-input" *ngIf='!errorDate'>
+                                        <span>Debes ingresar una fecha valida.</span>
+                                    </div>
+                                </div>
+                                <div class="m-cols-1 lg-cols-1">
+                                    <br><br><br>
+                         
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select name="birthmonth" class="filter-select"  placeholder="{{ 'registroProfesor.month' | translate }}*"
+                                            [(ngModel)]="modelteacher.birthmonth">
+                                                <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+                                <div class="m-cols-1 lg-cols-1">
+                                    <br><br><br>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select name="birthyear" class="filter-select"  placeholder="{{ 'registroProfesor.year' | translate }}*"
+                                            [(ngModel)]="modelteacher.birthyear">
+                                                <mat-option *ngFor="let item of year" value="{{item.year}}">{{item.year}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+                                <div>
+                                    <div class="m-title-input">{{ 'registroProfesor.genderTitle' | translate }}</div>
+                                    <br><br>
+                                    <mat-list-item class="primary-imenu-item" role="listitem">
+                                        <mat-form-field class="select-form">
+                                            <mat-select placeholder="{{ 'registroProfesor.gender' | translate }}"
+                                                name="gender" class="filter-select" [(ngModel)]="modelteacher.gender">
+                                                <mat-option value="M">Masculino</mat-option>
+                                                <mat-option value="F">Femenino</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+                                <div class="m-cols-1 lg-cols-1">
+                                    <div class="m-title-input">Teléfono</div>
+                                    <br><br>
+                                    <div class="group">
+                                        <input type="text" placeholder="{{ 'registroProfesor.prefix' | translate }}"
+                                            name="prefix" placeholder="+51" [(ngModel)]="modelteacher.prefix">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                    </div>
+                                </div>
+                                <div class="m-cols-1 lg-cols-1">
+                                    <br><br><br>
+                                    <div class="group">
+                                        <input type="text" placeholder="{{ 'registroProfesor.number' | translate }}"
+                                            name="cellphone" [(ngModel)]="modelteacher.cellphone">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                    </div>
+                                </div>
+
+                                <div class="m-cols-1 lg-cols-2">
+                                    <div class="m-title-input">{{ 'registroProfesor.fromCity' | translate }}</div>
+                                    <br><br>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select placeholder="{{ 'registroProfesor.country' | translate }}"
+                                                name="birthCountry" class="filter-select"
+                                                (selectionChange)="viewStatesBirth($event.value)"
+                                                [(ngModel)]="modelteacher.birthCountry">
+                                                <mat-option *ngFor="let pais of countries" value="{{pais.id}}">
+                                                    {{pais.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+
+                                <div>
+                                    <br><br><br>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select placeholder="{{ 'registroProfesor.state' | translate }}"
+                                                name="birthState" class="filter-select"
+                                                [(ngModel)]="modelteacher.birthState">
+                                                <mat-option *ngFor="let state of birthStates" value="{{state.id}}">
+                                                    {{state.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+
+                                <div class="m-cols-1 lg-cols-2">
+                                    <div class="m-title-input">{{ 'registroProfesor.fromLive' | translate }}</div>
+                                    <br><br>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select placeholder="{{ 'registroProfesor.country' | translate }}"
+                                                name="residentCountry" class="filter-select"
+                                                (selectionChange)="viewStatesResident($event.value)"
+                                                [(ngModel)]="modelteacher.residentCountry">
+                                                <mat-option *ngFor="let pais of countries" value="{{pais.id}}">
+                                                    {{pais.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+
+                                <div>
+                                    <br><br><br>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select placeholder="{{ 'registroProfesor.state' | translate }}"
+                                                name="residentState" class="filter-select"
+                                                [(ngModel)]="modelteacher.residentState">
+                                                <mat-option *ngFor="let state of residentStates" value="{{state.id}}">
+                                                    {{state.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+
+                                <div class="m-cols-1 lg-cols-2">
+                                    <br><br><br>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <label>{{ 'registroProfesor.timeZone' | translate }}</label>
+                                            <mat-select placeholder="Seleccionar" name="timeZone" class="filter-select"
+                                                [(ngModel)]="modelteacher.timeZone">
+                                                <mat-option *ngFor="let zone of timeZone" value="{{zone.id}}">
+                                                    {{zone.timezone}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
+                                </div>
+                                <div class="m-cols-3 lg-cols-6">
+                                    <div class="m-title-input">Mi Metodología</div>
+                                    <br>
+                                    <textarea class="form-control" rows="5" [(ngModel)]="modelteacher.methodology"
+                                        name="methodology"></textarea>
+                                    <br>
+                                </div>
+                                <div class="m-cols-3 lg-cols-6">
+                                    <span class="m-title-input">Idiomas que Hablo</span>
+                                    <hr>
+                                    <section style="margin-top: 30px;">
+                                        <div *ngFor="let language of modelteacher.languageDTO; let i = index">
+                                            <article
+                                                class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
+                                                <div class="s-main-center" style="margin-bottom: 10px;">
+                                                    <div *ngIf="i == 0" class="m-add-teacher"
+                                                        style="width: 168px;float: left; " (click)="addInputIdioma() ">
+                                                        <div style="float: left;">Agregar Idioma</div>
+                                                        <span style="font-size: 20px;" class="material-icons">add</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <article
+                                                        class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                                        <div>
+                                                            <mat-list-item class="primary-imenu-item">
+                                                                <mat-form-field class="select-form">
+                                                                    <mat-select placeholder="Idioma"
+                                                                        name="language{{i}}" class="filter-select"
+                                                                        [(ngModel)]="language.name"
+                                                                        (selectionChange)="OpenLevel(language,$event.value)">
+                                                                        <mat-option
+                                                                            *ngFor="let lang of language.idiomas"
+                                                                            value="{{lang.name}}">{{lang.name}}
+                                                                        </mat-option>
+                                                                    </mat-select>
+                                                                </mat-form-field>
+                                                            </mat-list-item>
+                                                        </div>
+                                                        <div>
+                                                            <mat-list-item class="primary-imenu-item">
+                                                                <mat-form-field class="select-form">
+                                                                    <mat-select placeholder="Nivel"
+                                                                        [compareWith]="compareObjects"
+                                                                        [(ngModel)]="language.id" name="level{{i}}"
+                                                                        class="filter-select">
+                                                                        <mat-option value="0">Seleccione</mat-option>
+                                                                        <mat-option *ngFor="let lang of language.levels"
+                                                                            value="{{lang.id}}">{{lang.level}}
+                                                                        </mat-option>
+                                                                    </mat-select>
+                                                                </mat-form-field>
+                                                            </mat-list-item>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                                <div *ngIf="i >= 1" class="s-main-end m-main-start">
+                                                    <button class="btn btn-danger m-btn-delete"
+                                                        (click)="removeInputIdioma(i)"><span class="material-icons"
+                                                            style="font-size: 17px;">
+                                                            close
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </section>
+                                </div>
+                            </section>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="informacionPago">
+                            <section
+                                class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                <div>
+                                    <div class="group">
+                                        <input placeholder="{{ 'registroProfesor.email' | translate }}"
+                                            [(ngModel)]="modelteacher.email" name="email" #email=ngModel type="text"
+                                            required email>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'registroProfesor.email' | translate }}</label>
+                                        <div class="m-error-input"
+                                            *ngIf="email.invalid && (email.dirty || email.touched)">
+                                            <span *ngIf='email.errors.required'>El email es requerido.</span>
+                                            <span *ngIf='email.errors.email'>El email debe tener un formato
+                                                valido.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="group">
+                                        <input placeholder="{{ 'registroProfesor.emailRepeat' | translate }}"
+                                            [(ngModel)]="modelteacher.emailConfirm" name="emailRepeat"
+                                            #emailRepeat=ngModel type="text" required email>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="m-error-input">
+                                            <div
+                                                *ngIf="emailRepeat.invalid && (emailRepeat.dirty || emailRepeat.touched)">
+                                                <span *ngIf='emailRepeat.errors.required'>El email es requerido.</span>
+                                                <span *ngIf='emailRepeat.errors.email'>El email debe tener un formato
+                                                    valido.</span>
+                                            </div>
+                                            <span *ngIf='!errorEmail'>Los emails no son iguales.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-cols-2">
+                                    <div class="m-title-input">{{ 'registroProfesor.labelPaypal' | translate }}</div>
+                                    <hr> <br> <br>
+                                </div>
+                                <div>
+                                    <div class="group">
+                                        <input placeholder="{{ 'registroProfesor.idPaypal' | translate }}"
+                                            [(ngModel)]="modelteacher.paypalId" name="paypalId" type="text"
+                                            #paypalId=ngModel>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'registroProfesor.idPaypal' | translate }}</label>
+                                        <div class="m-error-input" *ngIf='!errorPaypalId'>
+                                            <span>El paypalId no son iguales.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="group">
+                                        <input placeholder="{{ 'registroProfesor.idPaypalConfirm' | translate }}"
+                                            [(ngModel)]="modelteacher.paypalIdConfirm" name="paypalIdConfirm"
+                                            type="text" #paypalIdConfirm=ngModel>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="m-error-input" *ngIf='!errorPaypalId'>
+                                            <span>El paypalId no son iguales.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="group">
+                                        <input placeholder="{{ 'registroProfesor.paypalEmail' | translate }}"
+                                            [(ngModel)]="modelteacher.paypalEmail" name="paypalEmail"
+                                            #paypalEmail=ngModel type="text" email>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'registroProfesor.paypalEmail' | translate }}</label>
+                                        <div class="m-error-input">
+                                            <div
+                                                *ngIf="paypalEmail.invalid && (paypalEmail.dirty || paypalEmail.touched)">
+                                                <span *ngIf='paypalEmail.errors.required'>El email es requerido.</span>
+                                                <span *ngIf='paypalEmail.errors.email'>El email debe tener un formato
+                                                    valido.</span>
+                                            </div>
+                                            <span *ngIf='!errorPaypalEmail'>Los emails de Paypal no son iguales.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="group">
+                                        <input placeholder="{{ 'registroProfesor.paypalEmailConfirm' | translate }}"
+                                            [(ngModel)]="modelteacher.paypalEmailConfirm" name="paypalEmailConfirm"
+                                            #paypalEmailConfirm=ngModel type="text" email>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="m-error-input">
+                                            <div
+                                                *ngIf="paypalEmailConfirm.invalid && (paypalEmailConfirm.dirty || paypalEmailConfirm.touched)">
+                                                <span *ngIf='paypalEmailConfirm.errors.required'>El email es
+                                                    requerido.</span>
+                                                <span *ngIf='paypalEmailConfirm.errors.email'>El email debe tener un
+                                                    formato
+                                                    valido.</span>
+                                            </div>
+                                            <span *ngIf='!errorPaypalEmail'>Los emails de Paypal no son iguales.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="informacionLaboral">
+                            <section class="ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-2 lg-grid-2"
+                                style="align-items: center;">
+                                <div>
+
+                                    <!--  <div class="input-group m-txt-filter"> -->
+                                    <!--  <div class="input-group-prepend"> -->
+                                    <!-- <span class="input-group-text"> -->
+
+                                    <!--   </span> -->
+                                    <!--     </div> -->
+
+                                    <!--   </div> -->
+                                    <img style="height: 23px;float: left;margin-right: 8px;"
+                                        src="../../../../../../assets/img/youtube.png">
+                                    <div class="m-title-input">{{ 'registroProfesor.video' | translate }}</div>
+                                    <input [(ngModel)]="modelteacher.videoPresentation" type="text"
+                                        name="videoPresentation" class="form-control m-txt-yoo"
+                                        #videoPresentation=ngModel>
+                                </div>
+                                <div class="s-main-center m-main-end">
+                                    <div class="m-icon-content">
+                                        <span class="material-icons m-icon-info">
+                                            info
+                                        </span>
+                                    </div>
+                                    <div class="m-text-video ">
+                                        <div style="margin-top: 20px;">
+                                            <div>¿Cómo copio el video de youtube?</div>
+                                            <button data-toggle="modal" data-target="#myModalYoo"
+                                                class="btn btn-primary"
+                                                style="margin-left: 26%; margin-top: 10px; width: 100px;height: 35px;">Ver</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-cols-2">
+                                    <div class="m-title-input">Experiencia Laboral</div>
+                                    <hr>
+                                </div>
+                                <div>
+                                    <app-upload-file allowedfiles="jpg,pdf" typeUpload="drag" nameGroup="cv"
+                                        folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
+                                </div>
+                                <div class="s-main-center m-main-end">
+                                    <div class="m-icon-content">
+                                        <span class="material-icons m-icon-info">
+                                            info
+                                        </span>
+                                    </div>
+                                    <div class="m-text-video ">
+                                        <div>Característica de archivo.</div>
+                                        <div>Máximo de 2 MB</div>
+                                        <div>Archivo PDF o JPG</div>
+                                        <div>Visible solo para el personal de italki.</div>
+                                    </div>
+                                </div>
+                                <div class="m-cols-2">
+                                    <div class="m-title-input">Titulos</div>
+                                    <hr>
+                                </div>
+                                <div>
+                                    <app-upload-file allowedfiles="jpg,pdf" nameGroup="titulos" folder="teacher_cv_doc"
+                                        (responseData)="getDataFiles($event)"></app-upload-file>
+                                </div>
+                                <div class="s-main-center m-main-end">
+                                    <div class="m-icon-content">
+                                        <span class="material-icons m-icon-info">
+                                            info
+                                        </span>
+                                    </div>
+                                    <div class="m-text-video ">
+                                        <div>Característica de archivo.</div>
+                                        <div>Máximo de 2 MB</div>
+                                        <div>Archivo PDF o JPG</div>
+                                        <div>Visible solo para el personal de English Advanced.</div>
+                                    </div>
+                                </div>
+                                <div class="m-cols-2">
+                                    <div class="m-title-input">Certificados</div>
+                                    <hr>
+                                </div>
+                                <div>
+                                    <app-upload-file allowedfiles="jpg,pdf" nameGroup="certificados"
+                                        folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
+                                </div>
+                                <div class="s-main-center m-main-end">
+                                    <div class="m-icon-content">
+                                        <span class="material-icons m-icon-info">
+                                            info
+                                        </span>
+                                    </div>
+                                    <div class="m-text-video ">
+                                        <div>Característica de archivo.</div>
+                                        <div>Máximo de 2 MB</div>
+                                        <div>Archivo PDF o JPG</div>
+                                        <div>Visible solo para el personal de English Advanced.</div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="m-title-input">Especialidades</div>
+                            <hr>
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-6">
+                                <div *ngFor="let item of Specializations; let i = index">
+                                    <div >
+                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="englishName"
+                                            type="checkbox">
+                                        <span>{{item.englishName}}</span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="m-title-input" style="font-weight: 300;">Examenes Internacionales</div>
+                            <hr>
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-6">
+                                <div *ngFor="let item of Internacionales; let i = index">
+                                        <div>
+                                            <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="examName"
+                                                type="checkbox">
+                                            <span>{{item.examName}}</span>
+                                        </div>
+                                </div>
+                            </section>
+                            <div class="m-title-input">Tipo de Inglés </div>
+                            <hr>
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-6"
+                                style="align-items: center;">
+                                <div>
+                                    <input [(ngModel)]="modelteacher.englishType" name="type" class="m-espe-checkbox"
+                                        value="American" type="radio">
+                                    <span>Inglés Americano</span>
+                                </div>
+                                <div>
+                                    <div></div>
+                                    <input [(ngModel)]="modelteacher.englishType" name="type" class="m-espe-checkbox"
+                                        value="British" type="radio">
+                                    <span>Inglés Británico</span>
+                                </div>
+                                <div class="m-cols-4"></div>
+                            </section>
+                            <div class="m-title-input">Edades que enseño</div>
+                            <hr>
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
+                                <div *ngFor="let item of edades;  let i = index ">
+                                    <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="ages"
+                                        type="checkbox">
+                                    <span>{{item.englishName}}</span>
+                                </div>
+                            </section>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Horarios">
+                            <app-calendar viewButtons=false CalendarVista="Week" (responseData)="getSchedules($event)">
+                            </app-calendar>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <br>
+            <aside class="m-btn-movil" style="display: none;">
+                <button (click)="SendInformation(modelteacher)" [disabled]="!teacherform.form.valid"
+                    class="btn btn-primary">
+                    Agregar Profesor</button><br><br>
+                <button routerLink="/teacher" class="btn btn-danger">Cancelar</button>
+            </aside>
+        </article>
+    </section>
+</form>
+
+
+
+<div class="modal fade" id="myModalYoo">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <mat-horizontal-stepper linear="false" #stepper>
+                    <mat-step label="Dar click en compartir">
+                        <img src="../../../../../../assets/img/tuto1.png">
+                    </mat-step>
+                    <mat-step label="Dar click en Insertar">
+                        <img src="../../../../../../assets/img/tuto2.png">
+                    </mat-step>
+                    <mat-step label="Copiar la url  marcada">
+                        <img src="../../../../../../assets/img/tuto3.png">
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </div>
+        </div>
+    </div>
+</div>

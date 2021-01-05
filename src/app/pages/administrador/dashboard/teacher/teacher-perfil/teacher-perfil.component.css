@@ -1,0 +1,114 @@
+.input-group-text{
+    border-top: none;
+    border-left: none;
+    background-color: white;
+    cursor: pointer;
+  }
+  .m-txt-yoo{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .m-add-teacher{
+    width: 101px;
+    margin-left: 10px;
+  }
+  .m-overflow{
+    overflow: auto;
+      height: 68vh;
+  }
+.border-bottom-none{
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-bottom: 0px;
+  padding: 50px 30px 30px 30px;
+}
+.border-top-none{
+  border-top: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.m-icon-red{
+  font-size: 24px;
+  color: #bf1628;
+}
+.m-clases{
+  text-align: right;
+  color: #7d7d7d;
+  font-weight: 300
+}
+.m-enseñadas{
+  text-align: left;
+  color: #7d7d7d;
+  margin-left: 7px;
+  font-weight: 300
+}
+.m-grid-score{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  align-items: center;
+  width: 100%;
+}
+.m-content-fecha{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.m-date-label{
+  color: #444444;
+  font-weight: 600;
+}
+.m-date-item{
+  color: #a4a4a4;
+  font-weight: 300;
+}
+
+.modal-video {
+  display: block;
+  background-color: transparent;
+  border: none;
+
+}
+.close{
+  font-size: 35px;
+  color: #bf1628;
+}
+.m-content-score-notify{
+  border: solid 1px #cfcfcf;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 7px;
+}
+
+  /* STEPERS */
+    .m-content-tabs-item{
+      background-color: #e0e0e0;
+      border-radius: 100px;
+      padding: 20px ;
+      
+    } 
+    .nav-link{
+      border: 0;
+      padding: 10px 28px ;
+  } 
+    .nav-link:hover{
+        border: 0;
+    } 
+  
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+      width: 100%;
+      height: 41px;
+      padding: 10px 28px ;
+      border-radius: 20px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      background-color: #ffffff;
+      font-weight: 700;
+      border: 0;
+    }
+    ul li a{
+  
+      color: #444444;
+    }
+  
+    /* END STEPERS */
+    

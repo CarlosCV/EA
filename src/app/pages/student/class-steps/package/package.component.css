@@ -1,0 +1,10 @@
+.m-package-content{
+    margin: 0 auto;
+    max-width: 800px;
+}
+.m-package{
+    border: 1px solid black;
+    padding: 20px;
+    width: 150px;
+
+}

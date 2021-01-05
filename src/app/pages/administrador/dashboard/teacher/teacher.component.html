@@ -1,0 +1,29 @@
+<div class="bredcrumbs">
+    <span >Dashboard</span>
+  </div><br>
+<section class="m-horario-content">
+    <div class="ed-grid  s-grid-3 m-grid-3" style=" height: 64px;">
+        <div class="m-tab-select m-main-center" routerLink="/teacher">
+            <div>Profesores</div>
+        </div>
+        <div class="m-tab-unselect m-main-center" routerLink="/private-student">
+            <div>Alumnos Particulares</div><br>
+        </div>
+
+        <div class="m-tab-unselect m-main-center" routerLink="/workshop-student">
+            <div>Alumnos Talleres</div><br>
+        </div>
+    </div>
+    <div class="m-content-tabs-item ed-grid s-grid-3 m-grid-3">
+        <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.activos" (click)="OpenActivos()">
+            Activos</div>
+        <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.inactivos"
+            (click)="OpenInactivos()">Inactivos</div>
+        <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.solicitudes"
+            (click)="OpenSolicitudes()">Solicitudes <span> ({{lengthSolicitudes}})</span></div>
+    </div>
+</section>
+<br>
+<app-activos *ngIf="statusTab.activos"></app-activos>
+<app-inactivos *ngIf="statusTab.inactivos"></app-inactivos>
+<app-solicitudes (responseData)="getLengthSolicitudes($event)" *ngIf="statusTab.solicitudes" ></app-solicitudes>

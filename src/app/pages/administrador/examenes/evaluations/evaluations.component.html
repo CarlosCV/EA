@@ -1,0 +1,359 @@
+<div class="bredcrumbs">
+    <span>Evaluaciones / </span>
+</div>
+<form>
+    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
+        <article>
+            <aside class="m-border-content m-main-center">
+
+            </aside>
+            <aside class="m-options-profile ">
+
+            </aside>
+        </article>
+        <article class="m-cols-4">
+            <aside class="m-title-admin">
+                English Advanced
+            </aside>
+            <aside class="m-content-admin">
+                <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
+
+
+                </section>
+            </aside>
+            <br><br>
+            <aside class="m-title-admin">
+                <!--  <div>{{ 'examListening.name' | translate }} </div> -->
+            </aside>
+            <aside class="m-content-admin">
+                <mat-horizontal-stepper linear="false" #stepper>
+                    <mat-step label="Definir Examen">
+                        <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-3">
+                            <div>
+                                <div class="group">
+                                    <input type="text" name="name" [(ngModel)]="evaluacionesDTO.name">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>{{ 'examListening.examName' | translate }}</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="group">
+                                    <input type="number" name="porcentaje" [(ngModel)]="evaluacionesDTO.passScore">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>{{ 'examListening.percentageToPass' | translate }}</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                        <label>{{ 'examListening.orderOfQuestions' | translate }}</label>
+                                        <mat-select name="order" class="filter-select">
+                                            <mat-option value="1">Orden de ingreso</mat-option>
+                                            <mat-option value="2">Random</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </mat-list-item>
+                            </div>
+                            <div>
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                        <label>{{ 'examListening.course' | translate }}</label>
+                                        <mat-select name="curso" class="filter-select"
+                                            [(ngModel)]="evaluacionesDTO.courseId">
+                                            <mat-option value="1">Curso 1</mat-option>
+                                            <mat-option value="2">Curso 2</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </mat-list-item>
+                            </div>
+
+                            <div>
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                        <label>{{ 'examListening.module' | translate }}</label>
+                                        <mat-select name="module" class="filter-select"
+                                            [(ngModel)]="evaluacionesDTO.module">
+                                            <mat-option value="1">Modulo 1</mat-option>
+                                            <mat-option value="2">Modulo 2</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </mat-list-item>
+                            </div>
+                            <div class="m-rows-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <section
+                                            class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                            <div>
+                                                {{ 'examListening.section' | translate }}
+                                            </div>
+                                            <div>
+                                                {{ 'examListening.time' | translate }}
+                                            </div>
+                                            <div>
+                                                Gramar
+                                            </div>
+                                            <div>
+                                                20
+                                            </div>
+                                            <div>
+                                                Listening
+                                            </div>
+                                            <div>
+                                                15
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>{{ 'examListening.informationExam' | translate }}</div>
+                                <textarea name="indications" class="form-control" [(ngModel)]="evaluacionesDTO.indication"></textarea>
+                            </div>
+
+                        </section>
+                    </mat-step>
+                    <mat-step label="Adicionar Pregunta">
+                        <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
+                            <article class="m-cols-2">
+                                <aside class="m-border-content m-main-center">
+                                    <section
+                                        class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                        <div class="m-cols-2">Tipo de pregunta</div>
+                                        <div>Selección múltiple</div>
+                                        <div class="m-main-end"><button class="btn btn-info" data-toggle="modal"
+                                                data-target="#myModal">Agregar</button></div>
+                                        <div>Drag and Drop</div>
+                                        <div class="m-main-end"><button class="btn btn-info">Agregar</button></div>
+                                        <div>Fill in the blank parrafo</div>
+                                        <div class="m-main-end"><button class="btn btn-info">Agregar</button></div>
+                                        <div>Fill in the blank texto</div>
+                                        <div class="m-main-end"><button class="btn btn-info">Agregar</button></div>
+
+                                    </section>
+                                </aside>
+                            </article>
+                            <article class="m-cols-3">
+                                <aside class="m-border-content">
+                                    <section
+                                        class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
+
+
+                                    </section>
+                                </aside>
+                            </article>
+                        </section>
+                    </mat-step>
+                    <mat-step label="Enviar Examen">
+                        3
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </aside>
+        </article>
+    </section>
+</form>
+
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Pregunta de selección multiple</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <section *ngFor="let section of sections" class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-3">
+                    <div>
+                        <mat-list-item class="primary-imenu-item" role="listitem">
+                            <mat-form-field class="select-form">
+                                <label>{{ 'examListening.section' | translate }}</label>
+                                <mat-select name="sectionName" class="filter-select" [(ngModel)]="section.name">
+                                    <mat-option value="1">Grammar</mat-option>
+                                    <mat-option value="2">Listening</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-list-item>
+                    </div>
+                    <div>
+                        <div class="group">
+                            <input type="text" name="sectionPart" [(ngModel)]="section.part">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>{{ 'examListening.parte' | translate }}</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="group">
+                            <input type="text" name="sectionTitulo" [(ngModel)]="section.title">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>{{ 'examListening.sectionsTitulo' | translate }}</label>
+                        </div>
+                    </div>
+                    <div class="m-cols-2">
+                        Indicaciones
+                    </div>
+                    <div class="m-cols-1">
+                        <button (click)="addIncations('text')">texto </button>
+                        <button (click)="addIncations('imagen')">imagen </button>
+                        <button (click)="addIncations('audio')">audio </button>
+                    </div>
+                </section>
+                <!--  si se requiere separados, hacerlo en distintos section y ngFor -->
+                <section *ngFor="let indication of sectionInstructions; let i = index"
+                    class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-3">
+                    <div class="m-cols-2" *ngIf="indication.type == 'text'">
+                        <div class="group">
+                            <input type="text" name="instructionsContent{{i}}" [(ngModel)]="indication.content"
+                                placeholder="Ingresa tu indicación">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>{{ 'examListening.instructionsContent' | translate }}</label>
+                        </div>
+                    </div>
+                    <div class="m-cols-1" *ngIf="indication.type == 'text'">
+                        <button (click)="removeIndications(i)" class="btn btn-danger m-btn-delete"><span
+                                class="material-icons" style="font-size: 17px;">
+                                close
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="m-cols-2" *ngIf="indication.type == 'imagen'">
+                        <input type="hidden" [(ngModel)]="indication.url">
+                        <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                            folder="teacher_cv_doc">
+                        </app-upload-file>
+                    </div>
+                    <div class="m-cols-1" *ngIf="indication.type == 'imagen'">
+                        <button (click)="removeIndications(i)" class="btn btn-danger m-btn-delete"><span
+                                class="material-icons" style="font-size: 17px;">
+                                close
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="m-cols-2" *ngIf="indication.type == 'audio'">
+                        <input type="hidden" [(ngModel)]="indication.url">
+                        <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                            folder="teacher_cv_doc">
+                        </app-upload-file>
+                    </div>
+                    <div class="m-cols-1" *ngIf="indication.type == 'audio'">
+                        <button (click)="removeIndications(i)" class="btn btn-danger m-btn-delete"><span
+                                class="material-icons" style="font-size: 17px;">
+                                close
+                            </span>
+                        </button>
+                    </div>
+                </section>
+
+                <section *ngFor="let question of questions;  let i = index">
+                    <button (click)="removeSectionQuestion(i)">Delete</button>
+                    <hr>
+                    <section class="m-page-content ed-grid rows-gap s-gap-2 m-gap-4 s-grid-1 m-grid-2 lg-grid-2">
+                        <div>
+                            <section
+                                class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                <div>
+                                    Preguntas
+                                </div>
+                                <div class="m-main-end">
+                                    <button (click)="addInputQuestions('texto')">texto </button>
+                                    <button (click)="addInputQuestions('imagen')">imagen </button>
+                                    <button (click)="addInputQuestions('audio')">audio </button>
+                                </div>
+                                <div class="m-cols-2">
+                                    <br><br>
+                                    <div class="group" *ngIf="addTextQuestions == 'texto'">
+                                        <input type="text" name="questionsText" [(ngModel)]="question.content">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'examListening.questionsText' | translate }}</label>
+                                    </div>
+                                    <div *ngIf="addTextQuestions == 'imagen'">
+                                        <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                                            folder="teacher_cv_doc">
+                                        </app-upload-file>
+                                    </div>
+                                    <div *ngIf="addTextQuestions == 'audio'">
+                                        <app-upload-file allowedfiles="mp3" typeUpload="drag" nameGroup="cv"
+                                            folder="teacher_cv_doc">
+                                        </app-upload-file>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="group">
+                                        <input type="text" name="questionsScore" [(ngModel)]="question.score">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'examListening.score' | translate }}</label>
+                                    </div>
+                                </div>
+
+                            </section>
+                        </div>
+                        <app-questions (responseData)="getQuestions($event)"></app-questions>
+                    </section>
+                    <hr>
+                </section>
+                <button (click)="addSectionQuestion('simple')">Agregar</button>
+
+
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <button (click)="saveData()" type="button" class="btn btn-info">Comprobar</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Guardar y Continuar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ESTRUCTURA -->
+<!-- 
+<div class="bredcrumbs">
+    <span routerLink="/teacher">Dashboard / </span>
+    <span> Mi Perfil</span>
+</div>
+<form>
+    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
+        <article>
+            <aside class="m-border-content m-main-center">
+
+            </aside>
+            <aside class="m-options-profile ">
+
+            </aside>
+        </article>
+        <article class="m-cols-4">
+            <aside class="m-title-admin">
+                Información Personal
+            </aside>
+            <aside class="m-content-admin">
+                <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
+
+
+                </section>
+            </aside>
+        </article>
+    </section>
+</form> -->

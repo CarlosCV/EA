@@ -1,0 +1,40 @@
+<br><br>
+<section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3">
+    <div class="m-rows-3">
+        <img src="../../../../assets/img/person.png" style="    height: 500px;">
+    </div>
+    <div class="m-cols-2">
+        <h4 class="m-elige m-main-center">
+            {{ 'typeClasses.title' | translate }}
+        </h4>
+        <h4 class="m-estudiar m-main-center">
+            {{ 'typeClasses.title_' | translate }}
+        </h4>
+       
+        <hr>
+    </div>
+    <div class="m-main-end">
+        <article class="m-card">
+            <div class="m-content-top"></div>
+            <img class="rounded-circle m-type-img" height="250px" width="150px" alt="avatar"
+                src="../../../../assets/img/avatar.jpg">
+            <div class="m-particular">
+                <h5 (click)="updateStudentType('STUDENT_PRIVATE')" routerLink="/paquetes"> {{ 'typeClasses.individuals' | translate }}</h5>
+                <div>{{ 'typeClasses.individualDescription' | translate }}
+                </div>
+            </div>
+        </article>
+    </div>
+    <div>
+        <article class="m-card">
+            <div class="m-content-top"></div>
+            <img class="rounded-circle m-type-img" height="250px" width="150px" alt="avatar"
+                src="../../../../assets/img/avatar.jpg">
+            <div class="m-taller">
+                <h5 (click)="updateStudentType('STUDENT_WORKSHOP')" >{{ 'typeClasses.workshop' | translate }}</h5>
+                <div>{{ 'typeClasses.workshopDescription' | translate }}
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

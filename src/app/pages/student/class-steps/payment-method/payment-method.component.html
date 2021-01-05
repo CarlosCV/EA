@@ -1,0 +1,41 @@
+<section class="m-pay-content ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+    <div class="m-cols-2">
+        <div>Pago</div>
+    </div>
+    <div class="m-cols-2">
+        <div>Método de pago</div>
+        <hr>
+    </div>
+    <div>
+        <input  [(ngModel)]="model.methodpay"  name="payment" class="m-espe-checkbox" value="paypal" type="radio" >
+        <span>Paypal</span>
+        <hr>
+    </div>
+    <div class="m-rows-3">
+        <article class="m-summary-content ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+             <div class="m-cols-2">Summary</div>
+             <div>Original Price</div>
+             <div> S/. 10.00</div>
+             <div>Pago de gestión</div>
+             <div>S/. 0.45 </div>
+             <div>Total</div>
+             <div> S/. 10.00</div>
+             <div class="m-cols-2">
+                <input class="m-espe-checkbox" type="checkbox">
+                <span>Al completar la compra, acepta estos <a href="#">Términos de servicio</a></span>
+             </div>
+        </article>
+    </div>
+    <div>
+        <input  [(ngModel)]="model.methodpay"  name="payment" class="m-espe-checkbox" value="transferencia" type="radio">
+        <span>Transferencia bancaria</span>
+        <hr>
+    </div>
+    <div></div>
+    <div>
+        <button class="btn btn-danger">Cancelar</button>
+    </div>
+    <div>
+        <button (click)="pagar()" class="btn btn-info">Pagar</button>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+<section class="m-package-content ">
+    <article class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
+        <div class="m-package" *ngFor="let package of packages">
+            <div>{{package.hours}} h</div>
+            <div>S/. {{package.pricePerHour}} por hora</div>
+            <div>- Vigencia {{package.expireMonth}} meses</div>
+            <div>- Plataforma Virtual</div>
+            <div>- Todos los materiales </div>
+            <br>
+            <div>S/. {{package.total}}</div>
+            <br>
+            <button (click)="selectPaquete(package)" class="btn btn-danger">Quiero este</button>
+        </div>
+    </article>
+</section>

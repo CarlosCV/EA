@@ -1,0 +1,31 @@
+.m-line{
+  border-bottom: 1px solid rgba(0,0,0,.1)
+}
+.m-btn-delete-file{
+  text-align: right;
+   display: block;
+   color: #007bff;
+   cursor: pointer;
+}
+.contenedorUpload /deep/ .ngx-file-drop__drop-zone {
+  border: none;
+ }
+
+ .m-btn-upload{
+  color: #05beee;
+  font-size: 50px;
+  cursor: pointer;
+}
+.btn-info{
+  background: #05beee;
+}
+
+.btn-files{
+  width: 135px;
+  height: 31px;
+  padding: 3px;
+  border-radius: 7px;
+  background-color: #05beee;
+  color: #ffffff;
+  font-weight: 300;
+}

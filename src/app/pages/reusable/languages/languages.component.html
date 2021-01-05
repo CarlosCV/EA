@@ -1,0 +1,57 @@
+<article class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+    <div >
+       <!--  <br> -->
+    <!--     <select (change)="OpenLevel($event.target.value)">
+            <option value="0">Seleccione</option>
+            <option *ngFor="let lang of idiomas" value="{{lang.name}}">{{lang.name}}</option>
+        </select> -->
+        <mat-list-item class="primary-imenu-item">
+            <mat-form-field class="select-form">
+                <label>Idioma</label>
+                <mat-select name="idioma" class="filter-select"
+                    (selectionChange)="OpenLevel($event.value)">
+                    <mat-option *ngFor="let lang of idiomas" value="{{lang.name}}">{{lang.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-list-item>
+    </div>
+    <div>
+       <!--  <div>Nivel</div>
+        <select (change)="getLanguage($event.target.value)">
+            <option value="0">Seleccione</option>
+            <option *ngFor="let lang of levels" value="{{lang.id}}"z>{{lang.level}}</option>
+        </select> -->
+        <mat-list-item class="primary-imenu-item">
+            <mat-form-field class="select-form">
+                <label>Nivel</label>
+                <mat-select (selectionChange)="getLanguage($event.value)" name="level" class="filter-select">
+                    <mat-option  value="0">Seleccione</mat-option>
+                    <mat-option *ngFor="let lang of levels" value="{{lang.id}}">{{lang.level}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-list-item>
+    </div>
+</article>
+<!-- <article class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-2">
+    <ng-container *ngFor="let item of json">
+        <div>
+            <br>
+            <select (change)="OpenLevel($event.target.value)" >
+                <option value="0">Seleccione</option>
+                <option *ngFor="let lang of idiomas" value="{{lang.name}}">{{lang.name}}</option>
+            </select>
+        </div>
+        <div>
+            <div>Nivel</div>
+            <select (change)="getLanguage($event.target.value)" >
+                <option value="0">Seleccione</option>
+                <ng-container  *ngFor="let lang of idiomas">
+                    <option *ngFor="let ite of lang.children" value="{{ite.id}}">{{ite.level}}</option>
+                </ng-container>
+               
+            </select>
+        </div>
+    </ng-container>
+</article> -->

@@ -1,0 +1,518 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./assets/css/bootstrap.min.css";
+@import './assets/css/input-line-material.css';
+@import './assets/css/loader.css';
+/* @import './assets/css/tabs.css'; */
+
+@import './assets/css/angular-table-material.css';
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import './assets/scss/_variables.scss';
+@import './assets/scss/_action-bar.scss';
+@import './assets/scss/_buttons.scss';
+@import './assets/scss/_layout.scss';
+@import './assets/scss/_utilities.scss';
+
+@font-face{
+  font-family: 'Gotham';
+  src: url('./assets/fuentes/GothamRounded-Bold.otf');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Gotham';
+  src: url('./assets/fuentes/GothamRounded-Light.otf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+html, body{
+  margin: 0;
+
+}
+#zmmtg-root {
+  display: none;
+}
+html, body { height: 100%;    }
+
+body { 
+  margin: 0;
+  font-family: Gotham; }
+  ul, li ,span, section,aside,button,tr, td,input,textarea,div{
+    font-family: Gotham;
+  }
+  tr td {
+    color: #000000 !important;
+  }
+label{
+  left: 0px;
+  color: #737373;
+  font-size: 15.1px;
+  font-weight: 300;
+}
+.example-table  th{
+  font-weight: 600;
+  color: #000000;
+  font-size: 15.1px;
+}
+.m-espe-checkbox{
+  float: left;
+  width: 13px;
+  margin-top: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+textarea:focus, input:focus, span:focus , button:focus{
+  outline: none;
+ 
+}
+
+.form-control:focus {
+  box-shadow:none;
+  border-color: #ced4da;
+}
+
+//tabs
+
+.m-tab-select{
+  background-color: #e0e0e0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  padding: 20px;
+  font-weight: 500;
+  color: #444444;
+  cursor: pointer;
+}
+.m-tab-unselect{
+  color: #444444;
+    font-weight: 300;
+    padding: 20px;
+    cursor: pointer;
+}
+.m-content-tabs-item{
+  background-color: #e0e0e0;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 20px;
+  font-weight: 300;
+  color: #444444;
+}
+
+.m-item-select{
+  height: 41px;
+  padding: 12px ;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  font-weight: 700;
+}
+
+.m-item-unselect{
+  padding: 12px;
+  cursor: pointer;
+
+}
+.m-horario-content{
+  margin: 0 auto;
+  max-width: 1300px;
+  text-align: center;
+}
+//end tabs
+
+.swal2-actions button{
+  margin-right: 20px;
+}
+.m-error-input{
+  color: red;
+  padding-top: 4px;
+}
+
+
+//CONTEN PAGES
+.m-page-content {
+  max-width: none;
+  margin-top: 20px;
+  width: auto;
+}
+.m-perfil-content{
+  border-top: 2px solid #E0E0E0;
+  padding: 25px;
+}
+.m-form-content-registro{
+  border: 2px solid #E0E0E0;
+  background-color: #ffffff;
+  padding: 2%;
+}
+.m-datos-personales{
+  margin-bottom: 8px;
+}
+.m-title-input , label{
+  font-size: 15.1px;
+  font-weight: 700;
+  color: #000000;
+
+}
+input::placeholder, select::placeholder{
+  font-size: 15px;
+}
+.mat-form-field {
+  font-size: 15px;
+}
+mat-select::placeholder{
+  display: none;
+}
+//END CONTENT PAGES
+
+//MATERIAL
+ .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent !important;
+}
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+.example-container{
+  border-radius: 7px;
+  border: solid 1px #cfcfcf;
+  padding: 2px;
+  }
+
+//END MATERIAL
+
+//FILTERS
+.m-filters{
+  border-radius: 7px;
+  padding: 32px 26px 0px 24px;
+  border: solid 1px #cfcfcf;
+
+}
+//EN FILTERS
+
+//dashborad
+.bredcrumbs{
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+align-items: center;
+}
+.m-label{
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.m-page-content.ed-grid{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.select-form{
+  width: 100%;
+}
+.m-add-teacher{
+  height: 31px;
+  width: auto;
+  font-size: 15px;
+  background-color: #05beee;
+ text-align: center;
+  border-radius: 7px;
+  color: #ffffff;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.m-add-teacher span{
+  font-size: 25px;
+  
+}
+.m-btn-delete{
+  width: 41px !important;
+  height: 32px;
+  margin-top: 8px;
+}
+.m-name-user{
+  word-break: break-all;
+    width: 100%;
+    text-align: center;
+    margin: 15px 0px;
+}
+.m-color-yellow{
+  color: #ffcc17;
+  font-size: 18px;
+}
+.m-router-profile{
+  cursor: pointer;
+  color: #aeaeae;
+}
+.m-router-check{
+  cursor: pointer;
+  color: #58c25d;
+}
+.m-router-remove{
+  cursor: pointer;
+  color: #ff4b55;;
+}
+.m-router-view{
+  cursor: pointer;
+  color: #242c5f;
+}
+.m-export{
+  color: #4452ab;
+  font-size: 27px;
+}
+.m-icon-content{
+  float: left;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.m-icon-info{
+  height: 100px;
+  align-items: center;
+  display: grid;
+  color: #4452ab;
+  font-size: 28px;
+}
+.m-text-video{
+  width: 59%;
+  font-size: 14px;
+}
+.m-line-vertical{
+  text-align: right;
+  padding:2px 7px;
+  cursor: pointer;
+  border-right: 2px solid #cfcfcf;
+  border-left: 2px solid #cfcfcf;
+  height: 33px;
+  margin-right: 17px;
+  margin-left: 17px;
+}
+.m-photo-perfil-grid{
+height: 35px;
+width: 35px;
+border-radius: 50%;
+}
+.m-border-content{
+  border: solid 1px #cfcfcf;
+  padding: 50px 30px 30px 30px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 15px;
+
+}
+.input-group-text{
+  background-color: #ffffff;
+}
+.m-txt-search{
+  border-left: none;
+}
+.m-content-active {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+}
+.m-content-active li {
+  display: inline-block;
+  margin: 0 0.5em;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.m-neutro-user{
+  width: 14px;
+  height: 14px;
+  border: solid 1px #949494;
+  border-radius: 50%;
+}
+.m-active-user{
+  background-color: #58c25d;
+}
+.m-inactive-user{
+  background-color: #bf1628;
+}
+.m-photo{
+  width: 204px;
+  height: 204px;
+  margin: 0 0 9px;  
+  border-radius: 50%;
+}
+.btn{
+font-weight: 700;
+}
+.btn-primary{
+  background: #242c5f  !important;
+  width: 100%;
+  border-color:#242c5f !important ;
+  height:45px;
+
+}
+.btn-danger{
+  background: #bf1628 !important;
+  width: 100%;
+  height:45px;
+}
+.btn-info{
+  background-color: #05beee !important;
+  border-color: none !important;
+  border: none !important;
+  font-weight: 300;
+}
+
+.btn-secondary{
+  background: #bf1628 !important;
+  border-color:#bf1628  !important ;
+  font-weight: 300;
+}
+.btn-success {
+  background-color: #05beee !important;
+  border-color:#05beee  !important ;
+  
+}
+.m-btn-perfil{
+  position: absolute;
+  margin-top: -91px;
+  margin-left: 162px;
+}
+
+.m-left{
+  float: left;
+}
+/* .m-title-admin{
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+  border: solid 1px #cfcfcf;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+} */
+.m-content-admin{
+  border: solid 1px #cfcfcf;
+  border-radius: 7px;
+  padding: 30px 25px;
+}
+.m-header-admin{
+  border: solid 1px #cfcfcf;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  border-bottom: none;
+  padding: 25px;
+}
+
+.mat-form-field-label span {
+  display: none;
+} 
+
+.mat-form-field-empty span {
+  display: contents;
+}
+.swal2-header{
+  padding: 0 !important;
+}
+.m-border-line{
+  border-bottom: solid 1px #cfcfcf;
+  width: 100vw;
+  text-align: left;
+  padding: 0 0 10px;
+}
+.m-subtitle{
+  font-size: 18px;
+  color: #000000;
+  font-weight: 300;
+  margin: 22px;
+}
+.m-confirm-text {
+  font-size: 15px;
+  color: #000000;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+  .m-btn-perfil {
+    margin-left: 100px !important;
+}
+}
+@media (max-width: 768px) {
+  
+  .m-overflow {
+    overflow: hidden !important;
+    height: auto !important;
+}
+.m-btn-perfil {
+  margin-left: 162px !important;
+}
+  .example-container {
+    max-width: 114vw;
+    overflow: auto;
+  }
+  .example-table thead tr th aside {
+    width: 250px;
+    text-align: center;
+  }
+  .example-table thead tr th nav {
+    width: 200px;
+    text-align: center;
+  }
+  .example-table thead tr th article {
+    width: 90px;
+    text-align: center;
+  }
+  .example-table tbody tr  td {
+    text-align: center;
+  }
+  .siderbarNone{
+    width: 0px;
+  }
+  .m-content-pages{
+    padding-left: 20px !important;
+    padding-bottom: 20px !important;
+}
+  .m-header{
+  padding-left: 0px !important
+ }
+ #m-add{
+   display: none;
+ }
+ .m-add-teacher{
+   width: 40px;
+ }
+ .m-horario-content{
+  font-size: 11px;
+}
+.m-div-hidden{
+  display: none;
+}
+.m-btn-movil{
+  display: block !important;
+}
+.m-btn-web{
+  display: none;
+}
+.m-left{
+  float: none;
+}
+.m-content-tabs-item{
+  border-radius: 18px !important;
+}
+.m-back-page{
+  padding: 20px 0 0 0 !important;
+}
+
+.m-total{
+  width: 90%;
+}
+}
+
+
+//end dashboard
+

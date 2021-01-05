@@ -1,0 +1,8 @@
+.m-examen-content{
+    margin: 0 auto;
+    max-width: 1500px;
+}
+.m-examen-item{
+    border: 2px solid silver;
+    padding: 10px;
+}

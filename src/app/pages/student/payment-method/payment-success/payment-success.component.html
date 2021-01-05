@@ -1,0 +1,20 @@
+<section class="m-exutepay-content">
+    <div  id="successPay" style="display: none;" class="alert alert-success">
+        <strong>Success!</strong> El pago se realizó con exito.
+    </div>
+    <section id="guestAccount" style="display: none;">
+        <div class="alert alert-info">
+            <strong>Info!</strong> tienes {{nrStudent}} amigos pendientes de invitar!.
+        </div>
+        <br>
+        <div class="group">
+            <input [(ngModel)]="emails" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Agregar invitados</label>
+        </div>
+        <button (click)="InviteGuest()" class="btn btn-info">Invitar</button>
+    </section>
+    
+    <button id="btnSuccessPay" style="display: none;" (click)="tabEvaluations()" class="btn btn-info">Siguiente</button>
+</section>

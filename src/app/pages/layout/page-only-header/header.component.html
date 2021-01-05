@@ -1,0 +1,19 @@
+<header class="m-header">
+   <div class="header__logo">
+      <a href="https://englishadvance.com.pe/" title="English Advance" rel="home">
+         <img class="header__logo-img"
+            src="https://englishadvance.com.pe/wp-content/themes/english-advance/img/ea-logo.png"
+            alt="English Advance logo">
+      </a>
+   </div>
+   <div class="m-header-content">
+      <div class="m-header-title">
+         ¡Te damos la bienvenida,
+         <span *ngIf="user.name">{{user.name}}</span> <span *ngIf="user.lastName"> {{user.lastName}}!</span>
+      </div>
+      <div class="m-header-button">
+         <span class="m-english" (click)="traducir('en')">English</span>
+         <span class="m-spanish" (click)="traducir('es')">Español</span>
+      </div>
+   </div>
+</header>

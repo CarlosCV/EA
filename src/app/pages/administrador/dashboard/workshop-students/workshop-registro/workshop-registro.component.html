@@ -1,0 +1,248 @@
+<div class="bredcrumbs">
+  <span routerLink="/workshop-student">Dashboard </span>
+  <span class="material-icons">
+    keyboard_arrow_right
+</span>
+  <span>Nuevo Usuario Taller</span>
+</div>
+<form #studentForm="ngForm">
+  <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
+    <article>
+      <aside class="m-border-content m-main-center">
+        <div style="text-align: center;">
+          <img src="../../../../assets/img/avatar.jpg" class="m-photo" id="photoperfil">
+          <div class="m-btn-perfil">
+            <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic" folder="teacher_cv_doc"
+              (responseData)="getDataFiles($event)"></app-upload-file>
+          </div>
+        </div>
+      </aside>
+      <aside class="m-options-profile ">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" href="#informacionPersonal" role="tab" data-toggle="tab">Información
+              Personal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#informacionCuenta" role="tab" data-toggle="tab">Información de Cuenta</a>
+          </li>
+        </ul>
+      </aside>
+      <aside class="m-btn-web" >
+        <button class="btn btn-primary" [disabled]="!studentForm.form.valid" (click)="saveStudent()">Agregar</button><br><br>
+        <button routerLink="/workshop-student" class="btn btn-danger">Cancelar</button>
+      </aside>
+    </article>
+    <article class="m-cols-4 m-overflow">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active show" id="informacionPersonal">
+          <aside class="m-content-admin">
+            <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
+              <div class="m-cols-1 lg-cols-2">
+                <div class="group">
+                  <input type="text" name="lastName" placeholder="{{ 'registroStudent.fullsurnames' | translate }}" [(ngModel)]="studentsModel.lastName" #lastName=ngModel required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>{{ 'registroStudent.fullname' | translate }}</label>
+                  <div class="m-error-input" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    <span *ngIf='lastName.errors.required'>El Apellido es requerido.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="m-cols-1 lg-cols-2">
+                <div class="group">
+                  <input type="text" name="name" placeholder="{{ 'registroStudent.fullname' | translate }}" [(ngModel)]="studentsModel.name" #name=ngModel required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <div class="m-error-input" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <span *ngIf='name.errors.required'>El Nombre es requerido.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="m-cols-1 lg-cols-2">
+              </div>
+              <div class="m-cols-1 lg-cols-1">
+                <div class="m-title-input">{{ 'registroStudent.birthdate' | translate }}</div>
+                <br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <mat-select name="birthday" class="filter-select"
+                      placeholder="{{ 'registroStudent.day' | translate }}" [(ngModel)]="studentsModel.birthday">
+                      <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">{{birth.num}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+                <div class="m-error-input" *ngIf='!errorDate'>
+                  <span>Debes ingresar una fecha valida.</span>
+                </div>
+              </div>
+              <div>
+                <br><br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                      <mat-select name="birthmonth" class="filter-select"  placeholder="{{ 'registroStudent.month' | translate }}"
+                      [(ngModel)]="studentsModel.birthmonth">
+                          <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </mat-list-item>
+              </div>
+              <div>
+                <br><br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                      <mat-select name="birthyear" class="filter-select"  placeholder="{{ 'registroStudent.year' | translate }}"
+                      [(ngModel)]="studentsModel.birthyear">
+                          <mat-option *ngFor="let item of year" value="{{item.year}}">{{item.year}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </mat-list-item>
+              </div>
+              <div>
+                <div class="m-title-input">{{ 'registroStudent.phone' | translate }}</div>
+                <br>
+                <div class="group">
+                  <input type="text" name="prefix" placeholder="{{ 'registroStudent.prefix' | translate }}" [(ngModel)]="studentsModel.prefix">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                </div>
+              </div>
+              <div class="m-cols-1 lg-cols-2">
+                <br><br>
+                <div class="group">
+                  <input type="text" name="cellphone" placeholder="{{ 'registroStudent.number' | translate }}" [(ngModel)]="studentsModel.cellphone">
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                </div>
+              </div>
+
+              <div class="m-cols-1 lg-cols-2">
+                <div class="m-title-input">{{ 'registroStudent.fromCity' | translate }}</div>
+                <br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <mat-select name="birthCountry" placeholder="{{'registroStudent.country' | translate }}" class="filter-select" (selectionChange)="viewStatesBirth($event.value)"
+                      [(ngModel)]="studentsModel.birthCountry">
+                      <mat-option *ngFor="let pais of countries" value="{{pais.id}}">{{pais.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </div>
+
+              <div>
+                <br><br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <label></label>
+                    <mat-select name="birthState" placeholder="{{ 'registroStudent.state' | translate }}" class="filter-select" [(ngModel)]="studentsModel.birthState">
+                      <mat-option *ngFor="let state of birthStates" value="{{state.id}}">
+                        {{state.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </div>
+
+              <div class="m-cols-1 lg-cols-2">
+                <div class="m-title-input">{{ 'registroStudent.fromLive' | translate }}</div>
+                <br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <mat-select name="residentCountry" placeholder="{{ 'registroStudent.country' | translate }}" class="filter-select" (selectionChange)="viewStatesResident($event.value)"
+                      [(ngModel)]="studentsModel.residentCountry">
+                      <mat-option *ngFor="let pais of countries" value="{{pais.id}}">{{pais.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </div>
+
+              <div>
+                <br><br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <mat-select name="residentState" placeholder="{{ 'registroStudent.state' | translate }}" class="filter-select" [(ngModel)]="studentsModel.residentState">
+                      <mat-option *ngFor="let state of residentStates" value="{{state.id}}">
+                        {{state.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </div>
+
+              <div class="m-cols-1 lg-cols-2">
+                <br><br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <label>{{ 'registroStudent.timeZone' | translate }}</label>
+                    <mat-select name="timeZone" class="filter-select" placeholder="Seleccionar" [(ngModel)]="studentsModel.timeZone">
+                      <mat-option *ngFor="let zone of timeZone" value="{{zone.id}}">{{zone.timezone}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </div>
+              <div class="m-cols-1 lg-cols-2">
+                <br><br>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                    <label>{{ 'registroStudent.sesion' | translate }}</label>
+                    <mat-select name="sesion" class="filter-select" placeholder="Seleccionar">
+                    </mat-select>
+                  </mat-form-field>
+                </mat-list-item>
+              </div>
+
+
+              <div class="m-cols-3 lg-cols-6">
+                <div  class="m-title-input">{{ 'registroStudent.motivo' | translate }}</div><br>
+                <textarea name="reason" [(ngModel)]="studentsModel.reason" rows="4" class="form-control"></textarea>
+              </div>
+            </section>
+          </aside>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="informacionCuenta">
+          <aside class="m-content-admin">
+            <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
+              <div>
+                <div class="group">
+                  <input [(ngModel)]="studentsModel.email" placeholder="{{ 'registroStudent.email' | translate }}" type="text" #email=ngModel name="email" required email>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>{{ 'registroStudent.email' | translate }}</label>
+                  <div class="m-error-input" *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <span *ngIf='email.errors.required'>El email es requerido.</span>
+                    <span *ngIf='email.errors.email'>El email debe tener un formato valido.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="group">
+                  <input [(ngModel)]="studentsModel.emailConfirm" placeholder="{{ 'registroStudent.emailRepeat' | translate }}" name="emailRepeat" #emailRepeat=ngModel type="text"
+                    required email>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <div class="m-error-input">
+                    <div *ngIf="emailRepeat.invalid && (emailRepeat.dirty || emailRepeat.touched)">
+                      <span *ngIf='emailRepeat.errors.required'>El email es requerido.</span>
+                      <span *ngIf='emailRepeat.errors.email'>El email debe tener un formato valido.</span>
+                    </div>
+                    <span *ngIf='!errorEmail'>Los emails nos son iguales.</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </article>
+    <br>
+    <aside class="m-btn-movil" style="display: none;">
+      <button class="btn btn-primary" [disabled]="!studentForm.form.valid" (click)="saveStudent()">Agregar</button><br><br>
+      <button routerLink="/workshop-student" class="btn btn-danger">Cancelar</button>
+    </aside>
+  </section>
+</form>

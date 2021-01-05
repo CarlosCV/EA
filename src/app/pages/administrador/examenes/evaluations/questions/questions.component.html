@@ -1,0 +1,168 @@
+
+<!-- <section class="m-page-content ed-grid rows-gap s-gap-2 m-gap-4 s-grid-1 m-grid-2 lg-grid-2">
+    <div>
+        <section
+            class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div>
+                Preguntas
+            </div>
+            <div class="m-main-end">
+                <button (click)="addInputQuestions('texto')">texto </button>
+                <button (click)="addInputQuestions('imagen')">imagen </button>
+                <button (click)="addInputQuestions('audio')">audio </button>
+            </div>
+            <div class="m-cols-2">
+                <br><br>
+                <div class="group" *ngIf="addTextQuestions == 'texto'">
+                    <input type="text" name="questionsText" [(ngModel)]="questions.content">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'examListening.questionsText' | translate }}</label>
+                </div>
+                <div *ngIf="addTextQuestions == 'imagen'">
+                    <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                        folder="teacher_cv_doc">
+                    </app-upload-file>
+                </div>
+                <div *ngIf="addTextQuestions == 'audio'">
+                    <app-upload-file allowedfiles="mp3" typeUpload="drag" nameGroup="cv"
+                        folder="teacher_cv_doc">
+                    </app-upload-file>
+                </div>
+            </div>
+            <div>
+                <div class="group">
+                    <input type="text" name="questionsScore" [(ngModel)]="questions.score">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'examListening.score' | translate }}</label>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <div>
+        <section
+            class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div>
+                Ingrese las opciones
+            </div>
+            <div class="m-main-end">
+                 <button (click)="addOptions('text')">texto </button>
+                <button (click)="addOptions('imagen')">imagen </button>
+                <button (click)="addOptions('audio')">audio </button>
+            </div>
+        </section>
+        <section *ngFor="let opcion of questions.options; let i = index"
+            class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div *ngIf="opcion.type =='text'">
+                <div class="group">
+                    <input type="text" name="optionsContent{{i}}" [(ngModel)]="opcion.content">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'examListening.optionsContent' | translate }}</label>
+                </div>
+            </div>
+            <div class="m-main-end" *ngIf="opcion.type =='text'">
+                <button (click)="removeOptions(i)" class="btn btn-danger m-btn-delete"><span
+                        class="material-icons" style="font-size: 17px;">
+                        close
+                    </span>
+                </button>
+            </div>
+
+            <div *ngIf="opcion.type =='imagen'">
+                <input type="hidden" [(ngModel)]="options.url" > 
+                <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                    folder="teacher_cv_doc">
+                </app-upload-file>
+            </div>
+            <div class="m-main-end" *ngIf="opcion.type =='imagen'">
+                <button (click)="removeOptions(i)" class="btn btn-danger m-btn-delete"><span
+                        class="material-icons" style="font-size: 17px;">
+                        close
+                    </span>
+                </button>
+            </div>
+
+            <div *ngIf="opcion.type =='audio'">
+                <input type="hidden" [(ngModel)]="options.url" > 
+                <app-upload-file allowedfiles="mp3" typeUpload="drag" nameGroup="cv"
+                    folder="teacher_cv_doc">
+                </app-upload-file>
+            </div>
+            <div class="m-main-end" *ngIf="opcion.type =='audio'">
+                <button (click)="removeOptions(i)" class="btn btn-danger m-btn-delete"><span
+                        class="material-icons" style="font-size: 17px;">
+                        close
+                    </span>
+                </button>
+            </div>
+        </section>
+
+
+    </div>
+
+</section> -->
+
+
+    <div>
+        <section
+            class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div>
+                Ingrese las opciones
+            </div>
+            <div class="m-main-end">
+                <button (click)="addOptions('text')">texto </button>
+                <button (click)="addOptions('imagen')">imagen </button>
+                <button (click)="addOptions('audio')">audio </button>
+            </div>
+        </section>
+        <section *ngFor="let opcion of options; let x = index"
+            class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+            <div *ngIf="opcion.type =='text'">
+                <div class="group">
+                    <input type="text" name="optionsContent{{x}}" [(ngModel)]="opcion.content">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{ 'examListening.optionsContent' | translate }}</label>
+                </div>
+            </div>
+            <div class="m-main-end" *ngIf="opcion.type =='text'">
+                <button (click)="removeOptions(x)" class="btn btn-danger m-btn-delete"><span
+                        class="material-icons" style="font-size: 17px;">
+                        close
+                    </span>
+                </button>
+            </div>
+
+            <div *ngIf="opcion.type =='imagen'">
+                <input type="hidden" [(ngModel)]="options.url">
+                <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                    folder="teacher_cv_doc">
+                </app-upload-file>
+            </div>
+            <div class="m-main-end" *ngIf="opcion.type =='imagen'">
+                <button (click)="removeOptions(i)" class="btn btn-danger m-btn-delete"><span
+                        class="material-icons" style="font-size: 17px;">
+                        close
+                    </span>
+                </button>
+            </div>
+
+            <div *ngIf="opcion.type =='audio'">
+                <input type="hidden" [(ngModel)]="options.url">
+                <app-upload-file allowedfiles="mp3" typeUpload="drag" nameGroup="cv"
+                    folder="teacher_cv_doc">
+                </app-upload-file>
+            </div>
+            <div class="m-main-end" *ngIf="opcion.type =='audio'">
+                <button (click)="removeOptions(i)" class="btn btn-danger m-btn-delete"><span
+                        class="material-icons" style="font-size: 17px;">
+                        close
+                    </span>
+                </button>
+            </div>
+        </section>
+    </div>
+

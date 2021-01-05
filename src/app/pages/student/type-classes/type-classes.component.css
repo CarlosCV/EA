@@ -1,0 +1,40 @@
+
+
+.m-card{
+    border: 1px solid silver;
+    position:absolute;
+    width:250px;
+    z-index: 1000;
+    text-align: center;
+}
+.m-card .m-particular{
+    background-color: #E22539;
+    padding: 120px 20px 10px;
+    color: white;    
+}
+.m-card .m-taller{
+    background-color: #1A2860;
+    padding: 120px 20px 10px;
+    color: white;    
+}
+.m-type-img{
+  position:absolute;
+  top: 15px;
+  left : 50px;
+  z-index: 1;
+  border: 3px solid silver;
+}
+.m-content-top{
+    height: 60px;
+    background-color: #ffffff;
+}
+.m-elige{
+    color: #1a2860;
+}
+.m-estudiar{
+    color: red;
+}
+
+h5{
+    cursor: pointer;
+}

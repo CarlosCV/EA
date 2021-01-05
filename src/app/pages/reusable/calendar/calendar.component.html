@@ -1,0 +1,80 @@
+
+<section class="m-content">
+<!--   <div class="row text-center"  [ngStyle]="{'display': viewButtons == 'true' ? 'flex': 'block'}"> -->
+  <div class="row text-center" *ngIf="viewButtons == 'true'" >
+    <div class="col-md-4" >
+      <div class="btn-group">
+        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+          {{ 'calendar.previous' | translate }}
+        </div>
+        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+         {{ 'calendar.today' | translate }}
+        </div>
+        <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+         {{ 'calendar.next' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 ">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):localeLang }}</h3>
+    </div>
+   <!--  <div *ngIf="viewButtons != 'true'" >
+      <strong>Disponibilidad</strong>
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):localeLang }}</h3>
+    </div> -->
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+          {{ 'calendar.month' | translate }}
+        </div>
+        <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+         {{ 'calendar.week' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [locale]="localeLang"
+      [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+      (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"
+      [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)">
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [locale]="localeLang"
+      [dayStartHour]="7" [dayEndHour]="15" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)" [weekStartsOn]="weekStartsOn"
+      (hourSegmentClicked)="clickedDate = $event.date; addHourClass()" (beforeViewRender)="updateCalendarEvents($event)" > 
+    </mwl-calendar-week-view>
+
+   <!--  <mwl-calendar-week-view
+    *ngSwitchCase="'week'" [dayStartHour]="7" [dayEndHour]="15" [locale]="localeLang"
+    [viewDate]="viewDate"  [weekStartsOn]="weekStartsOn"
+    [events]="calendarEvents"
+    (beforeViewRender)="updateCalendarEvents($event)">
+  </mwl-calendar-week-view> -->
+  </div>
+<!-- [hourSegments]="1" -->
+  <ng-template #modalContent let-close="close">
+    <div class="modal-header">
+      <h5 class="modal-title">Event action occurred</h5>
+      <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        Action:
+        <pre>{{ modalData?.action }}</pre>
+      </div>
+      <div>
+        Event:
+        <pre>{{ modalData?.event | json }}</pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="close()">
+        OK
+      </button>
+    </div>
+  </ng-template>
+</section>

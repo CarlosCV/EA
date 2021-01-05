@@ -1,0 +1,54 @@
+<section *ngIf="typeUpload == 'drag'" class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
+    <div>
+        <ngx-file-drop class="contenedorUpload" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+            (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                <div>
+                    <div class="btn btn-files" *ngIf="!loadinguUpload" type="button" (click)="openFileSelector()">Subir
+                        archivo</div>
+                    <div *ngIf="loadinguUpload" class="spinner-border text-danger"></div>
+                </div>
+
+            </ng-template>
+        </ngx-file-drop>
+    </div>
+    <div class="upload-table m-cols-3">
+        <div class="upload-name-style">
+            <div *ngFor="let item of filesData; let i=index">
+                <div style="padding: 10px">
+                    <div id="loadingDelete{{nameGroup}}{{i}}" style="display: none;float: left;" class="spinner-border text-danger">
+                    </div>
+                    <a id="texLoader{{nameGroup}}{{i}}" href="{{item.url}}" style="float: left;">{{ item.nameFile }}</a>
+                    <span title="Eliminar" class="m-btn-delete-file" (click)="deleteFile(i,item.id)"><span
+                            class="material-icons m-router-remove">
+                            delete
+                        </span></span>
+                </div>
+                <div class="m-line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="typeUpload =='profile'">
+    <ngx-file-drop class="contenedorUpload" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+            <span class="material-icons m-btn-upload" *ngIf="!loadinguUpload" (click)="openFileSelector()">
+                add_circle
+            </span>
+            <div *ngIf="loadinguUpload" class="spinner-border text-danger"></div>
+        </ng-template>
+    </ngx-file-drop>
+</section>
+
+<div *ngIf="typeUpload =='questionsOptions'">
+    <ngx-file-drop class="contenedorUpload" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+            <span class="material-icons m-btn-upload" *ngIf="!loadinguUpload" (click)="openFileSelector()">
+                add_circle
+            </span>
+            <div *ngIf="loadinguUpload" class="spinner-border text-danger"></div>
+        </ng-template>
+    </ngx-file-drop>
+</div>

@@ -1,0 +1,23 @@
+paquetes
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step >
+    <ng-template matStepLabel>Pagar</ng-template>
+    <app-package *ngIf="statusPayment.paquete" (getPaquete)="paqueteSeleccionado($event)"></app-package>
+    <app-payment-method *ngIf="statusPayment.paymentmethod" (getPaymentMethod)="paymentMethod($event)"></app-payment-method>
+    <app-bank-tranfer *ngIf="statusPayment.banktransfer" (getnextStep)="netStepValidate($event)"></app-bank-tranfer>
+    <button id="btnNextEvaluacion" style="display: none;" mat-button matStepperNext></button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Evaluación</ng-template>
+    <app-evaluation></app-evaluation>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Elegir Curso</ng-template>
+    3
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Programar Horario</ng-template>
+    4
+  </mat-step>
+</mat-horizontal-stepper>

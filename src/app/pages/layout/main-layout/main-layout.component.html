@@ -1,0 +1,11 @@
+<div class="app-container">
+  <app-sidebar ></app-sidebar >
+  <div class="main-container flex-fill">
+    <app-header  ></app-header>
+    <br><br><br><br><br>
+    <div #target  class="m-content-pages" id="m-content-page" [class.m-expanded]="expanded">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<app-page-only-header></app-page-only-header>
+
+<mat-horizontal-stepper [linear]="linear" #stepper>
+    <mat-step [completed]="step1" [editable]="isEditable" >
+        <ng-template matStepLabel>
+            <!-- <a routerLink="/paquetes"> Pagar</a> -->
+            Pagar
+        </ng-template>
+       
+    </mat-step>
+
+    <mat-step [completed]="step2" [editable]="isEditable"> 
+        <ng-template matStepLabel>
+                <a id="stepEvaluacion" routerLink="/evaluacion"></a>
+            Evaluación
+        </ng-template>
+    </mat-step>
+
+    <mat-step [completed]="step3"  [editable]="isEditable">
+        <ng-template matStepLabel>
+              <a id="stepNextCurso" routerLink="/curso"></a>
+            Elegir Curso
+        </ng-template>
+    </mat-step>
+    <mat-step [completed]="step4" [editable]="isEditable">
+        <ng-template matStepLabel>
+                  <a id="stepNextHorario" routerLink="/horario"></a>
+            Programar Horario
+        </ng-template>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<router-outlet></router-outlet>

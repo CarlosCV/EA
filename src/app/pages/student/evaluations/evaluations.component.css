@@ -1,0 +1,8 @@
+.m-sobre-content{
+    border-top: 2px solid silver;
+    border-bottom: 2px solid silver;
+    padding: 15px;
+}
+.m-sobre-content-item{
+    border-right:2px solid silver ;
+}
