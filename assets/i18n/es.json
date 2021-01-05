@@ -1,0 +1,106 @@
+{
+	"calendar": {
+		"previous": "Antes",
+		"next": "Siguiente",
+		"today": "Hoy",
+		"month": "Mes",
+		"week": "Semana",
+		"day": "Día"
+	},
+	"adminInformacion": {
+		"fullname": "Nombres",
+		"fullsurnames": "Apellidos",
+		"birthdate":"Fecha de Nacimiento",
+		"phone": "Télefono",
+		"prefix":"Código",
+		"number":"Número",
+		"day": "Día",
+		"month": "Mes",
+		"year":"Año",
+		"fromCity":"¿De Dónde Eres?",
+		"fromLives":"¿Dónde Vives?",
+		"country":"País",
+		"state": "Provincia/Estado",
+		"timeZone":"Zona Horaria",
+		"emailRepeat":"Nuevo Correo Electrónico",
+		"email": "Correo Electrónico",
+		"newpassword":"Nueva Contraseña",
+		"password":"Contraseña"
+
+		
+	},
+	"registroProfesor": {
+		"fullname": "Nombres",
+		"fullsurnames": "Apellidos",
+		"genderTitle": "Género",
+		"gender": "Sexo",
+		"fromCity":"¿De Dónde eres?",
+		"fromLive":"Dónde vives",
+		"birthdate":"Fecha de Nacimiento",
+		"day": "Día",
+		"month": "Mes",
+		"year":"Año",
+		"prefix":"Código",
+		"phone": "Télefono",
+		"number":"Número",
+		"email": "Correo Electrónico",
+		"emailRepeat": "Confirmar Correo Electrónico",
+		"country":"País",
+		"state": "Provincia/Estado",
+		"address": "Dirección/Referencia",
+		"photoperfil": "FOTO DE PERFIL",
+		"idPaypal":"ID Paypal",
+		"timeZone":"Zona Horaria",
+		"paypalEmail":"Correo Electrónico Paypal",
+		"labelPaypal":"Información PayPal",
+		"idPaypalConfirm":"Confirmar ID Paypal",
+		"paypalEmailConfirm":"Confirmar Correo Electrónico Paypal",
+		"video":"Video de presentación"
+	},
+	"registroStudent": {
+		"titleCompras": "Historial de Compras",
+		"fullname": "Nombres",
+		"fullsurnames": "Apellidos",
+		"birthdate":"Fecha de Nacimiento",
+		"day": "Día",
+		"month": "Mes",
+		"year":"Año",
+		"prefix":"Código",
+		"phone": "Télefono",
+		"number":"Número",
+		"fromCity":"¿De Dónde Eres?",
+		"fromLive":"¿Dónde Vives?",
+		"country":"País",
+		"state": "Estado/Departamento",
+		"timeZone":"Zona Horaria",
+		"personNumber":"Número de personas a Invitar",
+		"paquete":"Información de Paquete",
+		"sesion":"Información de Sesiones",
+        "hours": "Paquete",
+		"motivo":"¿Por qué quiero aprender inglés?",
+		 "email":"Correo Electrónico",
+		 "emailRepeat":"Confirmar Correo Electrónico"
+	},
+	"examListening":{
+		"examName":"Nombre de examen",
+		"percentageToPass":"Porcentaje para aprobar",
+		"orderOfQuestions" :"Orden de las preguntas",
+		"course":"Curso",
+		"module":"Modulo",
+		"section":"Sección",
+		"time":"Tiempo",
+		"informationExam":"Indeciaciones general del examen"
+
+		  
+		 
+	},
+	"typeClasses":{
+		"title":"ELIGE TU FORMA DE",
+		"title_": "ESTUDIAR",
+		"individuals":"CLASES PARTICULARES",
+		"workshop":"TALLER DE CONVERSACIÓN",
+		"individualDescription":"Estudia desde casa de forma presencial u online. en el horario que tú elijas. Nos adaptamos a tu ritmo de vida.",
+		"workshopDescription":"Practica tu inglés en grupos pequeños con profesores hablantes nativos en la comodidad de tu casa." 
+	}
+}
+

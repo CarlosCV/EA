@@ -1,0 +1,55 @@
+{
+	"calendar": {
+		"previous": "Previous",
+		"next": "Next",
+		"today": "Today",
+		"month": "Month",
+		"week": "Week",
+		"day": "Day"
+	},
+	"adminInformacion": {
+		"titlePersonalDate": "Informacón ",
+		"fullname": "Nombres",
+		"fullsurnames": "Apellidos",
+		"birthdate":"Fecha de Nacimiento",
+		"day": "Día",
+		"month": "Mes",
+		"year":"Año",
+		"phone": "Télefono",
+		"prefix":"Cód",
+	    "number":"Número",
+		"fromCity":"Datos Donde Radico",
+		"country":"País",
+		"state": "Provincia/Estado",
+		"timeZone":"Zona Horaria",
+		"address": "Dirección/Referencia",
+		"email": "Correo Electrónico"
+	},
+	"registroProfesor": {
+		"titlePersonalDate": "PERSONAL INFORMATION",
+		"fullname": "Full Names",
+		"fullsurnames": "Full Surnames",
+		"gender": "Sex",
+		"day": "Day",
+		"month": "Month",
+		"year": "Year",
+		"phone": "Telephone",
+		"email": "Email",
+		"countryOrigen": "Country of Origin",
+		"countrylive": "Country where you live",
+		"country": "State / Province / City",
+		"other": "Other",
+		"address": "Address / Reference",
+		"photoperfil": "PROFILE PHOTO"
+	},
+
+	"typeClasses": {
+		"title": "CHOOSE YOUR WAY OF",
+		"title_": "STUDYING",
+		"individuals": "PRIVATE CLASSES",
+		"workshop": "CONVERSATION WORKSHOP",
+		"individualDescription": "Study from home in person or online. At the time you choose. We adapt to your pace of life.",
+		"workshopDescription": "Practice your English in small groups with native speaking teachers in the comfort of your home."
+
+	}
+}
