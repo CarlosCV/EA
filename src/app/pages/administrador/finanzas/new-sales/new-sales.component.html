@@ -1,9 +1,12 @@
 <div class="bredcrumbs">
-    <span routerLink="/sales">Finanzas / </span>
+    <span routerLink="/sales">Finanzas  </span>
+    <span class="material-icons">
+        keyboard_arrow_right
+    </span>
     <span>Ventas</span>
 </div>
 <br>
-<div class="m-content-tabs-item ed-grid m-gap-1 s-grid-2 m-grid-2" style="border-radius: 20px">
+<div class="m-content-tabs-item ed-grid m-gap-1 s-grid-2 m-grid-2" style="border-radius: 20px;    width: 83%;">
     <div class="m-item-select s-main-center" routerLink="/sales">
         Ventas</div>
     <div class="m-item-unselect s-main-center" routerLink="/payments">
@@ -86,7 +89,7 @@
 
 
 <div class="example-container mat-elevation-z8">
-    <div class="example-table-container">
+    <div class="example-table-container style-1">
         <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="completeName"
             matSortDisableClear matSortDirection="desc"  (matSortChange)="sortData($event)">
             <ng-container matColumnDef="photo">
@@ -129,7 +132,7 @@
                 <th mat-header-cell *matHeaderCellDef>
                     <nav>Fecha</nav>
                 </th>
-                <td mat-cell *matCellDef="let row">{{row.date |date:"MM-dd-yyyy"}}</td>
+                <td mat-cell *matCellDef="let row">{{row.date |date:"dd/MM/yyyy"}}</td>
             </ng-container>
 
             <ng-container matColumnDef="hours">

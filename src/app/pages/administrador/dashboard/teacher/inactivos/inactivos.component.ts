@@ -37,8 +37,8 @@ export class InactivosComponent implements OnInit {
     role: "ROLE_TEACHER",
     status: "APPROVED",
     filterDTO: {
-      gender: null,
-      englishType: null,
+      gender: [],
+      englishType: [],
       name: null,
       specialization: [],
       target: []
@@ -137,9 +137,17 @@ export class InactivosComponent implements OnInit {
     this.SendjsonFilter.page = this.pageIndex  || this.jsonFilter.page
     document.getElementById("loader").classList.remove("done")
     if(value != "search"){
-      this.SendjsonFilter.filterDTO.gender = this.jsonFilter.filterDTO.gender
+      if( this.jsonFilter.filterDTO.gender.length > 1 ){
+        this.SendjsonFilter.filterDTO.gender = null
+      }else{
+        this.SendjsonFilter.filterDTO.gender = this.jsonFilter.filterDTO.gender[0]
+      }
+      if( this.jsonFilter.filterDTO.englishType.length > 1 ){
+        this.SendjsonFilter.filterDTO.englishType = null
+      }else{
+        this.SendjsonFilter.filterDTO.englishType = this.jsonFilter.filterDTO.englishType[0]
+      }
       this.SendjsonFilter.filterDTO.name = this.jsonFilter.filterDTO.name
-      this.SendjsonFilter.filterDTO.englishType = this.jsonFilter.filterDTO.englishType
       if (this.jsonFilter.filterDTO.specialization.length > 0) {
         this.SendjsonFilter.filterDTO.specialization = this.jsonFilter.filterDTO.specialization
       }else{

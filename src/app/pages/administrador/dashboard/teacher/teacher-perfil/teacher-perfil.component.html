@@ -5,9 +5,9 @@
     </span>
     <span>Perfil de Profesor</span>
 </div>
-<form #teacherform="ngForm">
-    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
-        <article>
+<form #teacherform="ngForm" autocomplete="off">
+    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-7">
+        <article class="m-cols-2">
             <aside class="m-border-content m-main-center border-bottom-none">
                 <div style="width: 100%;text-align: right;">
                     <img  *ngIf="modelteacher.birthCountry" style="width: 47px; height: 30px;" src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{modelteacher.birthCountry}}.png">
@@ -83,13 +83,13 @@
                 <div  *ngIf="dataParam.buttonsEdit" class="m-btn-web">
                     <button (click)="editTeacher(modelteacher)" [disabled]="!teacherform.form.valid"
                         class="btn btn-primary">
-                        Guardar Cambios</button><br><br>
+                        Guardar Cambios</button>
                     <button (click)="deleteTeacher(modelteacher)" class="btn btn-danger">Eliminar</button>
                 </div>
             </aside>
 
         </article>
-        <article class="m-cols-4">
+        <article class="m-cols-5">
             <aside class="m-header-admin">
                 <aside class="m-title-admin s-main-center" style="border-bottom: none;">
                     <ul class="nav nav-tabs m-content-tabs-item s-main-center" role="tablist">
@@ -112,7 +112,7 @@
                     </ul>
                 </aside>
             </aside>
-            <aside class="m-content-admin m-overflow"
+            <aside class="m-content-admin m-overflow style-1"
                 style="border-top: none;border-top-right-radius: 0;border-top-left-radius: 0;">
                 <div>
                     <div class="tab-content">
@@ -150,10 +150,10 @@
                                 </div>
                                 <div class="m-cols-1 lg-cols-1">
                                     <div class="m-title-input">{{ 'registroProfesor.birthdate' | translate }}</div>
-                                    <br><br>
+                                    <br><span class="m-hidden"><br></span>
                                    
                                     <mat-list-item class="primary-imenu-item">
-                                        <mat-form-field class="select-form">
+                                        <mat-form-field class="select-form ">
                                             <mat-select name="birthday" class="filter-select"  placeholder="{{ 'registroProfesor.day' | translate }}"
                                                 [(ngModel)]="modelteacher.birthday"  >
                                                 <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">{{birth.num}}</mat-option>
@@ -202,12 +202,15 @@
                                 <div class="m-cols-1 lg-cols-1">
                                     <div class="m-title-input">Teléfono</div>
                                     <br><br>
-                                    <div class="group">
-                                        <input type="text" placeholder="{{ 'registroProfesor.prefix' | translate }}"
-                                            name="prefix" placeholder="+51" [(ngModel)]="modelteacher.prefix">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                    </div>
+                                    <mat-list-item class="primary-imenu-item">
+                                        <mat-form-field class="select-form">
+                                            <mat-select placeholder="{{ 'registroProfesor.prefix' | translate }}" name="prefix" class="filter-select" 
+                                                [(ngModel)]="modelteacher.prefix">
+                                                <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">{{item.id}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-list-item>
                                 </div>
                                 <div class="m-cols-1 lg-cols-1">
                                     <br><br><br>
@@ -477,18 +480,8 @@
                             </section>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="informacionLaboral">
-                            <section class="ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-2 lg-grid-2"
-                                style="align-items: center;">
-                                <div>
-
-                                    <!--  <div class="input-group m-txt-filter"> -->
-                                    <!--  <div class="input-group-prepend"> -->
-                                    <!-- <span class="input-group-text"> -->
-
-                                    <!--   </span> -->
-                                    <!--     </div> -->
-
-                                    <!--   </div> -->
+                            <section class="ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-2 lg-grid-3">
+                                <div class="m-cols-2">
                                     <img style="height: 23px;float: left;margin-right: 8px;cursor: pointer;"
                                         data-toggle="modal" data-target="#myModalVideo"
                                         (click)="openVideo(modelteacher.videoPresentation)"
@@ -514,15 +507,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-cols-2">
+                                <div class="m-cols-3">
                                     <div class="m-title-input">Experiencia Laboral</div>
                                     <hr>
                                 </div>
-                                <div>
+                                <div class="m-cols-2">
                                     <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="cvFILES" allowedfiles="jpg,pdf" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER" typeUpload="drag" nameGroup="cv"
                                     folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
-                                <div class="s-main-center m-main-end">
+                                <div class="s-main-center m-main-center">
                                     <div class="m-icon-content">
                                         <span class="material-icons m-icon-info">
                                             info
@@ -535,11 +528,11 @@
                                         <div>Visible solo para el personal de italki.</div>
                                     </div>
                                 </div>
-                                <div class="m-cols-2">
+                                <div class="m-cols-3">
                                     <div class="m-title-input">Titulos</div>
                                     <hr>
                                 </div>
-                                <div>
+                                <div class="m-cols-2">
                                     <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="titulosFILES" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER"   allowedfiles="jpg,pdf" nameGroup="titulos" folder="teacher_cv_doc"
                                     (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
@@ -556,11 +549,11 @@
                                         <div>Visible solo para el personal de English Advanced.</div>
                                     </div>
                                 </div>
-                                <div class="m-cols-2">
+                                <div class="m-cols-3">
                                     <div class="m-title-input">Certificados</div>
                                     <hr>
                                 </div>
-                                <div>
+                                <div class="m-cols-2">
                                     <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="certificadosFILES" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER"  allowedfiles="jpg,pdf" nameGroup="certificados" folder="teacher_cv_doc"
                                     (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
@@ -581,29 +574,29 @@
 
                             <div class="m-title-input">Especialidades</div>
                             <hr>
-                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-6">
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-4">
                                 <div *ngFor="let item of Specializations; let i = index">
-                                    <div >
+                                    <div *ngIf="!item.exam" >
                                         <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="englishName{{i}}"
                                             type="checkbox">
-                                        <span>{{item.englishName}}</span>
+                                        <span>{{item.spanishName}}</span>
                                     </div>
                                 </div>
                             </section>
                             <div class="m-title-input" style="font-weight: 300;">Examenes Internacionales</div>
                             <hr>
-                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-6">
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-2 s-grid-2 m-grid-3 lg-grid-9">
                                 <div *ngFor="let item of Internacionales; let i = index">
                                         <div>
                                             <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="examName{{i}}"
                                                 type="checkbox">
-                                            <span>{{item.examName}}</span>
+                                            <span>{{item.spanishName}}</span>
                                         </div>
                                 </div>
                             </section>
                             <div class="m-title-input">Tipo de Inglés </div>
                             <hr>
-                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-6"
+                            <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-5"
                                 style="align-items: center;">
                                 <div>
                                     <input [(ngModel)]="modelteacher.englishType" name="type" class="m-espe-checkbox"
@@ -616,7 +609,7 @@
                                         value="British" type="radio">
                                     <span>Inglés Británico</span>
                                 </div>
-                                <div class="m-cols-4"></div>
+                                <div class="m-cols-3"></div>
                             </section>
                             <div class="m-title-input">Edades que enseño</div>
                             <hr>
@@ -639,7 +632,7 @@
             <aside class="m-btn-movil" style="display: none;">
                 <button (click)="editTeacher(modelteacher)" [disabled]="!teacherform.form.valid"
                     class="btn btn-primary">
-                    Agregar Profesor</button><br><br>
+                    Agregar Profesor</button>
                     <button (click)="deleteTeacher(modelteacher)" class="btn btn-danger">Eliminar</button>
             </aside>
         </article>

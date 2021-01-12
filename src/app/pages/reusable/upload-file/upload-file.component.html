@@ -1,4 +1,26 @@
 <section *ngIf="typeUpload == 'drag'" class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
+    <div class="upload-table m-cols-3">
+        <div class="upload-name-style">
+            <div *ngFor="let item of filesData; let i=index">
+                <div style="padding: 10px;margin-top: 17px;">
+                    <div id="loadingDelete{{nameGroup}}{{i}}" style="display: none;float: left;"
+                        class="spinner-border text-danger">
+                    </div>
+                    <span id="texLoader{{nameGroup}}{{i}}">
+                        <a  class="m-line" href="{{item.url}}">{{ item.nameFile }}</a>
+                        <div class="m-btn-delete-file">
+                            <span class="btn btn-danger m-btn-delete"
+                                (click)="deleteFile(i,item.id)"><span class="material-icons" style="font-size: 17px;">
+                                    close
+                                </span>
+                            </span>
+                        </div>
+                    </span>
+                </div>
+            <!--     <div class="m-line"></div> -->
+            </div>
+        </div>
+    </div>
     <div>
         <ngx-file-drop class="contenedorUpload" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
             (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
@@ -12,22 +34,7 @@
             </ng-template>
         </ngx-file-drop>
     </div>
-    <div class="upload-table m-cols-3">
-        <div class="upload-name-style">
-            <div *ngFor="let item of filesData; let i=index">
-                <div style="padding: 10px">
-                    <div id="loadingDelete{{nameGroup}}{{i}}" style="display: none;float: left;" class="spinner-border text-danger">
-                    </div>
-                    <a id="texLoader{{nameGroup}}{{i}}" href="{{item.url}}" style="float: left;">{{ item.nameFile }}</a>
-                    <span title="Eliminar" class="m-btn-delete-file" (click)="deleteFile(i,item.id)"><span
-                            class="material-icons m-router-remove">
-                            delete
-                        </span></span>
-                </div>
-                <div class="m-line"></div>
-            </div>
-        </div>
-    </div>
+
 </section>
 
 <section *ngIf="typeUpload =='profile'">

@@ -13,7 +13,7 @@
         <input #SearchInput type="text" class="form-control m-txt-search"  [(ngModel)]="SendjsonFilter.filterDTO.name"
           placeholder="Buscar">
       </div>
-      <a href="{{_backendUrl.backendApis}}role=ROLE_TEACHER&status=PENDING"  class="m-line-vertical m-main-end" style="float: left;">
+      <a href="{{_backendUrl.backendApis}}api/allUser/download?role=ROLE_TEACHER&status=PENDING&active=false"  class="m-line-vertical m-main-end" style="float: left;">
         <span class="material-icons m-export">
           save_alt
         </span>
@@ -22,7 +22,7 @@
   </article>
 </section>
 <div class="example-container mat-elevation-z8">
-  <div class="example-table-container">
+  <div class="example-table-container style-1">
     <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="name" matSortDisableClear
       matSortDirection="desc"  (matSortChange)="sortData($event)" >
       <ng-container matColumnDef="photo" >

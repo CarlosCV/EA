@@ -1,7 +1,7 @@
 <div class="bredcrumbs">
     <span>Evaluaciones / </span>
 </div>
-<form>
+<form autocomplete="off">
     <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
         <article>
             <aside class="m-border-content m-main-center">
@@ -112,7 +112,8 @@
                             </div>
                             <div>
                                 <div>{{ 'examListening.informationExam' | translate }}</div>
-                                <textarea name="indications" class="form-control" [(ngModel)]="evaluacionesDTO.indication"></textarea>
+                                <textarea name="indications" class="form-control"
+                                    [(ngModel)]="evaluacionesDTO.indication"></textarea>
                             </div>
 
                         </section>
@@ -158,7 +159,7 @@
 </form>
 
 
-
+<!-- ACA -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content">
@@ -166,22 +167,25 @@
                 <h4 class="modal-title">Pregunta de selección multiple</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+
             <div class="modal-body">
-                <section *ngFor="let section of sections" class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-3">
+
+                <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-3">
                     <div>
                         <mat-list-item class="primary-imenu-item" role="listitem">
                             <mat-form-field class="select-form">
                                 <label>{{ 'examListening.section' | translate }}</label>
-                                <mat-select name="sectionName" class="filter-select" [(ngModel)]="section.name">
-                                    <mat-option value="1">Grammar</mat-option>
-                                    <mat-option value="2">Listening</mat-option>
+                                <mat-select name="sectionName" class="filter-select" [(ngModel)]="sections.name">
+                                    <mat-option value="reading">reading</mat-option>
+                                    <mat-option value="Listening">Listening</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </mat-list-item>
+
                     </div>
                     <div>
                         <div class="group">
-                            <input type="text" name="sectionPart" [(ngModel)]="section.part">
+                            <input type="text" name="sectionPart" [(ngModel)]="sections.part">
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label>{{ 'examListening.parte' | translate }}</label>
@@ -190,7 +194,7 @@
 
                     <div>
                         <div class="group">
-                            <input type="text" name="sectionTitulo" [(ngModel)]="section.title">
+                            <input type="text" name="sectionTitulo" [(ngModel)]="sections.title">
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label>{{ 'examListening.sectionsTitulo' | translate }}</label>
@@ -253,9 +257,9 @@
                         </button>
                     </div>
                 </section>
-
-                <section *ngFor="let question of questions;  let i = index">
-                    <button (click)="removeSectionQuestion(i)">Delete</button>
+                <!-- <ACA------ -->
+                <section *ngFor="let question of questions;  let idQuestion = index">
+                    <button (click)="removeSectionQuestion(idQuestion)">Delete</button>
                     <hr>
                     <section class="m-page-content ed-grid rows-gap s-gap-2 m-gap-4 s-grid-1 m-grid-2 lg-grid-2">
                         <div>
@@ -299,11 +303,73 @@
 
                             </section>
                         </div>
-                        <app-questions (responseData)="getQuestions($event)"></app-questions>
+                        <!-- <app-questions (responseData)="getQuestions($event)"></app-questions> -->
+                        <div>
+                            <section
+                                class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                <div>
+                                    Ingrese las opciones
+                                </div>
+                                <div class="m-main-end">
+                                    <button (click)="addOptions(idQuestion,'text')">texto </button>
+                                    <button (click)="addOptions(idQuestion,'imagen')">imagen </button>
+                                    <button (click)="addOptions(idQuestion,'audio')">audio </button>
+                                </div>
+                            </section>
+                            <section *ngFor="let opcion of question.options; let x = index"
+                                class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
+                                <div *ngIf="opcion.type =='text'">
+                                    <div class="group">
+                                        <input type="text" name="optionsContent{{x}}" [(ngModel)]="opcion.content">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{ 'examListening.optionsContent' | translate }}</label>
+                                    </div>
+                                </div>
+                                <div class="m-main-end" *ngIf="opcion.type =='text'">
+                                    <button (click)="removeOptions(idQuestion,x)"
+                                        class="btn btn-danger m-btn-delete"><span class="material-icons"
+                                            style="font-size: 17px;">
+                                            close
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div *ngIf="opcion.type =='imagen'">
+                                    <input type="hidden" [(ngModel)]="opcion.url">
+                                    <app-upload-file allowedfiles="jpg,png" typeUpload="drag" nameGroup="cv"
+                                        folder="teacher_cv_doc">
+                                    </app-upload-file>
+                                </div>
+                                <div class="m-main-end" *ngIf="opcion.type =='imagen'">
+                                    <button (click)="removeOptions(idQuestion,x)"
+                                        class="btn btn-danger m-btn-delete"><span class="material-icons"
+                                            style="font-size: 17px;">
+                                            close
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div *ngIf="opcion.type =='audio'">
+                                    <input type="hidden" [(ngModel)]="opcion.url">
+                                    <app-upload-file allowedfiles="mp3" typeUpload="drag" nameGroup="cv"
+                                        folder="teacher_cv_doc">
+                                    </app-upload-file>
+                                </div>
+                                <div class="m-main-end" *ngIf="opcion.type =='audio'">
+                                    <button (click)="removeOptions(idQuestion,x)"
+                                        class="btn btn-danger m-btn-delete"><span class="material-icons"
+                                            style="font-size: 17px;">
+                                            close
+                                        </span>
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
                     </section>
                     <hr>
                 </section>
-                <button (click)="addSectionQuestion('simple')">Agregar</button>
+                <button (click)="addSectionQuestion('manyAnswers')">Agregar</button>
 
 
             </div>

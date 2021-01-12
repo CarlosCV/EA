@@ -1,18 +1,20 @@
 <div class="action-bar m-fixed-sidebar" [class.action-bar-expanded]="expanded"
+  (mouseover)="expanded = !expanded" (mouseout)="expanded = !expanded; "
   [ngClass]="expanded2 == false ? 'siderbarNone' : ' action-bar-expanded'">
   <!-- Menu Button -->
-  <div class="action-bar-item shadow-sm" (click)="expanded = !expanded; menuClickExpand()">
-    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
-      <img src="../../../../assets/img/logo_dash.png" alt="logoEnglish">
+  <div class="action-bar-item-head shadow-sm">
+    <span [hidden]="expanded || expanded2" class="action-bar-item-icon jam jam-bar-chart transform-rotate-0" style="width: 117px;
+    margin-left: 0px;">
+      <img src="../../../../assets/img/logo-solo.png" alt="logoEnglish1">
     </span>
-    <span class="action-bar-item-text">English
-      <div>Advance</div>
-    </span>
+    <div style="width: 100%; text-align: center; margin-left: -9px;" class="action-bar-item-text"><img
+        style="width: 117px;" src="../../../../assets/img/logo_dash.png" alt="logoEnglish">
+    </div>
   </div>
   <br>
   <br>
-  <div class="action-bar-item shadow-sm" (click)="activePage(0)" [class.m-line-module]="active.dashboard">
-    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
+  <div class="action-bar-item" (click)="activePage(0)" [class.m-line-module]="active.dashboard">
+    <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0" style="margin-left: 4px;">
       <span class="material-icons m-icons-pag" routerLink="/teacher">
         view_comfy
       </span>
@@ -20,7 +22,7 @@
     <span class="action-bar-item-text"><a routerLink="/teacher">Dashboard</a></span>
   </div>
 
-  <div class="action-bar-item shadow-sm" (click)="activePage(1)" [class.m-line-module]="active.finanzas">
+  <div class="action-bar-item" (click)="activePage(1)" [class.m-line-module]="active.finanzas">
     <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
       <span routerLink="/sales" class="material-icons m-icons-pag">
         attach_money
@@ -29,22 +31,34 @@
     <span class="action-bar-item-text"><a routerLink="/sales">Finanzas</a></span>
   </div>
 
-  <div class="action-bar-item shadow-sm " (click)="activePage(2)" [class.m-line-module]="active.examenes">
+  <div class="action-bar-item  " (click)="activePage(2)" [class.m-line-module]="active.examenes">
     <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0">
       <span class="material-icons m-icons-pag" routerLink="/evaluations">
         sticky_note_2
-        </span>
+      </span>
     </span>
     <span class="action-bar-item-text"> <a routerLink="/evaluations">Exámenes</a></span>
   </div>
 
-  <div class="action-bar-item shadow-sm " (click)="activePage(3)" [class.m-line-module]="active.talleres">
+  <div class="action-bar-item" (click)="activePage(3)" [class.m-line-module]="active.talleres">
     <span class="action-bar-item-icon jam jam-bar-chart transform-rotate-0"><a>
         <span class="material-icons m-icons-pag" routerLink="talleres">
           people
         </span>
       </a></span>
     <span class="action-bar-item-text"> <a routerLink="talleres">Talleres</a></span>
+  </div>
+
+  <div class="m-btn-movil" style="position: absolute;bottom: 6px;display: none;margin-left: 9px;">
+    <div>
+      <div class="button b2" id="button-10">
+        <input type="checkbox" class="checkbox" checked>
+        <div class="knobs">
+          <span style="font-size: 16px;">English</span>
+        </div>
+        <div class="layer"></div>
+      </div>
+    </div>
   </div>
   <ng-content></ng-content>
 </div>

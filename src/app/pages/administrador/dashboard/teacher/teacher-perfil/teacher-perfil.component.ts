@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/for
 import Swal from 'sweetalert2'
 import { countries } from '../../../../../../assets/countries/countries'
 import { states } from '../../../../../../assets/countries/states'
-import { day,month,year } from '../../../../../../assets/countries/birthDate'
+import { day, month, year,codigoPais} from '../../../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-teacher-perfil',
   templateUrl: './teacher-perfil.component.html',
@@ -18,12 +18,13 @@ import { day,month,year } from '../../../../../../assets/countries/birthDate'
 export class TeacherPerfilComponent implements OnInit {
   localeLang: string = 'es';
   Specializations: any[];
-  Internacionales:any[]
+  Internacionales: any[]
   birthday: any[]
   month: any[]
   year: any[]
   edades: any[]
   idiomas: any[]
+  codigoPais:any[]
   levels: any[]
   levelsTemporal: any[]
   countries: any[]
@@ -40,7 +41,7 @@ export class TeacherPerfilComponent implements OnInit {
     id: "",
     email: "",
     buttonsEdit: true,
-    activeOptions:true
+    activeOptions: true
   }
 
   modelteacher = {
@@ -49,7 +50,7 @@ export class TeacherPerfilComponent implements OnInit {
     emailConfirm: "".trim(),
     profilePic: "",
     specializationDTO: [],
-    internationalExamDTO:[],
+    internationalExamDTO: [],
     targetGroupDTO: [],
     resourceDTO: [],
     languageDTO: [],
@@ -76,7 +77,7 @@ export class TeacherPerfilComponent implements OnInit {
     paypalIdConfirm: "",
     gender: "",
     methodology: "",
-    timeAccepted:""
+    timeAccepted: ""
   };
   constructor(
     private translate: TranslateService,
@@ -98,8 +99,9 @@ export class TeacherPerfilComponent implements OnInit {
     });
     this.countries = countries
     this.birthday = day
-    this.month=month
-    this.year =year
+    this.month = month
+    this.codigoPais= codigoPais
+    this.year = year
     this.generalService.allTimeZone().subscribe(data => {
       if (data.statusText == "OK") {
         this.timeZone = data.objetoRespuesta
@@ -138,16 +140,16 @@ export class TeacherPerfilComponent implements OnInit {
       }
       this.registroTeacherService.allSpecializations().subscribe(item => {
         item.objetoRespuesta.forEach(element => {
+          this.Internacionales = []
           element.checked = this.modelteacher.specializationDTO.filter(s => s.id == element.id).length > 0;
         });
         this.Specializations = item.objetoRespuesta
-      });
-      this.registroTeacherService.allInternationalExam().subscribe(data => {
-        data.objetoRespuesta.forEach(element => {
-          element.checked = this.modelteacher.internationalExamDTO.filter(s => s.id == element.id).length > 0;
+        item.objetoRespuesta.forEach(element => {
+          if (element.exam)
+            this.Internacionales.push(element)
         });
-        this.Internacionales = data.objetoRespuesta
-      })
+
+      });
       this.registroTeacherService.edades().subscribe(item => {
         item.objetoRespuesta.forEach(element => {
           element.checked = this.modelteacher.targetGroupDTO.filter(s => s.id == element.id).length > 0;
@@ -164,16 +166,15 @@ export class TeacherPerfilComponent implements OnInit {
             return exists;
           });
           this.idiomas = data.objetoRespuesta
-          if( this.modelteacher.languageDTO.length != 0){
-            console.log(this.modelteacher.languageDTO)
+          if (this.modelteacher.languageDTO.length != 0) {
             this.modelteacher.languageDTO.forEach(l => {
               l.idiomas = this.idiomas;
               l.levels = this.levelsTemporal.filter(x => x.name == l.name);
             });
-          }else{
+          } else {
             this.modelteacher.languageDTO.push({ idiomas: this.idiomas });
           }
-        
+
         }
       })
     })
@@ -243,19 +244,47 @@ export class TeacherPerfilComponent implements OnInit {
   }
 
   deleteTeacher(modelteacher) {
-    this.generalService.deleteUser(modelteacher.id).subscribe(data => {
-      if (data.statusText == "OK") {
-        this.route.navigate(['/teacher']);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'El profesor ha sido eliminado.',
-          showConfirmButton: false,
-          timer: 1500
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-info',
+            cancelButton: 'btn btn-secondary'
+          },
+          buttonsStyling: false
+        })
+    
+        swalWithBootstrapButtons.fire({
+          title: '<div class="m-title-input m-border-line"> Eliminación de Profesor </div>',
+          html: `<div class="m-subtitle"> Está eliminando al profesor ${modelteacher.name}  ${modelteacher.lastName} </div> 
+          <div class="m-confirm-text">Si está seguro ingrese el motivo y doble click en confirmar, de lo contrario doble click en la x</div>`,
+          input: 'text',
+          showCloseButton: true,
+          inputPlaceholder: "Motivo",
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.generalService.deleteUser(modelteacher.id).subscribe(data => {
+              if (data.statusText === "OK") {
+                this.route.navigate(['/teacher']);
+              } else{
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Ocurrio un problema!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
+            })
+    
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel) { }
         })
       }
-    })
-  }
+  
+  
 
   openVideo(video) {
     document.getElementById("videoIframe")["src"] = video

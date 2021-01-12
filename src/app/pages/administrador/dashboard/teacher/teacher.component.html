@@ -2,8 +2,8 @@
     <span >Dashboard</span>
   </div><br>
 <section class="m-horario-content">
-    <div class="ed-grid  s-grid-3 m-grid-3" style=" height: 64px;">
-        <div class="m-tab-select m-main-center" routerLink="/teacher">
+    <div class="ed-grid  s-grid-3 m-grid-3" >
+        <div style="padding-left: 46px;" class="m-tab-select m-main-center" routerLink="/teacher">
             <div>Profesores</div>
         </div>
         <div class="m-tab-unselect m-main-center" routerLink="/private-student">
@@ -14,12 +14,13 @@
             <div>Alumnos Talleres</div><br>
         </div>
     </div>
-    <div class="m-content-tabs-item ed-grid s-grid-3 m-grid-3">
+    <br>
+    <div class="m-content-tabs-item ed-grid s-grid-3 m-grid-3" style="border-radius: 18px;">
         <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.activos" (click)="OpenActivos()">
             Activos</div>
         <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.inactivos"
             (click)="OpenInactivos()">Inactivos</div>
-        <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.solicitudes"
+        <div style="padding-left: 50px;" class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.solicitudes"
             (click)="OpenSolicitudes()">Solicitudes <span> ({{lengthSolicitudes}})</span></div>
     </div>
 </section>

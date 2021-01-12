@@ -2,7 +2,7 @@ import { TranslateLabelService } from '../../../../services/labels-translate/tra
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { EvaluacionesService } from '../../../../services/administrador/examenes/evaluaciones.service'
-import { sectionsDTO } from '../../../modelos/administrador/dashboard/examenes/evaluaciones.model'
+/* import { evaluacionesDTO } from '../../../modelos/administrador/dashboard/examenes/evaluaciones.model' */
 @Component({
   selector: 'app-evaluations',
   templateUrl: './evaluations.component.html',
@@ -10,30 +10,20 @@ import { sectionsDTO } from '../../../modelos/administrador/dashboard/examenes/e
 })
 export class EvaluationsComponent implements OnInit {
   localeLang: string = 'es';
-  /* evaluacionesDTO: sectionsDTO = new sectionsDTO()
- */
+  /*   evaluacionesDTO: evaluacionesDTO = new evaluacionesDTO()
+   */
 
-  sectionInstructions = [
-    { type: "text", content: "" },
-    { type: "imagen", url: "" },
-    { type: "audio", url: "" },
-  ]
- /*  options = [] */
-  questions = [{
-    type: "",
-    score: "",
-    content: "",
-    options: []
-  }]
-  sections = [{
-    name: "grammar",
+  sectionInstructions = []
+  questions = []
+  sections = {
+    name: "reading",
     title: " title",
     order: 1,
     part: 1,
     time: 20.0,
     sectionInstructions: this.sectionInstructions,
     questions: this.questions
-  }]
+  }
   evaluacionesDTO = {
     courseId: 1,
     name: "Clasification Exam",
@@ -51,45 +41,50 @@ export class EvaluationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translate.setDefaultLang(this.localeLang);
+    this.translate.use(this.localeLang);
     this.translateLabelService.change.subscribe(languaje => {
       this.localeLang = languaje
       this.translate.use(languaje);
     });
   }
-  addSectionQuestion(value) {
-    this.questions.push({ type: value, score: "", content: "", options: [] });
-  }
+
   addTextQuestions: string = "texto"
   addInputQuestions(value) {
     this.addTextQuestions = value
   }
+  addSectionQuestion(value) {
+    this.questions.push({ type: value, score: "", content: "", options: [] });
+  }
   removeSectionQuestion(index) {
-    // this.sections.questions.splice(index, 1);
+    this.questions.splice(index, 1);
   }
   addIncations(value) {
-    /* this.sectionInstructions.push({ type: value }); */
-    this.sectionInstructions = this.sectionInstructions
+    this.sectionInstructions.push({ type: value, content: "" });
   }
-  /*  addOptions(value){
-     this.questions.options.push({ type: value });
-   } */
   removeIndications(index) {
-    //this.sections.sectionInstructions.splice(index, 1);
+    this.sections.sectionInstructions.splice(index, 1);
   }
-  /*   removeOptions(index){
-      this.questions.options.splice(index, 1);
-    } */
-  getQuestions(questionsq) {
-  this.questions.forEach(element => {
-    element.options.push(questionsq)
-  });
-
-    /*  this.question.options.push({options:questions.options}) */
+  addOptions(id, value) {
+    if(value ==="text")
+    this.questions[id].options.push({ type: value, content: "", correct: true })
+    if(value ==="imagen")
+    this.questions[id].options.push({ type: value, url: "", correct: true })
+    if(value ==="audio")
+    this.questions[id].options.push({ type: value, url: "", correct: true })
   }
+  removeOptions(id,index) {
+    this.questions[id].options.splice(index, 1);
+  }
+ /*  getQuestions(questionsq) {
+    this.questions.forEach(element => {
+      element.options.push(questionsq)
+    });
+  } */
   saveData() {
-    /*     this.evaluacionesDTO.sections.push(this.sections) */
-    /*  this.sections.questions = this.question */
+    console.log(this.evaluacionesDTO)
+    this.evaluacionesService.createExamen(this.evaluacionesDTO).subscribe(data=>{
+      console.log(data)
+    })
 
   }
 

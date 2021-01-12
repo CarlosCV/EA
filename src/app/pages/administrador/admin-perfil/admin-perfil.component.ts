@@ -5,7 +5,7 @@ import { GeneralService } from '../../../services/general.service';
 import Swal from 'sweetalert2'
 import { countries } from '../../../../assets/countries/countries'
 import { states } from '../../../../assets/countries/states'
-import { day,month,year } from '../../../../assets/countries/birthDate'
+import { day, month, year, codigoPais } from '../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-admin-perfil',
   templateUrl: './admin-perfil.component.html',
@@ -18,6 +18,7 @@ export class AdminPerfilComponent implements OnInit {
   birthday: any[]
   month: any[]
   year: any[]
+  codigoPais: any[]
   timeZone: any;
   birthStates: any[]
   residentStates: any[]
@@ -52,7 +53,7 @@ export class AdminPerfilComponent implements OnInit {
     this.translate.setDefaultLang(this.localeLang);
   }
 
-  
+
   ngOnInit() {
 
     this.translateLabelService.change.subscribe(languaje => {
@@ -61,8 +62,9 @@ export class AdminPerfilComponent implements OnInit {
     });
     this.countries = countries
     this.birthday = day
-    this.month=month
-    this.year =year
+    this.month = month
+    this.year = year
+    this.codigoPais = codigoPais
     /* this.states = states */
     let dataToken;
     if (sessionStorage.getItem("access_Token")) {
@@ -135,17 +137,49 @@ export class AdminPerfilComponent implements OnInit {
     if (!this.errorDate) {
       return
     }
+    const emailErr = this.validateEmail();
+    if (!emailErr) {
+      return
+    }
     this.generalService.editProfilebyRole(this.modelAdmin).subscribe(data => {
       if (data.statusText == "OK") {
-        if(this.modelAdmin.email && this.modelAdmin.newpassword){
+        if (this.modelAdmin.email && this.modelAdmin.newpassword) {
+          const passErr = this.validatePassword();
+          if (!passErr) {
+            return
+          }
           this.editPassword(this.modelAdmin.email, this.modelAdmin.newpassword)
         }
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Datos actualizados.',
-          showConfirmButton: false,
-          timer: 1500
+        this.generalService.updateUserProfile(data.objetoRespuesta.name, data.objetoRespuesta.lastName)
+
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-info',
+            cancelButton: 'btn btn-secondary'
+          },
+          buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+          title: '<div class="m-title-input m-border-line"> Guardar cambios </div>',
+          html: `<div class="m-subtitle"> Se guardarán los cambios realizados </div> 
+          <div class="m-confirm-text">¿Desea Confirmar?</div>`,
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Datos actualizados.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel) { }
         })
       } else {
         Swal.fire({
@@ -180,5 +214,44 @@ export class AdminPerfilComponent implements OnInit {
   }
   viewStatesResident(id) {
     this.residentStates = states.filter(x => x.country_id == id)
+  }
+
+  errorPass: boolean
+  validaPassword(tx) {
+    var nMay = 0, nMin = 0, nNum = 0, caracteres = 0
+    var t1 = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    var t2 = "abcdefghijklmnñopqrstuvwxyz"
+    var t3 = "0123456789"
+    var t4 = "$%()/#'*{}[]!?¿+-*.:,;="
+    for (var i = 0; i < tx.length; i++) {
+      if (t1.indexOf(tx.charAt(i)) != -1) { nMay++ }
+      if (t2.indexOf(tx.charAt(i)) != -1) { nMin++ }
+      if (t3.indexOf(tx.charAt(i)) != -1) { nNum++ }
+      if (t4.indexOf(tx.charAt(i)) != -1) { caracteres++ }
+    }
+    if ((nMay > 0 || nMin > 0) && nNum > 0 && caracteres > 0) { return this.errorPass = true }
+    else { return this.errorPass = false }
+  }
+  errorEmail: boolean = true;
+  validateEmail() {
+    if (this.modelAdmin.emailConfirm) {
+      if (this.modelAdmin.emailConfirm !== this.modelAdmin.email) {
+        this.errorEmail = false
+      } else {
+        this.errorEmail = true
+      }
+    }
+    return this.errorEmail;
+  }
+  errorEqualPass: boolean = true;
+  validatePassword() {
+    if (this.modelAdmin.passwordConfirm) {
+      if (this.modelAdmin.passwordConfirm !== this.modelAdmin.newpassword) {
+        this.errorEqualPass = false
+      } else {
+        this.errorEqualPass = true
+      }
+    }
+    return this.errorEqualPass;
   }
 }

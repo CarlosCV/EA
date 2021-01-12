@@ -16,7 +16,11 @@
 .m-overflow{
   overflow: auto;
     height: 68vh;
+    scrollbar-width: 8px;
 }
+
+
+ 
 /* STEPERS */
   .m-content-tabs-item{
     background-color: #e0e0e0;

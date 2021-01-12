@@ -5,14 +5,14 @@
 </span>
   <span>Alumno</span>
 </div>
-<form #studentForm="ngForm">
-  <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
-    <article>
+<form #studentForm="ngForm" autocomplete="off">
+  <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-7">
+    <article class="m-cols-2">
       <aside class="m-border-content m-main-center">
         <div style="width: 100%;text-align: right;">
           <img  *ngIf="studentsModel.birthCountry" style="width: 47px; height: 30px;" src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{studentsModel.birthCountry}}.png">
       </div>
-        <div style="text-align: center;">
+        <div style="text-align: center;width: 204px;">
           <img *ngIf="!studentsModel.profilePic" src="../../../../assets/img/avatar.jpg" class="m-photo">
           <img *ngIf="studentsModel.profilePic" class="m-photo" src="{{studentsModel.profilePic}}">
           <div class="m-btn-perfil">
@@ -31,27 +31,27 @@
             [class.m-inactive-user]="!studentsModel.active"></li>
         </ul>
       </aside>
-      <aside class="m-options-profile ">
+      <aside class="m-options-profile " style="    margin-bottom: 10px;">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" href="#informacionPersonal" role="tab" data-toggle="tab">Información
               Personal</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#informacionCuenta" role="tab" data-toggle="tab">Información de Cuenta</a>
+            <a class="nav-link" href="#informacionCuenta" role="tab" style="margin-top:15px ;" data-toggle="tab">Información de Cuenta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#historialCompras" role="tab" data-toggle="tab">Historial de Compras</a>
+            <a class="nav-link" href="#historialCompras" role="tab" style="margin-top:15px ;" data-toggle="tab">Historial de Compras</a>
           </li>
         </ul>
       </aside>
       <aside *ngIf="dataParam.buttonsEdit" class="m-btn-web">
         <button class="btn btn-primary" (click)="editStudent()" [disabled]="!studentForm.form.valid">Guardar
-          Cambios</button><br><br>
+          Cambios</button>
         <button (click)="deleteStudent()" class="btn btn-danger">Eliminar</button>
       </aside>
     </article>
-    <article class="m-cols-4 m-overflow">
+    <article class="m-cols-5 m-overflow style-1">
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active show" id="informacionPersonal">
           <aside class="m-content-admin">
@@ -83,7 +83,7 @@
               </div>
               <div class="m-cols-1 lg-cols-1">
                 <div class="m-title-input">{{ 'registroStudent.birthdate' | translate }}</div>
-                <br><br>
+                <br><span class="m-hidden"><br></span>
                 <mat-list-item class="primary-imenu-item">
                   <mat-form-field class="select-form">
                     <mat-select name="birthday" class="filter-select"
@@ -121,12 +121,15 @@
               <div>
                 <div class="m-title-input">{{ 'registroStudent.phone' | translate }}</div>
                 <br><br>
-                <div class="group">
-                  <input type="text" name="prefix" placeholder="{{ 'registroStudent.prefix' | translate }}"
-                    [(ngModel)]="studentsModel.prefix">
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                </div>
+                <mat-list-item class="primary-imenu-item">
+                  <mat-form-field class="select-form">
+                      <mat-select placeholder="{{ 'registroStudent.prefix' | translate }}" name="prefix" class="filter-select" 
+                          [(ngModel)]="studentsModel.prefix">
+                          <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">{{item.id}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </mat-list-item>
               </div>
               <div class="m-cols-1 lg-cols-2">
                 <br><br><br>
@@ -263,7 +266,7 @@
               <mat-date-range-picker #picker></mat-date-range-picker>
             </mat-form-field>
             <div class="example-container mat-elevation-z8">
-              <div class="example-table-container">
+              <div class="example-table-container style-1">
                 <table mat-table [dataSource]="historialPaquetes" class="example-table" matSort matSortActive="name"
                   matSortDisableClear matSortDirection="desc">
 
@@ -271,7 +274,7 @@
                     <th mat-header-cell *matHeaderCellDef>
                       <nav style="width: 115px;">Fecha de Pago</nav>
                     </th>
-                    <td mat-cell *matCellDef="let row">{{row.date |date:"MM-dd-yyyy"}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.date |date:"dd/MM/yyyy"}}</td>
                   </ng-container>
 
                   <ng-container matColumnDef="nrStudents">
@@ -316,7 +319,7 @@
     <br>
     <aside *ngIf="dataParam.buttonsEdit" class="m-btn-movil" style="display: none;">
       <button class="btn btn-primary" (click)="editStudent()" [disabled]="!studentForm.form.valid">Guardar
-        Cambios</button><br><br>
+        Cambios</button>
       <button (click)="deleteStudent()" class="btn btn-danger">Eliminar</button>
     </aside>
   </section>

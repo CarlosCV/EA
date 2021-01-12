@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 import { countries } from '../../../../../../assets/countries/countries'
 import { states } from '../../../../../../assets/countries/states'
-import { day,month,year } from '../../../../../../assets/countries/birthDate'
+import { day, month, year, codigoPais } from '../../../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-teacher-registro',
   templateUrl: './teacher-registro.component.html',
@@ -17,8 +17,9 @@ import { day,month,year } from '../../../../../../assets/countries/birthDate'
 export class TeacherRegistroComponent implements OnInit {
   localeLang: string = 'es';
   Specializations: any[]
-  Internacionales:any[]
+  Internacionales: any[]
   birthday: any[]
+  codigoPais: any[]
   month: any[]
   year: any[]
   edades: any[]
@@ -33,7 +34,7 @@ export class TeacherRegistroComponent implements OnInit {
     email: "".trim(),
     emailConfirm: "".trim(),
     specializationDTO: [],
-    internationalExamDTO:[],
+    internationalExamDTO: [],
     targetGroupDTO: [],
     resourceDTO: [],
     languageDTO: [],
@@ -61,7 +62,7 @@ export class TeacherRegistroComponent implements OnInit {
     gender: "",
     methodology: ""
   };
-/*   userForm: FormGroup; */
+  /*   userForm: FormGroup; */
   constructor(
     private registroTeacherService: RegistroTeacherService,
     private translate: TranslateService,
@@ -71,11 +72,11 @@ export class TeacherRegistroComponent implements OnInit {
     private router: Router,
   ) {
 
-/*     this.userForm = this.fb.group({
-      itemLanguage: this.fb.array([
-        this.fb.control(null)
-      ])
-    }) */
+    /*     this.userForm = this.fb.group({
+          itemLanguage: this.fb.array([
+            this.fb.control(null)
+          ])
+        }) */
   }
 
   ngOnInit() {
@@ -86,8 +87,9 @@ export class TeacherRegistroComponent implements OnInit {
     });
     this.countries = countries
     this.birthday = day
-    this.month=month
-    this.year =year
+    this.month = month
+    this.year = year
+    this.codigoPais = codigoPais
     this.generalService.allTimeZone().subscribe(data => {
       if (data.statusText == "OK") {
         this.timeZone = data.objetoRespuesta
@@ -96,16 +98,15 @@ export class TeacherRegistroComponent implements OnInit {
     })
     this.modelteacher.englishType = "Inglés Americano"
     this.registroTeacherService.allSpecializations().subscribe(data => {
+      this.Internacionales = []
       data.objetoRespuesta.forEach(element => {
         element["checked"] = false;
       });
       this.Specializations = data.objetoRespuesta
-    })
-    this.registroTeacherService.allInternationalExam().subscribe(data => {
       data.objetoRespuesta.forEach(element => {
-        element["checked"] = false;
+        if (element.exam)
+          this.Internacionales.push(element)
       });
-      this.Internacionales = data.objetoRespuesta
     })
     this.registroTeacherService.edades().subscribe(data => {
       data.objetoRespuesta.forEach(element => {
@@ -218,26 +219,50 @@ export class TeacherRegistroComponent implements OnInit {
       let json = { id: element.id }
       model.targetGroupDTO.push(json)
     })
-    this.generalService.addUser(model).subscribe(data => {
-      if (data.statusText == "OK") {
-        this.router.navigate(['/teacher']);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'El profesor se registro correctamente.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      } else {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Ocurrio un problema!',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-info',
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
     })
+
+    swalWithBootstrapButtons.fire({
+      title: '<div class="m-title-input m-border-line"> Agregar profesor </div>',
+      html: `<div class="m-subtitle"> Se agregará  al profesor ${model.name} </div> 
+          <div class="m-confirm-text">¿Desea confirmar?</div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.generalService.addUser(model).subscribe(data => {
+          if (data.statusText == "OK") {
+            this.router.navigate(['/teacher']);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'El profesor se registro correctamente.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          } else {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Ocurrio un problema!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        })
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel) { }
+    })
+
+
   }
   videoIngresado() {
     /* document.getElementById("videoIframe")["src"]=this.modelteacher.videoPresentation */
@@ -278,6 +303,7 @@ export class TeacherRegistroComponent implements OnInit {
     }
     return this.errorEmail;
   }
+
   validatePaypalEmail() {
     if (this.modelteacher.paypalEmail || this.modelteacher.paypalEmailConfirm) {
       if (this.modelteacher.paypalEmail !== this.modelteacher.paypalEmailConfirm) {
@@ -311,7 +337,7 @@ export class TeacherRegistroComponent implements OnInit {
       }
     }
     return ok;
- 
+
   }
   OpenLevel(language, getName) {
     language.levels = this.levelsTemporal.filter(x => x.name == getName)

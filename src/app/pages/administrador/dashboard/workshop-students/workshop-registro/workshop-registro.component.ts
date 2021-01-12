@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { countries } from '../../../../../../assets/countries/countries'
 import { states } from '../../../../../../assets/countries/states'
-import { day,month,year } from '../../../../../../assets/countries/birthDate'
+import { day,month,year,codigoPais } from '../../../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-workshop-registro',
   templateUrl: './workshop-registro.component.html',
@@ -22,6 +22,7 @@ export class WorkshopRegistroComponent implements OnInit {
   birthStates: any[]
   birthday: any[]
   month: any[]
+  codigoPais:  any[]
   year: any[]
   timeZone: any;
   studentsModel = {
@@ -67,6 +68,7 @@ export class WorkshopRegistroComponent implements OnInit {
     this.birthday = day
     this.month=month
     this.year =year
+    this.codigoPais= codigoPais
     this.generalService.allTimeZone().subscribe(data => {
       if (data.statusText == "OK") {
         this.timeZone = data.objetoRespuesta
@@ -91,13 +93,35 @@ export class WorkshopRegistroComponent implements OnInit {
     }
     this.generalService.addUser(this.studentsModel).subscribe(data => {
       if (data.statusText === "OK") {
-        this.router.navigate(['/private-student']);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Datos guardados.',
-          showConfirmButton: false,
-          timer: 1500
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-info',
+            cancelButton: 'btn btn-secondary'
+          },
+          buttonsStyling: false
+        })
+    
+        swalWithBootstrapButtons.fire({
+          title: '<div class="m-title-input m-border-line"> Agregar Alumno Taller </div>',
+          html: `<div class="m-subtitle"> Se agregará a  ${this.studentsModel.name}  ${this.studentsModel.lastName} </div> 
+          <div class="m-confirm-text">¿Desea Confirmar?</div>`,
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/workshop-student']);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Registro agregado.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel) { }
         })
       } else {
         Swal.fire({

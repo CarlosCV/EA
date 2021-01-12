@@ -1,21 +1,25 @@
-<div class="bredcrumbs" >
+<div class="bredcrumbs">
     <span routerLink="/teacher">Dashboard </span>
     <span class="material-icons">
         keyboard_arrow_right
     </span>
     <span> Mi Perfil</span>
 </div>
-<form #adminForm="ngForm">
-    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-5">
-        <article>
+<form #adminForm="ngForm" autocomplete="off" >
+    <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-7">
+        <article class="m-cols-2">
             <aside class="m-border-content m-main-center">
-                <div style="text-align: center;">
+                <div style="width: 100%; height: 30px;text-align: right;">
+                    <img *ngIf="modelAdmin.birthCountry" style="width: 47px; height: 30px;"
+                        src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{modelAdmin.birthCountry}}.png">
+                </div>
+                <div style="text-align: center;width: 204px;">
                     <img src="../../../../assets/img/avatar.jpg" class="m-photo" id="photoperfil">
                     <div class="m-btn-perfil">
                         <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
                             folder="admin_doc" (responseData)="getDataFiles($event)"></app-upload-file>
                     </div>
-                    <div>{{modelAdmin.name}} {{modelAdmin.lastName}} </div>
+                    <div class="m-name-user">{{modelAdmin.name}} {{modelAdmin.lastName}} </div>
                 </div>
             </aside>
             <aside class="m-options-profile ">
@@ -25,26 +29,27 @@
                             personal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#informacionCuenta" role="tab" data-toggle="tab">Información de
+                        <a class="nav-link" href="#informacionCuenta" role="tab" style="margin-top:10px ;"
+                            data-toggle="tab">Información de
                             cuenta</a>
                     </li>
                 </ul>
             </aside>
             <aside class="m-btn-web">
                 <button (click)="editAdmin()" class="btn btn-primary" [disabled]="!adminForm.form.valid">Guardar
-                    Cambios</button><br><br>
+                    Cambios</button>
                 <button class="btn btn-danger" routerLink="/teacher">Cancelar</button>
             </aside>
         </article>
-        <article class="m-cols-4">
+        <article class="m-cols-5">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active show" id="informacionPersonal">
                     <aside class="m-content-admin">
                         <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
                             <div class="m-cols-1 lg-cols-2">
                                 <div class="group">
-                                    <input placeholder="{{ 'adminInformacion.fullsurnames' | translate }}" type="text" name="lastName" [(ngModel)]="modelAdmin.lastName"
-                                        #lastName=ngModel required>
+                                    <input placeholder="{{ 'adminInformacion.fullsurnames' | translate }}" type="text"
+                                        name="lastName" [(ngModel)]="modelAdmin.lastName" #lastName=ngModel required>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label class="m-title-input">{{ 'adminInformacion.fullname' | translate }}</label>
@@ -56,7 +61,8 @@
                             </div>
                             <div class="m-cols-1 lg-cols-2">
                                 <div class="group">
-                                    <input placeholder="{{ 'adminInformacion.fullname' | translate }}" type="text" name="name" [(ngModel)]="modelAdmin.name" #name=ngModel required>
+                                    <input placeholder="{{ 'adminInformacion.fullname' | translate }}" type="text"
+                                        name="name" [(ngModel)]="modelAdmin.name" #name=ngModel required>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <div class="m-error-input" *ngIf="name.invalid && (name.dirty || name.touched)">
@@ -67,13 +73,13 @@
 
                             <div class="m-cols-1 lg-cols-2">
                             </div>
-                            <div class="m-cols-1 lg-cols-1">
+                            <div class="m-cols-1 lg-cols-2">
                                 <div class="m-title-input">{{ 'adminInformacion.birthdate' | translate }}</div>
                                 <br><br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select placeholder="{{ 'adminInformacion.day' | translate }}" name="birthday" class="filter-select" 
-                                            [(ngModel)]="modelAdmin.birthday">
+                                        <mat-select placeholder="{{ 'adminInformacion.day' | translate }}"
+                                            name="birthday" class="filter-select" [(ngModel)]="modelAdmin.birthday">
                                             <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">
                                                 {{birth.num}}</mat-option>
                                         </mat-select>
@@ -87,8 +93,8 @@
                                 <br><br><br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select placeholder="{{ 'adminInformacion.month' | translate }}" name="birthmonth" class="filter-select" 
-                                            [(ngModel)]="modelAdmin.birthmonth">
+                                        <mat-select placeholder="{{ 'adminInformacion.month' | translate }}"
+                                            name="birthmonth" class="filter-select" [(ngModel)]="modelAdmin.birthmonth">
                                             <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}
                                             </mat-option>
                                         </mat-select>
@@ -99,8 +105,8 @@
                                 <br><br><br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select placeholder="{{ 'adminInformacion.year' | translate }}" name="birthyear" class="filter-select" 
-                                            [(ngModel)]="modelAdmin.birthyear">
+                                        <mat-select placeholder="{{ 'adminInformacion.year' | translate }}"
+                                            name="birthyear" class="filter-select" [(ngModel)]="modelAdmin.birthyear">
                                             <mat-option *ngFor="let item of year" value="{{item.year}}">{{item.year}}
                                             </mat-option>
                                         </mat-select>
@@ -110,16 +116,21 @@
                             <div class="m-cols-1 lg-cols-1">
                                 <div class="m-title-input">Teléfono</div>
                                 <br><br>
-                                <div class="group">
-                                    <input placeholder="{{ 'adminInformacion.prefix' | translate }}" type="text" name="prefix"  [(ngModel)]="modelAdmin.prefix">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                </div>
+                                <mat-list-item class="primary-imenu-item">
+                                    <mat-form-field class="select-form">
+                                        <mat-select placeholder="{{ 'adminInformacion.prefix' | translate }}"
+                                            name="prefix" class="filter-select" [(ngModel)]="modelAdmin.prefix">
+                                            <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">{{item.id}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </mat-list-item>
                             </div>
-                            <div class="m-cols-1 lg-cols-2">
+                            <div class="m-cols-1 lg-cols-1">
                                 <br><br><br>
                                 <div class="group">
-                                    <input placeholder="{{ 'adminInformacion.number' | translate }}" type="text" name="cellphone" [(ngModel)]="modelAdmin.cellphone">
+                                    <input placeholder="{{ 'adminInformacion.number' | translate }}" type="text"
+                                        name="cellphone" [(ngModel)]="modelAdmin.cellphone">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                 </div>
@@ -130,7 +141,8 @@
                                 <br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select placeholder="{{ 'adminInformacion.country' | translate }}"  name="birthCountry" class="filter-select"
+                                        <mat-select placeholder="{{ 'adminInformacion.country' | translate }}"
+                                            name="birthCountry" class="filter-select"
                                             (selectionChange)="viewStatesBirth($event.value)"
                                             [(ngModel)]="modelAdmin.birthCountry">
                                             <mat-option *ngFor="let pais of countries" value="{{pais.id}}">{{pais.name}}
@@ -144,8 +156,8 @@
                                 <br><br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select  placeholder="{{ 'adminInformacion.state' | translate }}"  name="birthState" class="filter-select"
-                                            [(ngModel)]="modelAdmin.birthState">
+                                        <mat-select placeholder="{{ 'adminInformacion.state' | translate }}"
+                                            name="birthState" class="filter-select" [(ngModel)]="modelAdmin.birthState">
                                             <mat-option *ngFor="let state of birthStates" value="{{state.id}}">
                                                 {{state.name}}
                                             </mat-option>
@@ -159,7 +171,8 @@
                                 <br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select placeholder="{{ 'adminInformacion.country' | translate }}" name="residentCountry" class="filter-select"
+                                        <mat-select placeholder="{{ 'adminInformacion.country' | translate }}"
+                                            name="residentCountry" class="filter-select"
                                             (selectionChange)="viewStatesResident($event.value)"
                                             [(ngModel)]="modelAdmin.residentCountry">
                                             <mat-option *ngFor="let pais of countries" value="{{pais.id}}">{{pais.name}}
@@ -173,7 +186,8 @@
                                 <br><br>
                                 <mat-list-item class="primary-imenu-item">
                                     <mat-form-field class="select-form">
-                                        <mat-select placeholder="{{ 'adminInformacion.state' | translate }}" name="residentState" class="filter-select"
+                                        <mat-select placeholder="{{ 'adminInformacion.state' | translate }}"
+                                            name="residentState" class="filter-select"
                                             [(ngModel)]="modelAdmin.residentState">
                                             <mat-option *ngFor="let state of residentStates" value="{{state.id}}">
                                                 {{state.name}}
@@ -242,8 +256,9 @@
                         <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-2 lg-grid-2">
                             <div>
                                 <div class="group">
-                                    <input  placeholder="{{ 'adminInformacion.email' | translate }}" [(ngModel)]="modelAdmin.email" name="email" #email=ngModel type="text"
-                                        required email>
+                                    <input  placeholder="{{ 'adminInformacion.email' | translate }}"
+                                        [(ngModel)]="modelAdmin.email" name="email" #email=ngModel type="text" required
+                                        email>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label class="m-title-input">{{ 'adminInformacion.email' | translate
@@ -252,11 +267,13 @@
                                         <span *ngIf='email.errors.required'>El email es requerido.</span>
                                         <span *ngIf='email.errors.email'>El email debe tener un formato valido.</span>
                                     </div>
+                                    <span class="m-error-input" *ngIf='!errorEmail'>Los emails no son iguales.</span>
                                 </div>
                             </div>
                             <div>
                                 <div class="group">
-                                    <input  placeholder="{{ 'adminInformacion.emailRepeat' | translate }}" [(ngModel)]="modelAdmin.emailConfirm" name="emailRepeat" #emailRepeat=ngModel
+                                    <input placeholder="{{ 'adminInformacion.emailRepeat' | translate }}"
+                                        [(ngModel)]="modelAdmin.emailConfirm" name="emailRepeat" #emailRepeat=ngModel
                                         type="text" required email>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
@@ -266,33 +283,48 @@
                                             <span *ngIf='emailRepeat.errors.email'>El email debe tener un formato
                                                 valido.</span>
                                         </div>
-                                        <!--  <span *ngIf='!errorEmail'>Los emails nos son iguales.</span> -->
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div class="group">
-                                    <input placeholder="{{ 'adminInformacion.password' | translate }}" [(ngModel)]="modelAdmin.newpassword" name="pasword" type="text"
-                                        #paypalId=ngModel>
+                                    <input minlength="6" (blur)="validaPassword(modelAdmin.newpassword)"
+                                        placeholder="{{ 'adminInformacion.password' | translate }}"
+                                        [(ngModel)]="modelAdmin.newpassword" name="pasword" type="text"
+                                        #password=ngModel>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label class="m-title-input">{{ 'adminInformacion.newpassword' | translate
                                         }}</label>
                                     <div class="m-error-input"
-                                        *ngIf="paypalId.invalid && (paypalId.dirty || paypalId.touched)">
-                                        <span *ngIf='paypalId.errors.required'>El paypalId es requerido.</span>
+                                        *ngIf="password.invalid && password.touched else errorPassword">
+                                        <span *ngIf='password.errors?.minlength '>Debes ingresar mayor a 6
+                                            digitos.</span>
+                                    </div>
+                                    <ng-template #errorPassword>
+                                        <div *ngIf="password.touched">
+                                            <div class="m-error-input" *ngIf="!errorPass">
+                                                <span>Debe tener al menos una mayúscula / minúscula / número /
+                                                    caracteres.</span>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <div class="m-error-input" *ngIf="!errorEqualPass">
+                                        Las contraseñas no son iguales.
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div class="group">
-                                    <input placeholder="{{ 'adminInformacion.newpassword' | translate }}" [(ngModel)]="modelAdmin.passwordConfirm" name="newpasword"
-                                        #paypalEmail=ngModel type="text">
+                                    <input minlength="6" placeholder="{{ 'adminInformacion.newpassword' | translate }}"
+                                        [(ngModel)]="modelAdmin.passwordConfirm" name="newpasword"
+                                        #passwordConfirm=ngModel type="text">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <div class="m-error-input"
-                                        *ngIf="paypalEmail.invalid && (paypalEmail.dirty || paypalEmail.touched)">
-                                        <span *ngIf='paypalEmail.errors.required'>El email es requerido.</span>
+                                        *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
+                                        <span *ngIf='passwordConfirm.errors?.minlength'>Debes ingresar mayor a 6
+                                            digitos.</span>
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +336,7 @@
                 <br>
                 <aside class="m-btn-movil" style="display: none;">
                     <button (click)="editAdmin()" class="btn btn-primary" [disabled]="!adminForm.form.valid">Guardar
-                        Cambios</button><br><br>
+                        Cambios</button>
                     <button class="btn btn-danger" routerLink="/teacher">Cancelar</button>
                 </aside>
             </div>

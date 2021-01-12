@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Output,EventEmitter} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 import { Observable } from 'rxjs';
@@ -11,7 +11,12 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class GeneralService {
+    @Output() updateUser: EventEmitter<any> = new EventEmitter();
     constructor(private http: HttpClient) { }
+    updateUserProfile(userName,lastName) {
+        let json ={ userName : userName,lastName: lastName}
+        this.updateUser.emit(json);
+      }
     allUserbyRole(json): Observable<any> {
         return this.http.post<any>(environment.backendApis + 'api/allUser', JSON.stringify(json), httpOptions);
     }

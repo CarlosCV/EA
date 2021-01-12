@@ -2,15 +2,25 @@ a{
     color: #ffffff;
 }
 .m-icons-pag{
-    font-size: 38px;
-    color: #ffffff;
+    font-size: 24px;
 }
 .m-fixed-sidebar{
     position: fixed;
     top: 0;
     z-index: 1000;
+    padding-left: 4px;
 }
 .m-line-module{
     border-left: 4px solid white;
+    color: #ffffff !important;
+    opacity: inherit;
+    margin-left: -4px;
+}
+a{
+    text-decoration: none;
+}
+.action-bar-item:hover{
+    color: #ffffff !important;
+    opacity: inherit;
 }
 

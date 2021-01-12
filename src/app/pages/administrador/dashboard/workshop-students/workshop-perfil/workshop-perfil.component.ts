@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import { ActivatedRoute, Router } from '@angular/router';
 import { countries } from '../../../../../../assets/countries/countries'
 import { states } from '../../../../../../assets/countries/states'
-import { day,month,year } from '../../../../../../assets/countries/birthDate'
+import { day,month,year,codigoPais} from '../../../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-workshop-perfil',
   templateUrl: './workshop-perfil.component.html',
@@ -24,6 +24,7 @@ export class WorkshopPerfilComponent implements OnInit {
   countries: any[]
   birthStates: any[]
   birthday: any[]
+  codigoPais:any[]
   month: any[]
   year: any[]
   residentStates: any[]
@@ -84,6 +85,7 @@ export class WorkshopPerfilComponent implements OnInit {
     this.birthday = day
     this.month=month
     this.year =year
+    this.codigoPais= codigoPais
     this.dataParam = JSON.parse((atob(this.activatedRoute.snapshot.paramMap.get("param"))));
     let jsoParam = {
       email: this.dataParam.email

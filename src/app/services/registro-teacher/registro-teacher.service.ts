@@ -17,10 +17,6 @@ export class RegistroTeacherService {
         return this.http.get(environment.backendApis + "api/allSpecializations", httpHeaders);
 
     }
-    allInternationalExam(): Observable<any> {
-        return this.http.get(environment.backendApis + "api/allInternationalExam", httpHeaders);
-
-    }
     edades(): Observable<any> {
         return this.http.get(environment.backendApis + "api/allTargetGroup", httpHeaders);
 

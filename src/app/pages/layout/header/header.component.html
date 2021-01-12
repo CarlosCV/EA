@@ -1,31 +1,40 @@
 <section class="m-header" [class.m-expanded]="expanded">
-  <nav class="shadow-sm">
+  <nav class="shadow-sm"  >
     <div style="float: left;padding: 15px;">
       <img class="m-btn-movil" style="height: 40px;display: none;" src="../../../../assets/img/logo_color.png"
         alt="English Advance" />
     </div>
     <div style="display: flex;justify-content:flex-end">
-      <div class="m-header-grid">
- 
-        <div>
+      <div  class="m-header-grid">
+        <div class="m-btn-web">
+          <div class="button b2" id="button-10">
+            <input type="checkbox" class="checkbox" checked>
+            <div class="knobs">
+              <span style="font-size: 16px;">Ingles</span>
+            </div>
+            <div class="layer"></div>
+          </div>
+        </div>
+        <!--   <div>
           <a class="m-english m-btn-web" (click)="traducir('en')">English</a>
         </div>
         <div>
           <a class="m-spanish m-btn-web" (click)="traducir('es')">Español</a>
-        </div>
-        <div>
+        </div> -->
+        <div class="m-noti-movil">
           <span routerLink="/notifications" class="material-icons m-notification">
             notifications_none
           </span>
         </div>
         <div>
           <div class="dropdown ">
-            <div class="m-circle-profile" style="cursor: pointer;" data-toggle="dropdown">
+            <div (click)="activeLine = !activeLine" class="m-circle-profile" style="cursor: pointer;margin-bottom: 4px;" data-toggle="dropdown">
               <span style="color: white;"> {{user.name | slice:0:1}}{{user.lastName | slice:0:1}}</span>
             </div>
-            <div class="dropdown-menu dropdown-menu-right m-profile-content">
+            <span [hidden]="!activeLine"   class="m-line-profile " ><hr></span>
+            <div class="dropdown-menu dropdown-menu-right m-profile-content" style="height:auto">
               <section class="m-grid-profile">
-                <div class="dropdown-item ">
+                <div class="dropdown-item " style="    margin-left: -12px;">
                   <div class="m-circle-profile">
                     <span style="color: white;"> {{user.name | slice:0:1}}{{user.lastName | slice:0:1}}</span>
                   </div>
@@ -60,9 +69,9 @@
           </div>
         </div>
         <div>
-          <a class="m-btn-movil" style="display: none;" type="button" (click)="expanded2 = !expanded2;siderbarView()">
+          <div class="m-btn-movil" style="display: none;" type="button" (click)="expanded2 = !expanded2;siderbarView()">
             <span class="material-icons m-icon-menu">menu</span>
-          </a>
+          </div>
         </div>
       </div>
     </div>

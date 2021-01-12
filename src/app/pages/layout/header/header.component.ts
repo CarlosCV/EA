@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment'
 import { GeneralService } from '../../../services/general.service';
+
 /* import * as io from 'socket.io-client';
 const SOCKET_ENDPOINT = 'localhost:3000'; */
 import { TranslateLabelService } from '../../../services/labels-translate/translate.service'
@@ -12,36 +13,50 @@ import { TranslateLabelService } from '../../../services/labels-translate/transl
 })
 export class HeaderComponent implements OnInit {
   url: any = environment
+  activeLine: boolean = false
   expanded: boolean = false
   expanded2: boolean = false
   socket;
   notification: number = 0;
-  user={
-    name:"",
-    lastName:""
+  user = {
+    name: "",
+    lastName: ""
   };
   constructor(
     private translateService: TranslateLabelService,
     private router: Router,
-    private generalService:GeneralService,
-    ) {
+    private generalService: GeneralService,
+
+  ) {
   }
 
   ngOnInit() {
     let dataToken;
     if (sessionStorage.getItem("access_Token")) {
-      dataToken =sessionStorage.getItem("access_Token")
+      dataToken = sessionStorage.getItem("access_Token")
     }
+
+    this.generalService.updateUser.subscribe(data=>{
+        this.user = {
+          name: data.userName,
+          lastName: data.lastName
+        }
+
+    })
+  
     let jsonUser = this.generalService.parseJwt(dataToken);
-    this.generalService.userDetail({email: jsonUser.sub}).subscribe(data => {
-      if (data.statusText === "OK"){
-        this.user= data.objetoRespuesta
+    this.generalService.userDetail({ email: jsonUser.sub }).subscribe(data => {
+      if (data.statusText === "OK") {
+        this.user = data.objetoRespuesta
       }
     })
 
     this.translateService.changeExpanded.subscribe(data => {
       this.expanded = data
     })
+  }
+  hasClass(el: any) {
+    return !(el.getAttribute('class') && el.getAttribute('class').indexOf('show') !== -1);
   }
   setupSocketConnection() {
     /*   this.socket = io(SOCKET_ENDPOINT);
@@ -61,9 +76,13 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   siderbarView() {
-    
+
     /*  this.responseData.emit(this.expanded) */
     this.translateService.eventSiderbarView(this.expanded2)
   }
+
+
+
+
 
 }

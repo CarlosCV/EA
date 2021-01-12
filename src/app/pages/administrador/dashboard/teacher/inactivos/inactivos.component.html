@@ -4,8 +4,7 @@
       <mat-list-item class="primary-imenu-item" role="listitem">
         <mat-form-field class="select-form">
           <mat-select placeholder="Género" name="genero" class="filter-select" [(ngModel)]="jsonFilter.filterDTO.gender"
-            (ngModelChange)="filtersOptions('')">
-            <mat-option>Todos</mat-option>
+          multiple (ngModelChange)="filtersOptions('')">
             <mat-option value="M">Masculino</mat-option>
             <mat-option value="F">Femenino</mat-option>
           </mat-select>
@@ -28,8 +27,7 @@
       <mat-list-item class="primary-imenu-item" role="listitem">
         <mat-form-field class="select-form">
           <mat-select placeholder="Tipo de Ingles" name="tipoIngles" class="filter-select" [(ngModel)]="jsonFilter.filterDTO.englishType"
-            (ngModelChange)="filtersOptions('')">
-            <mat-option>Todos</mat-option>
+          multiple (ngModelChange)="filtersOptions('')">
             <mat-option value="American">Inglés Americano</mat-option>
             <mat-option value="British">Inglés Británico</mat-option>
           </mat-select>
@@ -49,7 +47,7 @@
       </mat-list-item>
     </div>
     <div class="s-cols-1 m-cols-2">
-      <div class="input-group" style="float: left;width: auto">
+      <div class="input-group" style="float: left;width: auto;">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <span class="material-icons">
@@ -73,7 +71,7 @@
 
 
 <div class="example-container mat-elevation-z8">
-  <div class="example-table-container">
+  <div class="example-table-container style-1">
     <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="name" matSortDisableClear
       matSortDirection="desc" (matSortChange)="sortData($event)">
       <!-- Number Column -->

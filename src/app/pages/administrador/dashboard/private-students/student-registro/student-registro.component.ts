@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { countries } from '../../../../../../assets/countries/countries'
 import { states } from '../../../../../../assets/countries/states'
-import { day,month,year } from '../../../../../../assets/countries/birthDate'
+import { day,month,year,codigoPais } from '../../../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-student-registro',
   templateUrl: './student-registro.component.html',
@@ -21,6 +21,7 @@ export class StudentRegistroComponent implements OnInit {
   countries: any[]
   birthStates: any[]
   birthday: any[]
+  codigoPais:any[]
   month: any[]
   year: any[]
   residentStates: any[]
@@ -70,6 +71,7 @@ export class StudentRegistroComponent implements OnInit {
     this.countries = countries
     this.birthday = day
     this.month=month
+    this.codigoPais= codigoPais
     this.year =year
     this.packageService.allPackage("PS").subscribe(data => {
       if (data.statusText === "OK") {
@@ -99,26 +101,53 @@ export class StudentRegistroComponent implements OnInit {
     if (!emailErr) {
       return
     }
-    this.generalService.addUser(this.studentsModel).subscribe(data => {
-      if (data.statusText === "OK") {
-        this.router.navigate(['/private-student']);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Datos guardados.',
-          showConfirmButton: false,
-          timer: 1500
+  
+   
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-info',
+            cancelButton: 'btn btn-secondary'
+          },
+          buttonsStyling: false
         })
-      } else {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Ocurrio un problema!',
-          showConfirmButton: false,
-          timer: 1500
+    
+        swalWithBootstrapButtons.fire({
+          title: '<div class="m-title-input m-border-line"> Agregar Alumno Particular </div>',
+          html: `<div class="m-subtitle"> Se agregará a  ${this.studentsModel.name}  ${this.studentsModel.lastName} </div> 
+          <div class="m-confirm-text">¿Desea Confirmar?</div>`,
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.generalService.addUser(this.studentsModel).subscribe(data => {
+              if (data.statusText === "OK") {
+                this.router.navigate(['/private-student']);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Datos actualizados.',
+              showConfirmButton: false,
+              timer: 1500
+            })
+             } else {
+               Swal.fire({
+                 position: 'center',
+                 icon: 'error',
+                 title: 'Ocurrio un problema!',
+                 showConfirmButton: false,
+                 timer: 1500
+               })
+             }
+         })
+            
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel) { }
         })
-      }
-    })
+   
+ 
 
   }
   arrayFile = []
@@ -166,6 +195,32 @@ export class StudentRegistroComponent implements OnInit {
       }
     }
     return ok;
+  }
+  cancelTeacher(){
+    
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-info',
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: '<div class="m-title-input m-border-line">Cancelar </div>',
+      html: `<div class="m-subtitle"> Se cancelara agregar un nuevo usuario</div> 
+      <div class="m-confirm-text">¿Desea confirmar?</div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/private-student']);
+
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel) { }
+    })
   }
 
 }
