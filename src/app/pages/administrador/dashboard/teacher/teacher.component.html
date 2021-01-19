@@ -3,7 +3,7 @@
   </div>
 <section class="m-horario-content">
     <div class="m-page-content ed-grid  s-grid-3 m-grid-3" >
-        <div style="padding-left: 46px;" class="m-tab-select m-main-center" routerLink="/teacher">
+        <div style="padding-left: 46px;" class="m-tab-select m-main-center m-teacher-padding-movil" routerLink="/teacher">
             <div>Profesores</div>
         </div>
         <div class="m-tab-unselect m-main-center" routerLink="/private-student">
@@ -14,8 +14,7 @@
             <div>Alumnos Talleres</div><br>
         </div>
     </div>
-    <br>
-    <div class="m-content-tabs-item ed-grid s-grid-3 m-grid-3" style="border-radius: 18px;">
+    <div class="m-page-content m-content-tabs-item ed-grid s-grid-3 m-grid-3" style="border-radius: 18px;">
         <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.activos" (click)="OpenActivos()">
             Activos</div>
         <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.inactivos"

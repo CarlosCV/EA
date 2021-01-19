@@ -17,7 +17,7 @@
           <img *ngIf="studentsModel.profilePic" src="{{studentsModel.profilePic}}"   class="m-photo-2"  >                    
           <div [ngClass]="{'m-btn-perfil-2': studentsModel.profilePic, 'm-btn-perfil': !studentsModel.profilePic }" >
               <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
-                  folder="admin_doc" (responseData)="getDataFiles($event)"></app-upload-file>
+                  folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
           </div>
       </div>
         <div class="m-name-user">{{studentsModel.name}}

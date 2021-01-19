@@ -546,6 +546,16 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 }
 }
 @media (max-width: 768px) {
+  .m-size-movil-calendar{
+    max-width: 72vw !important;
+  }
+  .m-teacher-padding-movil{
+    padding-left: 0px !important;
+    padding-top: 30px !important;
+  }
+  .m-size-search-movil{
+    width: 60% !important;
+  }
   .m-header-grid{
     grid-template-columns:  auto 1fr 1fr 1fr !important;
     margin-right: 0px !important; 
@@ -562,7 +572,7 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
   margin-right: 22px;
 }
   .example-container {
-    max-width: 114vw;
+    max-width: 93vw;
     overflow: auto;
   }
   .example-table thead tr th aside {
@@ -598,7 +608,7 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
    width: 40px;
  }
  .m-horario-content{
-  font-size: 11px;
+  font-size: 9px;
 }
 .m-div-hidden{
   display: none;
