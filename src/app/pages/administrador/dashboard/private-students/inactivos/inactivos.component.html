@@ -21,7 +21,7 @@
     </div>
   </article>
 </section>
-<div class="m-page-content">
+
 <div class="example-container mat-elevation-z8">
   <div class="example-table-container style-1">
     <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="name" matSortDisableClear
@@ -76,5 +76,4 @@
 
   <mat-paginator  [pageSize]="20" [length]="resultsLength" (page)="getServerDataPaginator($event)" >
   </mat-paginator>
-</div>
 </div>

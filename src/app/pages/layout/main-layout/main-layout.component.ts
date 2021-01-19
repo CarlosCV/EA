@@ -25,6 +25,11 @@ export class MainLayoutComponent implements OnInit {
      }, 1000/60);
     */
   }
+  siderbarView() {
+
+    /*  this.responseData.emit(this.expanded) */
+    this.translateService.eventSiderbarView(false)
+  }
 
 
 }

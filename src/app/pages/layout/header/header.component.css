@@ -76,7 +76,7 @@ ul li{
 }
 .m-header-grid{
   display: grid;
-  grid-template-columns:  auto 62px 62px 0px;
+  grid-template-columns:  1fr auto 62px 62px 0px;
   align-items: center;
   grid-gap: 34px;
   text-align: center;

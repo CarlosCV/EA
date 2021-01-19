@@ -546,15 +546,15 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 }
 }
 @media (max-width: 768px) {
-  
+  .m-header-grid{
+    grid-template-columns:  auto 1fr 1fr 1fr !important;
+    margin-right: 0px !important; 
+  }
   .m-overflow {
     overflow: hidden !important;
     height: auto !important;
 }
-/* .m-btn-perfil {
-  margin-left: 162px !important;
-}
- */
+
  .m-padding-web{
   padding-left: 12px;
  }
