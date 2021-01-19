@@ -36,14 +36,15 @@ export class HeaderComponent implements OnInit {
       dataToken = sessionStorage.getItem("access_Token")
     }
 
-    this.generalService.updateUser.subscribe(data=>{
-        this.user = {
-          name: data.userName,
-          lastName: data.lastName
-        }
+    this.generalService.updateUser.subscribe(data => {
+      this.user = {
+        name: data.userName,
+        lastName: data.lastName
+      }
 
     })
-  
+ 
+
     let jsonUser = this.generalService.parseJwt(dataToken);
     this.generalService.userDetail({ email: jsonUser.sub }).subscribe(data => {
       if (data.statusText === "OK") {

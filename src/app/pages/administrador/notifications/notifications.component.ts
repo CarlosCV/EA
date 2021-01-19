@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {GeneralService} from '../../../services/general.service'
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private generalService : GeneralService) { }
 
   ngOnInit(): void {
+   
   }
 
 }

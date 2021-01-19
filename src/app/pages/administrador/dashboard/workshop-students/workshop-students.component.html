@@ -1,9 +1,9 @@
 
 <div class="bredcrumbs">
     <span >Dashboard</span>
-</div><br>
+</div>
 <section class="m-horario-content">
-    <div class="ed-grid  s-grid-3 m-grid-3" >
+    <div class="m-page-content ed-grid  s-grid-3 m-grid-3" >
         <div style="padding-left: 46px;"  class="m-tab-unselect m-main-center" routerLink="/teacher">
             <div>Profesores</div>
         </div>
@@ -16,13 +16,12 @@
         </div>
     </div>
     <br>
-    <div class="m-content-tabs-item ed-grid s-grid-2 m-grid-2" style="border-top-left-radius: 18px;">
+    <div class="m-content-tabs-item ed-grid s-grid-2 m-grid-2" style="border-radius: 18px;">
         <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.activos" (click)="OpenActivos()">
             Activos</div>
         <div class="m-item-unselect m-main-center" [class.m-item-select]="statusTab.inactivos"
             (click)="OpenInactivos()">Inactivos</div>
     </div>
 </section>
-<br>
 <app-activos *ngIf="statusTab.activos"></app-activos>
 <app-inactivos *ngIf="statusTab.inactivos"></app-inactivos>

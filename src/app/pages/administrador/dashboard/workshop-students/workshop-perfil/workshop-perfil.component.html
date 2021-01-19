@@ -13,14 +13,22 @@
           <img *ngIf="studentsModel.birthCountry" style="width: 47px; height: 30px;"
             src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{studentsModel.birthCountry}}.png">
         </div>
-        <div style="text-align: center;">
-          <img *ngIf="!studentsModel.profilePic" src="../../../../assets/img/avatar.jpg" class="m-photo">
+       <!--  <div style="text-align: center;">
+          <img *ngIf="!studentsModel.profilePic" src="../../../../assets/img/avatar.png" class="m-photo">
           <img *ngIf="studentsModel.profilePic" class="m-photo" src="{{studentsModel.profilePic}}">
           <div class="m-btn-perfil">
             <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic" folder="admin_doc"
               (responseData)="getDataFiles($event)"></app-upload-file>
           </div>
-        </div>
+        </div> -->
+        <div  class="m-content-profile"  [ngClass]="{'': studentsModel.profilePic, 'm-content-profile': !studentsModel.profilePic }" style="text-align: center;">
+          <img *ngIf="!studentsModel.profilePic" src="../../../../assets/img/avatar.png"   class="m-photo"  >      
+          <img *ngIf="studentsModel.profilePic"  src="{{studentsModel.profilePic}}" class="m-photo-2"  >                    
+          <div [ngClass]="{'m-btn-perfil-2': studentsModel.profilePic, 'm-btn-perfil': !studentsModel.profilePic }"  >
+              <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
+                  folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
+          </div>
+      </div>
         <div class="m-name-user">{{studentsModel.name}}
           {{studentsModel.lastName}}</div>
         <ul class="m-content-active">

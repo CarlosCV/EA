@@ -1,8 +1,8 @@
 <div class="bredcrumbs">
     <span >Dashboard</span>
-</div><br>
+</div>
 <section class="m-horario-content">
-    <div class="ed-grid  s-grid-3 m-grid-3">
+    <div class="m-page-content ed-grid  s-grid-3 m-grid-3">
         <div style="padding-left: 46px;"  class="m-tab-unselect m-main-center" routerLink="/teacher">
             <div>Profesores</div>
         </div>
@@ -22,6 +22,5 @@
             (click)="OpenInactivos()">Inactivos</div>
     </div>
 </section>
-<br>
 <app-activos *ngIf="statusTab.activos"></app-activos>
 <app-inactivos *ngIf="statusTab.inactivos"></app-inactivos>

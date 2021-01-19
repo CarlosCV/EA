@@ -1,4 +1,4 @@
-import { Injectable,Output,EventEmitter} from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 import { Observable } from 'rxjs';
@@ -12,11 +12,13 @@ const httpOptions = {
 })
 export class GeneralService {
     @Output() updateUser: EventEmitter<any> = new EventEmitter();
+    @Output() activeLine: EventEmitter<boolean> = new EventEmitter();
     constructor(private http: HttpClient) { }
-    updateUserProfile(userName,lastName) {
-        let json ={ userName : userName,lastName: lastName}
+    updateUserProfile(userName, lastName) {
+        let json = { userName: userName, lastName: lastName }
         this.updateUser.emit(json);
-      }
+    }
+  
     allUserbyRole(json): Observable<any> {
         return this.http.post<any>(environment.backendApis + 'api/allUser', JSON.stringify(json), httpOptions);
     }
@@ -44,7 +46,7 @@ export class GeneralService {
     updateStudentType(json): Observable<any> {
         return this.http.post<any>(environment.backendApis + 'api/updateStudentType', JSON.stringify(json), httpOptions);
     }
-    activeOrInactiveUser(id,active): Observable<any> {
+    activeOrInactiveUser(id, active): Observable<any> {
         return this.http.put<any>(environment.backendApis + `api/active/${id}?active=${active}`, httpOptions);
     }
     //for ventas 
@@ -56,11 +58,11 @@ export class GeneralService {
         return this.http.get<any>(environment.backendApis + 'api/allLanguages', httpOptions);
     }
     deleteFile(json): Observable<any> {
-        return this.http.post<any>(environment.backendApis + 'api/delete/resource',JSON.stringify(json),httpOptions);
-      }
- 
+        return this.http.post<any>(environment.backendApis + 'api/delete/resource', JSON.stringify(json), httpOptions);
+    }
 
-  
+
+
     //encode JWT
     parseJwt(token) {
         var base64Url = token.split('.')[1];

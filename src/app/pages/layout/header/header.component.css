@@ -83,12 +83,14 @@ ul li{
   padding: 7px;
   margin-right: -21px;
 }
-.m-line-profile hr {
-  border-top: 3px solid #242c5f;
+.show .m-line-profile  {
+  border-bottom: 3px solid #242c5f;
     width: 29px;
-    margin-left: 12px;
+    margin-left: 10px;
     position: absolute;
+    display: block !important;
 }
+
 hr{
   margin: 0;
 }

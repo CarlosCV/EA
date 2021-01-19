@@ -150,12 +150,13 @@ export class StudentRegistroComponent implements OnInit {
  
 
   }
+  profilePic:string;
   arrayFile = []
   getDataFiles(dataFiles) {
     this.studentsModel.resourceDTO = []
     dataFiles.forEach(element => {
       if (element.typeUpload == "profile") {
-        document.getElementById("photoperfil")["src"] = element.url
+        this.profilePic=element.url
       }
       this.arrayFile.push({ id: element.id, name: element.nameGroup , url:element.url})
     });
@@ -197,7 +198,6 @@ export class StudentRegistroComponent implements OnInit {
     return ok;
   }
   cancelTeacher(){
-    
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-info',

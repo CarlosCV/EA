@@ -1,8 +1,8 @@
 <section class="m-filters">
-  <article class="m-page-content ed-grid m-main-end rows-gap s-gap-05 m-gap-05  s-grid-1 m-grid-3 lg-grid-6">
+  <article class="m-page-content m-section-flter ed-grid m-main-end rows-gap s-gap-05 m-gap-05  s-grid-1 m-grid-3 lg-grid-6"  style="padding-bottom: 8px;">
     <div class="m-cols-4 m-div-hidden"></div>
-    <div class="s-cols-1 m-cols-2">
-      <div class="input-group" style="float: left;width: 45%">
+    <div class="s-cols-1 m-cols-2" style="margin-top: 9px;">
+      <div class="input-group" style="float: left;width: 45%" >
         <div class="input-group-prepend">
           <span class="input-group-text">
             <span class="material-icons">
@@ -18,7 +18,7 @@
           save_alt
         </span>
       </a>
-      <div class="s-main-start">
+      <div class="s-main-start" style="padding-top: 6px;">
         <div class="m-add-teacher s-main-end" routerLink="add">
           <div id="m-add" style="float: left;">Agregar</div>
           <span style="font-size: 20px;" class="material-icons">add</span>
@@ -28,6 +28,7 @@
   </article>
 </section>
 
+<div class="m-page-content">
 <div class="example-container mat-elevation-z8">
   <div class="example-table-container style-1">
     <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="name" matSortDisableClear
@@ -36,7 +37,7 @@
         <th mat-header-cell *matHeaderCellDef>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
         <td mat-cell *matCellDef="let row">
           <div>
-            <img *ngIf="!row.profilePic" class="m-photo-perfil-grid" src="../../../../../assets/img/avatar.jpg">
+            <img *ngIf="!row.profilePic" class="m-photo-perfil-grid" src="../../../../../assets/img/avatar.png">
             <img *ngIf="row.profilePic" class="m-photo-perfil-grid" src="{{row.profilePic}}">
           </div>
         </td>
@@ -91,4 +92,5 @@
 
   <mat-paginator  [pageSize]="20" [length]="resultsLength" (page)="getServerDataPaginator($event)" >
   </mat-paginator>
+</div>
 </div>

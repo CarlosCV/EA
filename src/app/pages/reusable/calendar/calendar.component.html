@@ -41,7 +41,7 @@
       [weekStartsOn]="weekStartsOn" (dayClicked)="changeDay($event.day.date)">
     </mwl-calendar-month-view>
     <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [locale]="localeLang"
-      [dayStartHour]="7" [dayEndHour]="15" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+      [dayStartHour]="7" [dayEndHour]="22" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)" [weekStartsOn]="weekStartsOn"
       (hourSegmentClicked)="clickedDate = $event.date; addHourClass()" (beforeViewRender)="updateCalendarEvents($event)" > 
     </mwl-calendar-week-view>

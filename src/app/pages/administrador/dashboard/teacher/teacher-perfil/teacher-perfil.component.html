@@ -1,5 +1,5 @@
 <div class="bredcrumbs">
-    <span routerLink="/teacher">Dashboard  </span>
+    <span routerLink="/teacher">Dashboard </span>
     <span class="material-icons">
         keyboard_arrow_right
     </span>
@@ -10,14 +10,18 @@
         <article class="m-cols-2">
             <aside class="m-border-content m-main-center border-bottom-none">
                 <div style="width: 100%;text-align: right;">
-                    <img  *ngIf="modelteacher.birthCountry" style="width: 47px; height: 30px;" src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{modelteacher.birthCountry}}.png">
+                    <img *ngIf="modelteacher.birthCountry" style="width: 47px; height: 30px;"
+                        src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{modelteacher.birthCountry}}.png">
                 </div>
-
-                <div style="text-align: center;">
-                    <img *ngIf="!modelteacher.profilePic" src="../../../../assets/img/avatar.jpg" class="m-photo">
-                    <img *ngIf="modelteacher.profilePic" class="m-photo" src="{{modelteacher.profilePic}}">
-                    <div class="m-btn-perfil" *ngIf="dataParam.activeOptions">
-                        <app-upload-file  allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
+                <div class="m-content-profile"
+                    [ngClass]="{'': modelteacher.profilePic, 'm-content-profile': !modelteacher.profilePic }"
+                    style="text-align: center;">
+                    <img *ngIf="!modelteacher.profilePic" src="../../../../assets/img/avatar.png" class="m-photo">
+                    <img *ngIf="modelteacher.profilePic" 
+                        src="{{modelteacher.profilePic}}" class="m-photo-2">
+                    <div [ngClass]="{'m-btn-perfil-2': modelteacher.profilePic, 'm-btn-perfil': !modelteacher.profilePic }"
+                        *ngIf="dataParam.activeOptions">
+                        <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
                             folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
                     </div>
                 </div>
@@ -32,7 +36,8 @@
                         [class.m-inactive-user]="!modelteacher.active"></li>
                 </ul>
             </aside>
-            <aside *ngIf="dataParam.activeOptions" class="m-border-content m-main-start border-bottom-none border-top-none" style="padding: 15px;">
+            <aside *ngIf="dataParam.activeOptions"
+                class="m-border-content m-main-start border-bottom-none border-top-none" style="padding: 15px;">
                 <div class="m-grid-score">
                     <div>
                         <span class="material-icons m-color-yellow" data-toggle="modal" data-target="#myModalScore">
@@ -71,16 +76,16 @@
                 </div>
             </aside>
             <aside *ngIf="dataParam.activeOptions" class="m-border-content border-top-none" style="padding: 25px;">
-                <div  class="m-content-fecha">
+                <div class="m-content-fecha">
                     <div class="m-date-label">
                         Fecha de Ingreso
                     </div>
-                    <div class="m-date-item" >
-                        {{modelteacher.timeAccepted  | date:"dd-MM-yyyy" }}
+                    <div class="m-date-item">
+                        {{modelteacher.timeAccepted | date:"dd-MM-yyyy" }}
                     </div>
                 </div>
 
-                <div  *ngIf="dataParam.buttonsEdit" class="m-btn-web">
+                <div *ngIf="dataParam.buttonsEdit" class="m-btn-web">
                     <button (click)="editTeacher(modelteacher)" [disabled]="!teacherform.form.valid"
                         class="btn btn-primary">
                         Guardar Cambios</button>
@@ -92,7 +97,8 @@
         <article class="m-cols-5">
             <aside class="m-header-admin">
                 <aside class="m-title-admin s-main-center" style="border-bottom: none;">
-                    <ul class="nav nav-tabs m-content-tabs-item s-main-center" role="tablist">
+                    <ul class="nav nav-tabs m-content-tabs-item  m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-4 lg-grid-4"
+                        role="tablist" style="display: grid;text-align: center;">
                         <li class="nav-item">
                             <a class="nav-link active" href="#informacionPersonal" role="tab"
                                 data-toggle="tab">Información
@@ -121,8 +127,7 @@
                                 class="m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
                                 <div class="m-cols-1 lg-cols-2">
                                     <div class="group">
-                                        <input type="text"
-                                            placeholder="{{ 'registroProfesor.fullname' | translate }}"
+                                        <input type="text" placeholder="{{ 'registroProfesor.fullname' | translate }}"
                                             name="lastName" [(ngModel)]="modelteacher.lastName" #lastName=ngModel
                                             required>
                                         <span class="highlight"></span>
@@ -151,12 +156,14 @@
                                 <div class="m-cols-1 lg-cols-1">
                                     <div class="m-title-input">{{ 'registroProfesor.birthdate' | translate }}</div>
                                     <br><span class="m-hidden"><br></span>
-                                   
+
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form ">
-                                            <mat-select name="birthday" class="filter-select"  placeholder="{{ 'registroProfesor.day' | translate }}"
-                                                [(ngModel)]="modelteacher.birthday"  >
-                                                <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">{{birth.num}}</mat-option>
+                                            <mat-select name="birthday" class="filter-select"
+                                                placeholder="{{ 'registroProfesor.day' | translate }}"
+                                                [(ngModel)]="modelteacher.birthday">
+                                                <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">
+                                                    {{birth.num}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-list-item>
@@ -165,12 +172,14 @@
                                     </div>
                                 </div>
                                 <div class="m-cols-1 lg-cols-1">
-                                    <br><br><br>         
+                                    <br><br><br>
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select name="birthmonth" class="filter-select"  placeholder="{{ 'registroProfesor.month' | translate }}"
-                                            [(ngModel)]="modelteacher.birthmonth">
-                                                <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}</mat-option>
+                                            <mat-select name="birthmonth" class="filter-select"
+                                                placeholder="{{ 'registroProfesor.month' | translate }}"
+                                                [(ngModel)]="modelteacher.birthmonth">
+                                                <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}
+                                                </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-list-item>
@@ -179,9 +188,11 @@
                                     <br><br><br>
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select name="birthyear" class="filter-select"  placeholder="{{ 'registroProfesor.year' | translate }}"
-                                            [(ngModel)]="modelteacher.birthyear">
-                                                <mat-option *ngFor="let item of year" value="{{item.year}}">{{item.year}}</mat-option>
+                                            <mat-select name="birthyear" class="filter-select"
+                                                placeholder="{{ 'registroProfesor.year' | translate }}"
+                                                [(ngModel)]="modelteacher.birthyear">
+                                                <mat-option *ngFor="let item of year" value="{{item.year}}">
+                                                    {{item.year}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-list-item>
@@ -204,9 +215,10 @@
                                     <br><br>
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select placeholder="{{ 'registroProfesor.prefix' | translate }}" name="prefix" class="filter-select" 
-                                                [(ngModel)]="modelteacher.prefix">
-                                                <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">{{item.id}}
+                                            <mat-select placeholder="{{ 'registroProfesor.prefix' | translate }}"
+                                                name="prefix" class="filter-select" [(ngModel)]="modelteacher.prefix">
+                                                <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">
+                                                    {{item.id}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -232,7 +244,7 @@
                                                 (selectionChange)="viewStatesBirth($event.value)"
                                                 [(ngModel)]="modelteacher.birthCountry">
                                                 <mat-option *ngFor="let pais of countries" value="{{pais.id}}">
-                                                    {{pais.name}} 
+                                                    {{pais.name}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -301,61 +313,49 @@
                                     </mat-list-item>
                                 </div>
                                 <div class="m-cols-3 lg-cols-6">
+                                    <br> <br>
                                     <div class="m-title-input">Mi Metodología</div>
                                     <br>
-                                    <textarea class="form-control" rows="5" [(ngModel)]="modelteacher.methodology"
-                                        name="methodology"></textarea>
+                                    <textarea class="form-control style-1" rows="5"
+                                        [(ngModel)]="modelteacher.methodology" name="methodology"></textarea>
                                     <br>
                                 </div>
                                 <div class="m-cols-3 lg-cols-6">
+                                    <br>
                                     <span class="m-title-input">Idiomas que Hablo</span>
                                     <hr>
                                     <section style="margin-top: 30px;">
                                         <div *ngFor="let language of modelteacher.languageDTO; let i = index">
                                             <article
                                                 class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
-                                                <div class="s-main-center" style="margin-bottom: 10px;">
-                                                    <div *ngIf="i == 0" class="m-add-teacher"
-                                                        style="width: 168px;float: left; " (click)="addInputIdioma() ">
-                                                        <div style="float: left;">Agregar Idioma</div>
-                                                        <span style="font-size: 20px;" class="material-icons">add</span>
-                                                    </div>
+                                                <div>
+                                                    <mat-list-item class="primary-imenu-item">
+                                                        <mat-form-field class="select-form">
+                                                            <mat-select placeholder="Idioma" name="language{{i}}"
+                                                                class="filter-select" [(ngModel)]="language.name"
+                                                                (selectionChange)="OpenLevel(language,$event.value)">
+                                                                <mat-option *ngFor="let lang of language.idiomas"
+                                                                    value="{{lang.name}}">{{lang.name}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </mat-list-item>
                                                 </div>
                                                 <div>
-                                                    <article
-                                                        class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
-                                                        <div>
-                                                            <mat-list-item class="primary-imenu-item">
-                                                                <mat-form-field class="select-form">
-                                                                    <mat-select placeholder="Idioma"
-                                                                        name="language{{i}}" class="filter-select"
-                                                                        [(ngModel)]="language.name"
-                                                                        (selectionChange)="OpenLevel(language,$event.value)">
-                                                                        <mat-option
-                                                                            *ngFor="let lang of language.idiomas"
-                                                                            value="{{lang.name}}">{{lang.name}}
-                                                                        </mat-option>
-                                                                    </mat-select>
-                                                                </mat-form-field>
-                                                            </mat-list-item>
-                                                        </div>
-                                                        <div>
-                                                            <mat-list-item class="primary-imenu-item">
-                                                                <mat-form-field class="select-form">
-                                                                    <mat-select placeholder="Nivel"
-                                                                        [compareWith]="compareObjects"
-                                                                        [(ngModel)]="language.id" name="level{{i}}"
-                                                                        class="filter-select">
-                                                                        <mat-option value="0">Seleccione</mat-option>
-                                                                        <mat-option *ngFor="let lang of language.levels"
-                                                                            value="{{lang.id}}">{{lang.level}}
-                                                                        </mat-option>
-                                                                    </mat-select>
-                                                                </mat-form-field>
-                                                            </mat-list-item>
-                                                        </div>
-                                                    </article>
+                                                    <mat-list-item class="primary-imenu-item">
+                                                        <mat-form-field class="select-form">
+                                                            <mat-select placeholder="Nivel"
+                                                                [compareWith]="compareObjects" [(ngModel)]="language.id"
+                                                                name="level{{i}}" class="filter-select">
+                                                                <mat-option value="0">Seleccione</mat-option>
+                                                                <mat-option *ngFor="let lang of language.levels"
+                                                                    value="{{lang.id}}">{{lang.level}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </mat-list-item>
                                                 </div>
+
                                                 <div *ngIf="i >= 1" class="s-main-end m-main-start">
                                                     <button class="btn btn-danger m-btn-delete"
                                                         (click)="removeInputIdioma(i)"><span class="material-icons"
@@ -363,6 +363,13 @@
                                                             close
                                                         </span>
                                                     </button>
+                                                </div>
+                                                <div class="s-main-center" style="margin-top: 10px;">
+                                                    <div *ngIf="i == 0" class="m-add-teacher"
+                                                        style="width: 168px;float: left; " (click)="addInputIdioma() ">
+                                                        <div style="float: left;">Agregar Idioma</div>
+                                                        <span style="font-size: 20px;" class="material-icons">add</span>
+                                                    </div>
                                                 </div>
                                             </article>
                                         </div>
@@ -512,8 +519,10 @@
                                     <hr>
                                 </div>
                                 <div class="m-cols-2">
-                                    <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="cvFILES" allowedfiles="jpg,pdf" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER" typeUpload="drag" nameGroup="cv"
-                                    folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
+                                    <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="cvFILES"
+                                        allowedfiles="jpg,pdf" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER"
+                                        typeUpload="drag" nameGroup="cv" folder="teacher_cv_doc"
+                                        (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
                                 <div class="s-main-center m-main-center">
                                     <div class="m-icon-content">
@@ -533,8 +542,10 @@
                                     <hr>
                                 </div>
                                 <div class="m-cols-2">
-                                    <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="titulosFILES" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER"   allowedfiles="jpg,pdf" nameGroup="titulos" folder="teacher_cv_doc"
-                                    (responseData)="getDataFiles($event)"></app-upload-file>
+                                    <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="titulosFILES"
+                                        [idUser]="modelteacher.id" UserRole="ROLE_TEACHER" allowedfiles="jpg,pdf"
+                                        nameGroup="titulos" folder="teacher_cv_doc"
+                                        (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
                                 <div class="s-main-center m-main-end">
                                     <div class="m-icon-content">
@@ -554,8 +565,10 @@
                                     <hr>
                                 </div>
                                 <div class="m-cols-2">
-                                    <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="certificadosFILES" [idUser]="modelteacher.id" UserRole="ROLE_TEACHER"  allowedfiles="jpg,pdf" nameGroup="certificados" folder="teacher_cv_doc"
-                                    (responseData)="getDataFiles($event)"></app-upload-file>
+                                    <app-upload-file *ngIf="activeComponent" [getresourceDTOList]="certificadosFILES"
+                                        [idUser]="modelteacher.id" UserRole="ROLE_TEACHER" allowedfiles="jpg,pdf"
+                                        nameGroup="certificados" folder="teacher_cv_doc"
+                                        (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
                                 <div class="s-main-center m-main-end">
                                     <div class="m-icon-content">
@@ -576,9 +589,9 @@
                             <hr>
                             <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-4">
                                 <div *ngFor="let item of Specializations; let i = index">
-                                    <div *ngIf="!item.exam" >
-                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="englishName{{i}}"
-                                            type="checkbox">
+                                    <div *ngIf="!item.exam">
+                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox"
+                                            name="englishName{{i}}" type="checkbox">
                                         <span>{{item.spanishName}}</span>
                                     </div>
                                 </div>
@@ -587,11 +600,11 @@
                             <hr>
                             <section class="ed-grid rows-gap s-gap-05 m-gap-2 s-grid-2 m-grid-3 lg-grid-9">
                                 <div *ngFor="let item of Internacionales; let i = index">
-                                        <div>
-                                            <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="examName{{i}}"
-                                                type="checkbox">
-                                            <span>{{item.spanishName}}</span>
-                                        </div>
+                                    <div>
+                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="examName{{i}}"
+                                            type="checkbox">
+                                        <span>{{item.spanishName}}</span>
+                                    </div>
                                 </div>
                             </section>
                             <div class="m-title-input">Tipo de Inglés </div>
@@ -622,8 +635,9 @@
                             </section>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Horarios">
-                         <!--    <app-calendar *ngIf="activeComponent" viewButtons=false CalendarVista="Week" [getScheduleList]="modelteacher.scheduleDTO" (responseData)="getSchedules($event)">
-                            </app-calendar> -->
+                            <app-calendar *ngIf="activeComponent" viewButtons=false CalendarVista="Week"
+                                [getScheduleList]="modelteacher.scheduleDTO" (responseData)="getSchedules($event)">
+                            </app-calendar>
                         </div>
                     </div>
                 </div>
@@ -633,7 +647,7 @@
                 <button (click)="editTeacher(modelteacher)" [disabled]="!teacherform.form.valid"
                     class="btn btn-primary">
                     Agregar Profesor</button>
-                    <button (click)="deleteTeacher(modelteacher)" class="btn btn-danger">Eliminar</button>
+                <button (click)="deleteTeacher(modelteacher)" class="btn btn-danger">Eliminar</button>
             </aside>
         </article>
     </section>
@@ -668,7 +682,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="media  p-3">
-                    <img class="m-photo-perfil-grid mr-3 mt-3"  alt="avatar" src="../../../../../assets/img/avatar.jpg">
+                    <img class="m-photo-perfil-grid mr-3 mt-3" alt="avatar" src="../../../../../assets/img/avatar.png">
                     <!--  <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;"> -->
                     <div class="media-body">
                         <h4>John Doe <small><span class="material-icons m-color-yellow">
@@ -686,7 +700,7 @@
                 </div>
                 <hr>
                 <div class="media  p-3">
-                    <img class="m-photo-perfil-grid mr-3 mt-3" alt="avatar" src="../../../../../assets/img/avatar.jpg">
+                    <img class="m-photo-perfil-grid mr-3 mt-3" alt="avatar" src="../../../../../assets/img/avatar.png">
                     <!--  <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;"> -->
                     <div class="media-body">
                         <h4>John Doe <small><span class="material-icons m-color-yellow">
@@ -714,17 +728,17 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                  <mat-horizontal-stepper linear="false" #stepper>
-                        <mat-step label="Dar click en compartir">
-                            <img src="../../../../../../assets/img/tuto1.png">
-                        </mat-step>
-                        <mat-step label="Dar click en Insertar">
-                            <img src="../../../../../../assets/img/tuto2.png">
-                        </mat-step>
-                        <mat-step label="Copiar la url  marcada">
-                            <img src="../../../../../../assets/img/tuto3.png">
-                        </mat-step>
-                    </mat-horizontal-stepper>
+                <mat-horizontal-stepper linear="false" #stepper>
+                    <mat-step label="Dar click en compartir">
+                        <img src="../../../../../../assets/img/tuto1.png">
+                    </mat-step>
+                    <mat-step label="Dar click en Insertar">
+                        <img src="../../../../../../assets/img/tuto2.png">
+                    </mat-step>
+                    <mat-step label="Copiar la url  marcada">
+                        <img src="../../../../../../assets/img/tuto3.png">
+                    </mat-step>
+                </mat-horizontal-stepper>
             </div>
         </div>
     </div>

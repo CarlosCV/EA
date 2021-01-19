@@ -38,6 +38,19 @@
     </div>
     <br>
     <button (click)="login()" class="btn btn-info">Ingresar</button>
+    <br>  <br>
+    <div style="height: 0px;text-align: center;">
+      <div  *ngIf="statusRequest.error" class="alert alert-danger">
+        El usuario no existe.
+      </div>
+      <div *ngIf="statusRequest.emailError" class="alert alert-danger">
+        El email es incorrecto.
+      </div>
+      <div *ngIf="statusRequest.success" class="alert alert-success">
+        Credenciales correctas.
+      </div>
+    </div>
+ 
     <div class="m-forget">
       <div>
         <a routerLink="/registrate">¿Nuevo Usuario? Regístrate</a>
@@ -50,16 +63,6 @@
         2021 English Advance. All rights reserved.
       </div>
 
-    </div>
-    <br>
-    <div *ngIf="statusRequest.error" class="alert alert-danger">
-      <strong>Danger!</strong> El usuario no existe.
-    </div>
-    <div *ngIf="statusRequest.emailError" class="alert alert-danger">
-      <strong>Danger!</strong> El email es incorrecto.
-    </div>
-    <div *ngIf="statusRequest.success" class="alert alert-success">
-      <strong>Success!</strong> Credenciales correctas.
     </div>
   </section>
 </div>

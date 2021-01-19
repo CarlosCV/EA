@@ -26,7 +26,7 @@ const routes: Routes = [
       //DASHBOARD
       { path: 'profile', loadChildren: () => import('../administrador/admin-perfil/admin-perfil.module').then(m => m.AdminPerfilModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } },
       { path: 'notifications', loadChildren: () => import('../administrador/notifications/notifications.module').then(m => m.NotificationsModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } },
-      { path: 'chat', loadChildren: () => import('../administrador/chat/chat.module').then(m => m.ChatModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } },
+      /* { path: 'chat', loadChildren: () => import('../administrador/chat/chat.module').then(m => m.ChatModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } }, */
       { path: 'teacher', loadChildren: () => import('../administrador/dashboard/teacher/teacher.module').then(m => m.TeacherModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } },
       { path: 'teacher/view', loadChildren: () => import('../administrador/dashboard/teacher/teacher-view/teacher-view.module').then(m => m.TeacherViewModule), canActivate: [AuthGuard], data: {  roles: [Role.student,Role.admin] } },
       { path: 'teacher/profile/:param', loadChildren: () => import('../administrador/dashboard/teacher/teacher-perfil/teacher-perfil.module').then(m => m.TeacherPerfilModule), canActivate: [AuthGuard], data: {  roles: [Role.student,Role.admin] } },
@@ -53,18 +53,18 @@ const routes: Routes = [
     component: FooterOnlyLayoutComponent,
     children: [
       { path: 'login', loadChildren: () => import('../login/login.module').then(m => m.LoginModule) },
-      { path: 'registrate', loadChildren: () => import('../login/registration/registration.module').then(m => m.RegistrationModule) },
+      /* { path: 'registrate', loadChildren: () => import('../login/registration/registration.module').then(m => m.RegistrationModule) },
       { path: 'forgot-password', loadChildren: () => import('../login/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
-      { path: 'call', loadChildren: () => import('../reusable/zoom-call/zoom-call.module').then(m => m.ZoomCallModule) },
-      { path: 'not-found', loadChildren: () => import('../not-found/not-found.module').then(m => m.NotFoundModule) },
+      { path: 'call', loadChildren: () => import('../reusable/zoom-call/zoom-call.module').then(m => m.ZoomCallModule) }, */
+      /* { path: 'not-found', loadChildren: () => import('../not-found/not-found.module').then(m => m.NotFoundModule) }, */
     ]
   },
   {
     path: '',
     component: PageOnlyLayoutComponent,
     children: [
-      { path: 'registro-profesor', loadChildren: () => import('../teacher/registro-teacher/registro-teacher.module').then(m => m.RegistroTeacherModule) },
-      { path: 'type-classes', loadChildren: () => import('../student/type-classes/type-classes.module').then(m => m.TypeClassesModule) },
+     /*  { path: 'registro-profesor', loadChildren: () => import('../teacher/registro-teacher/registro-teacher.module').then(m => m.RegistroTeacherModule) },
+      { path: 'type-classes', loadChildren: () => import('../student/type-classes/type-classes.module').then(m => m.TypeClassesModule) }, */
     ]
   },
   {
@@ -77,11 +77,11 @@ const routes: Routes = [
       { path: 'executePayment', loadChildren: () => import('../student/payment-method/payment-success/payment-success.module').then(m => m.PaymentSuccessModule) },
       { path: 'cancelPayment', loadChildren: () => import('../student/payment-method/payment-cancel/payment-cancel.module').then(m => m.PaymentCancelModule) },
       { path: 'transferencia', loadChildren: () => import('../student/bank-transfer/bank-transfer.module').then(m => m.BankTransferModule) },
-      { path: 'evaluacion', loadChildren: () => import('../student/evaluations/evaluations.module').then(m => m.EvaluationsModule) },
+/*       { path: 'evaluacion', loadChildren: () => import('../student/evaluations/evaluations.module').then(m => m.EvaluationsModule) },
       { path: 'evaluacion/preguntas', loadChildren: () => import('../student/evaluations/questions/questions.module').then(m => m.QuestionsModule) },
       { path: 'evaluacion/resultado', loadChildren: () => import('../student/evaluations/result/result.module').then(m => m.ResultModule) },
       { path: 'curso', loadChildren: () => import('../student/courses/courses.module').then(m => m.CoursesModule) },
-      { path: 'horario', loadChildren: () => import('../student/schedule/schedule.module').then(m => m.ScheduleModule) },
+      { path: 'horario', loadChildren: () => import('../student/schedule/schedule.module').then(m => m.ScheduleModule) }, */
 
     ]
   }

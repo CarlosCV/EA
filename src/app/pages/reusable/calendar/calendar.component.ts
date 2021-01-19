@@ -143,7 +143,7 @@ export class CalendarComponent implements OnInit {
  */
     const json = {
       start: new Date(this.clickedDate),
-      end: addHours(this.clickedDate, 1),
+      end: addMinutes(this.clickedDate, 30),
       title: '',
       color: colors.blue,
       draggable: true,

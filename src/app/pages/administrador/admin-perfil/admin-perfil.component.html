@@ -8,19 +8,20 @@
 <form #adminForm="ngForm" autocomplete="off" >
     <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-7">
         <article class="m-cols-2">
-            <aside class="m-border-content m-main-center">
+            <aside class="m-border-content s-main-center">
                 <div style="width: 100%; height: 30px;text-align: right;">
                     <img *ngIf="modelAdmin.birthCountry" style="width: 47px; height: 30px;"
                         src="https://s3.us-east-2.amazonaws.com/englishadvance.flags/{{modelAdmin.birthCountry}}.png">
                 </div>
-                <div style="text-align: center;width: 204px;">
-                    <img src="../../../../assets/img/avatar.jpg" class="m-photo" id="photoperfil">
-                    <div class="m-btn-perfil">
+                <div  class="m-content-profile"  [ngClass]="{'': profilePic, 'm-content-profile': !profilePic }" style="text-align: center;">
+                    <img *ngIf="!profilePic" src="../../../../assets/img/avatar.png"   class="m-photo"  >      
+                    <img *ngIf="profilePic" src="{{profilePic}}"  class="m-photo-2"  >                    
+                    <div [ngClass]="{'m-btn-perfil-2': profilePic, 'm-btn-perfil': !profilePic }" >
                         <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
                             folder="admin_doc" (responseData)="getDataFiles($event)"></app-upload-file>
                     </div>
-                    <div class="m-name-user">{{modelAdmin.name}} {{modelAdmin.lastName}} </div>
                 </div>
+                 <div class="m-name-user">{{modelAdmin.name}} {{modelAdmin.lastName}} </div>
             </aside>
             <aside class="m-options-profile ">
                 <ul class="nav nav-tabs" role="tablist">
@@ -38,7 +39,7 @@
             <aside class="m-btn-web">
                 <button (click)="editAdmin()" class="btn btn-primary" [disabled]="!adminForm.form.valid">Guardar
                     Cambios</button>
-                <button class="btn btn-danger" routerLink="/teacher">Cancelar</button>
+                <button class="btn btn-danger" (click)="cancelTeacher()">Cancelar</button>
             </aside>
         </article>
         <article class="m-cols-5">
@@ -337,7 +338,7 @@
                 <aside class="m-btn-movil" style="display: none;">
                     <button (click)="editAdmin()" class="btn btn-primary" [disabled]="!adminForm.form.valid">Guardar
                         Cambios</button>
-                    <button class="btn btn-danger" routerLink="/teacher">Cancelar</button>
+                    <button class="btn btn-danger"(click)="cancelTeacher()">Cancelar</button>
                 </aside>
             </div>
 

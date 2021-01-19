@@ -1,7 +1,7 @@
 <section class="m-filters">
-  <article class="m-page-content ed-grid m-main-end rows-gap s-gap-05 m-gap-05  s-grid-1 m-grid-3 lg-grid-6">
+  <article class="m-page-content m-section-flter ed-grid m-main-end rows-gap s-gap-05 m-gap-05  s-grid-1 m-grid-3 lg-grid-6" style="padding-bottom: 8px;">
     <div class="m-cols-4 m-div-hidden"></div>
-    <div class="s-cols-1 m-cols-2  s-main-end m-main-end">
+    <div class="s-cols-1 m-cols-2  s-main-end m-main-end" style="margin-top: 9px;">
       <div class="input-group" style="float: left;width: auto">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -21,6 +21,7 @@
     </div>
   </article>
 </section>
+<div class="m-page-content">
 <div class="example-container mat-elevation-z8">
   <div class="example-table-container style-1">
     <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="name" matSortDisableClear
@@ -29,7 +30,7 @@
         <th mat-header-cell *matHeaderCellDef><nav style="width: 55px;"></nav></th>
         <td mat-cell *matCellDef="let row">
           <div>
-            <img *ngIf="!row.profilePic" class="m-photo-perfil-grid" src="../../../../../assets/img/avatar.jpg">
+            <img *ngIf="!row.profilePic" class="m-photo-perfil-grid" src="../../../../../assets/img/avatar.png">
             <img *ngIf="row.profilePic" class="m-photo-perfil-grid" src="{{row.profilePic}}">
           </div>
         </td>
@@ -80,4 +81,5 @@
   </div>
   <mat-paginator  [pageSize]="20" [length]="resultsLength" (page)="getServerDataPaginator($event)" >
   </mat-paginator>
+</div>
 </div>

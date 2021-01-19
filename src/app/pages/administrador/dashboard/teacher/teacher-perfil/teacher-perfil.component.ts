@@ -329,7 +329,6 @@ export class TeacherPerfilComponent implements OnInit {
     this.modelteacher.resourceDTO = []
     dataFiles.forEach(element => {
       if (element.typeUpload == "profile") {
-        /* document.getElementById("photoperfil")["src"] = element.url */
         this.modelteacher.profilePic = element.url
       }
       this.arrayFile.push({ id: element.id, name: element.nameGroup, url: element.url })

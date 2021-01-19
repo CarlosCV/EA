@@ -8,14 +8,15 @@
 <form #studentForm="ngForm" autocomplete="off">
   <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-7">
     <article class="m-cols-2">
-      <aside class="m-border-content m-main-center">
-        <div style="text-align: center;">
-          <img src="../../../../assets/img/avatar.jpg" class="m-photo" id="photoperfil">
-          <div class="m-btn-perfil">
-            <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic" folder="teacher_cv_doc"
-              (responseData)="getDataFiles($event)"></app-upload-file>
+      <aside class="m-border-content s-main-center">
+        <div  class="m-content-profile"  [ngClass]="{'': profilePic, 'm-content-profile': !profilePic }" style="text-align: center;">
+          <img *ngIf="!profilePic" src="../../../../assets/img/avatar.png"   class="m-photo"  >      
+          <img *ngIf="profilePic" src="{{profilePic}}"  class="m-photo-2"  >                    
+          <div [ngClass]="{'m-btn-perfil-2': profilePic, 'm-btn-perfil': !profilePic }" >
+              <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
+                  folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
           </div>
-        </div>
+      </div>
       </aside>
       <aside class="m-options-profile ">
         <ul class="nav nav-tabs" role="tablist">
@@ -30,7 +31,7 @@
       </aside>
       <aside class="m-btn-web" >
         <button class="btn btn-primary" [disabled]="!studentForm.form.valid" (click)="saveStudent()">Agregar</button>
-        <button routerLink="/workshop-student" class="btn btn-danger">Cancelar</button>
+        <button  (click)="cancelTeacher()" class="btn btn-danger">Cancelar</button>
       </aside>
     </article>
     <article class="m-cols-5 m-overflow style-1">
@@ -246,7 +247,7 @@
     <br>
     <aside class="m-btn-movil" style="display: none;">
       <button class="btn btn-primary" [disabled]="!studentForm.form.valid" (click)="saveStudent()">Agregar</button>
-      <button routerLink="/workshop-student" class="btn btn-danger">Cancelar</button>
+      <button  (click)="cancelTeacher()"class="btn btn-danger">Cancelar</button>
     </aside>
   </section>
 </form>

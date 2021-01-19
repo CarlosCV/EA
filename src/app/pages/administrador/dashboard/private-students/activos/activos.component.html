@@ -1,7 +1,7 @@
 <section class="m-filters">
-  <article class="m-page-content ed-grid m-main-end rows-gap s-gap-05 m-gap-05  s-grid-1 m-grid-3 lg-grid-6">
+  <article class="m-page-content m-section-flter ed-grid m-main-end rows-gap s-gap-05 m-gap-05  s-grid-1 m-grid-3 lg-grid-6" style="padding-bottom: 8px;">
     <div class="m-cols-4 m-div-hidden"></div>
-    <div class="s-cols-1 m-cols-2">
+    <div class="s-cols-1 m-cols-2" style="margin-top: 9px;">
       <div class="input-group" style="float: left;width: 45%">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -18,7 +18,7 @@
           save_alt
         </span>
       </a>
-      <div class="s-main-start">
+      <div class="s-main-start" style="padding-top: 6px;">
         <div class="m-add-teacher" routerLink="add">
           <div id="m-add" style="float: left;">Agregar</div>
           <span style="font-size: 20px;" class="material-icons">add</span>
@@ -27,6 +27,7 @@
     </div>
   </article>
 </section>
+<div class="m-page-content">
 <div class="example-container mat-elevation-z8">
   <div class="example-table-container style-1">
     <table mat-table [dataSource]="sortedData" class="example-table" matSort matSortActive="name" matSortDisableClear
@@ -37,7 +38,7 @@
         </th>
         <td mat-cell *matCellDef="let row">
           <div>
-            <img *ngIf="!row.profilePic" class="m-photo-perfil-grid" src="../../../../../assets/img/avatar.jpg">
+            <img *ngIf="!row.profilePic" class="m-photo-perfil-grid" src="../../../../../assets/img/avatar.png">
             <img *ngIf="row.profilePic" class="m-photo-perfil-grid" src="{{row.profilePic}}">
             <span class="material-icons m-color-yellow">
               star_rate
@@ -45,13 +46,12 @@
           </div>
         </td>
       </ng-container>
-      <!-- Number Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Nombre</th>
         <td mat-cell *matCellDef="let row">{{row.name}}</td>
       </ng-container>
 
-      <!-- Title Column -->
+
       <ng-container matColumnDef="lastname">
         <th mat-header-cell *matHeaderCellDef>
           <aside>Apellidos</aside>
@@ -59,7 +59,6 @@
         <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
       </ng-container>
 
-      <!-- State Column -->
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>
           <nav>Correo Eléctronico</nav>
@@ -79,7 +78,7 @@
           <nav></nav>
         </th>
         <td mat-cell *matCellDef="let row">
-          <span class="material-icons m-router-view" routerLink="view">
+          <span class="material-icons m-router-view" (click)="cambioView(row)" >
             remove_red_eye
           </span>&nbsp;&nbsp;
           <span class="material-icons m-router-profile">
@@ -98,4 +97,5 @@
 
   <mat-paginator  [pageSize]="20" [length]="resultsLength" (page)="getServerDataPaginator($event)" >
   </mat-paginator>
+</div>
 </div>

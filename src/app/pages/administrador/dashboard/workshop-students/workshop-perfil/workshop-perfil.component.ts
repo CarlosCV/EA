@@ -105,6 +105,7 @@ export class WorkshopPerfilComponent implements OnInit {
         this.viewStatesBirth(this.studentsModel.birthCountry);
         this.viewStatesResident(this.studentsModel.residentCountry);
         /* this.studentsModel.packageId=0 */
+        console.log(this.studentsModel)
       }
     })
     this.generalService.allTimeZone().subscribe(data => {
@@ -143,9 +144,9 @@ export class WorkshopPerfilComponent implements OnInit {
     this.studentsModel.resourceDTO = []
     dataFiles.forEach(element => {
       if (element.typeUpload == "profile") {
-        document.getElementById("photoperfil")["src"] = element.url
+        this.studentsModel.profilePic = element.url
       }
-      this.arrayFile.push({ id: element.id, name: element.nameGroup })
+      this.arrayFile.push({ id: element.id, name: element.nameGroup, url: element.url })
     });
     this.studentsModel.resourceDTO = this.arrayFile;
     let hash = {};
@@ -154,6 +155,7 @@ export class WorkshopPerfilComponent implements OnInit {
       hash[current.id] = true;
       return exists;
     });
+    console.log(this.studentsModel)
   }
   errorDate: boolean = true
   editStudent() {
@@ -165,6 +167,7 @@ export class WorkshopPerfilComponent implements OnInit {
     if (!emailErr) {
       return
     }
+    console.log(this.studentsModel)
     this.generalService.editProfilebyRole(this.studentsModel).subscribe(data => {
       if (data.statusText == "OK") {
         Swal.fire({

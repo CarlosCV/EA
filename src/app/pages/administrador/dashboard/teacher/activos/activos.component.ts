@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { RegistroTeacherService } from '../../../../../services/registro-teacher/registro-teacher.service'
 import { environment } from '../../../../../../environments/environment'
+import Swal from 'sweetalert2'
 import {
   debounceTime,
   map,
@@ -16,7 +17,7 @@ import { fromEvent } from 'rxjs';
 export interface TeachersModel {
   name: string;
   lastname: string;
-  ranking:string;
+  ranking: string;
   email: string;
   cellphone: string
 }
@@ -32,7 +33,7 @@ export class ActivosComponent implements OnInit {
   Specializations: any[]
   edades: any[]
   teachers: TeachersModel[] = [];
-  pageIndex: number=0
+  pageIndex: number = 0
   jsonFilter = {
     page: 0,
     role: "ROLE_TEACHER",
@@ -44,6 +45,9 @@ export class ActivosComponent implements OnInit {
       specialization: [],
       target: []
     }
+  }
+  user = {
+    name: "",
   }
   SendjsonFilter = {
     page: 0,
@@ -70,9 +74,24 @@ export class ActivosComponent implements OnInit {
     private router: Router
 
   ) {
- 
+
   }
   ngOnInit() {
+    let dataToken;
+    if (sessionStorage.getItem("access_Token")) {
+      dataToken = sessionStorage.getItem("access_Token")
+    }
+    this.generalService.updateUser.subscribe(data => {
+      this.user = {
+        name: data.userName
+      }
+    })
+    let jsonUser = this.generalService.parseJwt(dataToken);
+    this.generalService.userDetail({ email: jsonUser.sub }).subscribe(data => {
+      if (data.statusText === "OK") {
+        this.user = data.objetoRespuesta
+      }
+    })
     this.registroTeacherService.allSpecializations().subscribe(data => {
       if (data.statusText === "OK") {
         this.Specializations = data.objetoRespuesta
@@ -98,16 +117,16 @@ export class ActivosComponent implements OnInit {
   }
 
   getServerDataPaginator(event) {
-    this.jsonFilter.filterDTO.name =""
-    this.pageIndex = event.pageIndex 
-    this.resultsLength= 0
+    this.jsonFilter.filterDTO.name = ""
+    this.pageIndex = event.pageIndex
+    this.resultsLength = 0
     this.listTeacher(this.pageIndex)
   }
   listTeacher(page) {
     let json = {
       role: "ROLE_TEACHER",
       status: "APPROVED",
-      active:true,
+      active: true,
       page: page
     }
     document.getElementById("loader").classList.remove("done")
@@ -146,23 +165,23 @@ export class ActivosComponent implements OnInit {
     var jsonParam = {
       id: teacher.id,
       email: teacher.email,
-      activeOptions:true,
+      activeOptions: true,
       buttonsEdit: true
     }
     this.router.navigate(['/teacher/profile/', btoa(JSON.stringify(jsonParam))]);
   }
 
   filtersOptions(value) {
-    this.SendjsonFilter.page = this.pageIndex  || this.jsonFilter.page
+    this.SendjsonFilter.page = this.pageIndex || this.jsonFilter.page
     if (value != "search") {
-      if( this.jsonFilter.filterDTO.gender.length > 1 ){
+      if (this.jsonFilter.filterDTO.gender.length > 1) {
         this.SendjsonFilter.filterDTO.gender = null
-      }else{
+      } else {
         this.SendjsonFilter.filterDTO.gender = this.jsonFilter.filterDTO.gender[0]
       }
-      if( this.jsonFilter.filterDTO.englishType.length > 1 ){
+      if (this.jsonFilter.filterDTO.englishType.length > 1) {
         this.SendjsonFilter.filterDTO.englishType = null
-      }else{
+      } else {
         this.SendjsonFilter.filterDTO.englishType = this.jsonFilter.filterDTO.englishType[0]
       }
       this.SendjsonFilter.filterDTO.name = this.jsonFilter.filterDTO.name
@@ -195,9 +214,34 @@ export class ActivosComponent implements OnInit {
         this.sortedData = this.teachers.slice();
       }
     })
+  }
+ 
+  cambioView(teacher) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-info',
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: '<div class="m-title-input m-border-line"> Información de Cuenta </div>',
+      html: `<div class="m-subtitle"> ${this.user.name}, estas tratando de cambiar a la vista del profesor:
+         ${teacher.name}  ${teacher.lastName} </div> 
+        <div class="m-confirm-text">¿Desea Continuar?</div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/teacher/view']);
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel) { }
+    })
 
   }
-
 
 }
 

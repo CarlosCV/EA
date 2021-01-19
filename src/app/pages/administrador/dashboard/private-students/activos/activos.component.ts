@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { StudentModel } from '../../../../modelos/administrador/dashboard/private-student/student.model'
 import { Sort } from '@angular/material/sort';
 import { environment } from '../../../../../../environments/environment'
+import Swal from 'sweetalert2'
 import {
   debounceTime,
   map,
@@ -28,6 +29,9 @@ export class ActivosComponent implements OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+  user = {
+    name: "",
+  }
   SendjsonFilter = {
     role: "ROLE_STUDENT",
     studentType: "STUDENT_PRIVATE",
@@ -45,7 +49,6 @@ export class ActivosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    /* document.getElementById("loader").classList.remove("done") */
     this.listTeacher(this.pageIndex);
     fromEvent(this.SearchInput.nativeElement, 'keyup').pipe(
       map((event: any) => {
@@ -57,7 +60,23 @@ export class ActivosComponent implements OnInit {
     ).subscribe((text: string) => {
       this.search();
     });
+    let dataToken;
+    if (sessionStorage.getItem("access_Token")) {
+      dataToken = sessionStorage.getItem("access_Token")
+    }
+    this.generalService.updateUser.subscribe(data => {
+      this.user = {
+        name: data.userName
+      }
+    })
+    let jsonUser = this.generalService.parseJwt(dataToken);
+    this.generalService.userDetail({ email: jsonUser.sub }).subscribe(data => {
+      if (data.statusText === "OK") {
+        this.user = data.objetoRespuesta
+      }
+    })
   }
+  
   getServerDataPaginator(event) {
     this.SendjsonFilter.filterDTO.name = ""
     this.pageIndex = event.pageIndex
@@ -121,6 +140,32 @@ export class ActivosComponent implements OnInit {
   }
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+  cambioView(alumno) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-info',
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: '<div class="m-title-input m-border-line"> Información de Cuenta </div>',
+      html: `<div class="m-subtitle"> ${this.user.name}, estas tratando de cambiar a la vista del alumno:
+         ${alumno.name}  ${alumno.lastName} </div> 
+        <div class="m-confirm-text">¿Desea Continuar?</div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/private-student/view']);
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel) { }
+    })
+
   }
 }
 

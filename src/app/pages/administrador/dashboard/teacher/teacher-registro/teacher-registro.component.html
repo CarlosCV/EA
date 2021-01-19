@@ -8,10 +8,12 @@
 <form #teacherform="ngForm" autocomplete="off">
     <section class="m-page-content ed-grid rows-gap s-gap-1 m-gap-2 s-grid-1 m-grid-1 lg-grid-7">
         <article class="m-cols-2">
-            <aside class="m-border-content m-main-center">
-                <div style="text-align: center;">
-                    <img src="../../../../assets/img/avatar.jpg" class="m-photo" id="photoperfil">
-                    <div class="m-btn-perfil">
+            <aside class="m-border-content s-main-center">
+                <div class="m-content-profile" [ngClass]="{'': profilePic, 'm-content-profile': !profilePic }"
+                    style="text-align: center;">
+                    <img *ngIf="!profilePic" src="../../../../assets/img/avatar.png" class="m-photo">
+                    <img *ngIf="profilePic" src="{{profilePic}}" class="m-photo-2">
+                    <div [ngClass]="{'m-btn-perfil-2': profilePic, 'm-btn-perfil': !profilePic }">
                         <app-upload-file allowedfiles="jpg,png" typeUpload="profile" nameGroup="profilePic"
                             folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
                     </div>
@@ -19,16 +21,17 @@
             </aside>
             <aside class="m-btn-web">
                 <button (click)="SendInformation(modelteacher)" [disabled]="!teacherform.form.valid"
-                    class="btn btn-primary">
+                    class="btn btn-primary" style="margin-bottom: 7px;">
                     Agregar Profesor</button>
-                    <button routerLink="/teacher" class="btn btn-danger">Cancelar</button>
+                <button (click)="cancelTeacher()" class="btn btn-danger">Cancelar</button>
             </aside>
         </article>
 
         <article class="m-cols-5">
             <aside class="m-header-admin">
                 <aside class="m-title-admin s-main-center" style="border-bottom: none;">
-                    <ul class="nav nav-tabs m-content-tabs-item s-main-center" role="tablist">
+                    <ul class="nav nav-tabs m-content-tabs-item  m-page-content ed-grid rows-gap s-gap-1 m-gap-1 s-grid-1 m-grid-4 lg-grid-4"
+                        role="tablist" style="display: grid;text-align: center;">
                         <li class="nav-item">
                             <a class="nav-link active" href="#informacionPersonal" role="tab"
                                 data-toggle="tab">Información
@@ -48,7 +51,7 @@
                     </ul>
                 </aside>
             </aside>
-            <aside class="m-content-admin m-overflow style-1"  
+            <aside class="m-content-admin m-overflow style-1"
                 style="border-top: none;border-top-right-radius: 0;border-top-left-radius: 0;">
                 <div>
                     <div class="tab-content">
@@ -87,12 +90,14 @@
                                 <div class="m-cols-1 lg-cols-1">
                                     <div class="m-title-input">{{ 'registroProfesor.birthdate' | translate }}</div>
                                     <br><span class="m-hidden"><br></span>
-                              
+
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select name="birthday" class="filter-select"  placeholder="{{ 'registroProfesor.day' | translate }}*"
-                                                [(ngModel)]="modelteacher.birthday"  >
-                                                <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">{{birth.num}}</mat-option>
+                                            <mat-select name="birthday" class="filter-select"
+                                                placeholder="{{ 'registroProfesor.day' | translate }}*"
+                                                [(ngModel)]="modelteacher.birthday">
+                                                <mat-option *ngFor="let birth of birthday" value="{{birth.num}}">
+                                                    {{birth.num}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-list-item>
@@ -102,12 +107,14 @@
                                 </div>
                                 <div class="m-cols-1 lg-cols-1">
                                     <br><br><br>
-                         
+
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select name="birthmonth" class="filter-select"  placeholder="{{ 'registroProfesor.month' | translate }}*"
-                                            [(ngModel)]="modelteacher.birthmonth">
-                                                <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}</mat-option>
+                                            <mat-select name="birthmonth" class="filter-select"
+                                                placeholder="{{ 'registroProfesor.month' | translate }}*"
+                                                [(ngModel)]="modelteacher.birthmonth">
+                                                <mat-option *ngFor="let item of month" value="{{item.id}}">{{item.mes}}
+                                                </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-list-item>
@@ -116,9 +123,11 @@
                                     <br><br><br>
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select name="birthyear" class="filter-select"  placeholder="{{ 'registroProfesor.year' | translate }}*"
-                                            [(ngModel)]="modelteacher.birthyear">
-                                                <mat-option *ngFor="let item of year" value="{{item.year}}">{{item.year}}</mat-option>
+                                            <mat-select name="birthyear" class="filter-select"
+                                                placeholder="{{ 'registroProfesor.year' | translate }}*"
+                                                [(ngModel)]="modelteacher.birthyear">
+                                                <mat-option *ngFor="let item of year" value="{{item.year}}">
+                                                    {{item.year}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </mat-list-item>
@@ -141,9 +150,10 @@
                                     <br><br>
                                     <mat-list-item class="primary-imenu-item">
                                         <mat-form-field class="select-form">
-                                            <mat-select placeholder="{{ 'registroProfesor.prefix' | translate }}" name="prefix" class="filter-select" 
-                                                [(ngModel)]="modelteacher.prefix">
-                                                <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">{{item.id}}
+                                            <mat-select placeholder="{{ 'registroProfesor.prefix' | translate }}"
+                                                name="prefix" class="filter-select" [(ngModel)]="modelteacher.prefix">
+                                                <mat-option *ngFor="let item of codigoPais" value="{{item.id}}">
+                                                    {{item.id}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -238,60 +248,50 @@
                                     </mat-list-item>
                                 </div>
                                 <div class="m-cols-3 lg-cols-6">
+                                    <br> <br>
                                     <div class="m-title-input">Mi Metodología</div>
                                     <br>
-                                    <textarea class="form-control" rows="5" [(ngModel)]="modelteacher.methodology"
-                                        name="methodology"></textarea>
+                                    <textarea class="form-control style-1" rows="5"
+                                        [(ngModel)]="modelteacher.methodology" name="methodology"></textarea>
                                     <br>
                                 </div>
                                 <div class="m-cols-3 lg-cols-6">
+                                    <br>
                                     <span class="m-title-input">Idiomas que Hablo</span>
                                     <hr>
                                     <section style="margin-top: 30px;">
                                         <div *ngFor="let language of modelteacher.languageDTO; let i = index">
                                             <article
                                                 class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-4">
-                                                <div class="s-main-center" style="margin-bottom: 10px;">
-                                                    <div *ngIf="i == 0" class="m-add-teacher"
-                                                        style="width: 168px;float: left; " (click)="addInputIdioma() ">
-                                                        <div style="float: left;">Agregar Idioma</div>
-                                                        <span style="font-size: 20px;" class="material-icons">add</span>
-                                                    </div>
+                                                <!--  <div>
+                                                    <article
+                                                        class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2"> -->
+                                                <div>
+                                                    <mat-list-item class="primary-imenu-item">
+                                                        <mat-form-field class="select-form">
+                                                            <mat-select placeholder="Idioma" name="language{{i}}"
+                                                                class="filter-select" [(ngModel)]="language.name"
+                                                                (selectionChange)="OpenLevel(language,$event.value)">
+                                                                <mat-option *ngFor="let lang of language.idiomas"
+                                                                    value="{{lang.name}}">{{lang.name}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </mat-list-item>
                                                 </div>
                                                 <div>
-                                                    <article
-                                                        class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-2 lg-grid-2">
-                                                        <div>
-                                                            <mat-list-item class="primary-imenu-item">
-                                                                <mat-form-field class="select-form">
-                                                                    <mat-select placeholder="Idioma"
-                                                                        name="language{{i}}" class="filter-select"
-                                                                        [(ngModel)]="language.name"
-                                                                        (selectionChange)="OpenLevel(language,$event.value)">
-                                                                        <mat-option
-                                                                            *ngFor="let lang of language.idiomas"
-                                                                            value="{{lang.name}}">{{lang.name}}
-                                                                        </mat-option>
-                                                                    </mat-select>
-                                                                </mat-form-field>
-                                                            </mat-list-item>
-                                                        </div>
-                                                        <div>
-                                                            <mat-list-item class="primary-imenu-item">
-                                                                <mat-form-field class="select-form">
-                                                                    <mat-select placeholder="Nivel"
-                                                                        [compareWith]="compareObjects"
-                                                                        [(ngModel)]="language.id" name="level{{i}}"
-                                                                        class="filter-select">
-                                                                        <mat-option value="0">Seleccione</mat-option>
-                                                                        <mat-option *ngFor="let lang of language.levels"
-                                                                            value="{{lang.id}}">{{lang.level}}
-                                                                        </mat-option>
-                                                                    </mat-select>
-                                                                </mat-form-field>
-                                                            </mat-list-item>
-                                                        </div>
-                                                    </article>
+                                                    <mat-list-item class="primary-imenu-item">
+                                                        <mat-form-field class="select-form">
+                                                            <mat-select placeholder="Nivel"
+                                                                [compareWith]="compareObjects" [(ngModel)]="language.id"
+                                                                name="level{{i}}" class="filter-select">
+                                                                <mat-option value="0">Seleccione</mat-option>
+                                                                <mat-option *ngFor="let lang of language.levels"
+                                                                    value="{{lang.id}}">{{lang.level}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </mat-list-item>
                                                 </div>
                                                 <div *ngIf="i >= 1" class="s-main-end m-main-start">
                                                     <button class="btn btn-danger m-btn-delete"
@@ -301,6 +301,16 @@
                                                         </span>
                                                     </button>
                                                 </div>
+                                                <!--     </article>
+                                                </div> -->
+                                                <div class="s-main-center" style="margin-top: 10px;">
+                                                    <div *ngIf="i == 0" class="m-add-teacher"
+                                                        style="width: 168px;float: left; " (click)="addInputIdioma() ">
+                                                        <div style="float: left;">Agregar Idioma</div>
+                                                        <span style="font-size: 20px;" class="material-icons">add</span>
+                                                    </div>
+                                                </div>
+
                                             </article>
                                         </div>
                                     </section>
@@ -487,7 +497,7 @@
                                     <div class="m-title-input">Certificados</div>
                                     <hr>
                                 </div>
-                                <div class="m-cols-2"> 
+                                <div class="m-cols-2">
                                     <app-upload-file allowedfiles="jpg,pdf" nameGroup="certificados"
                                         folder="teacher_cv_doc" (responseData)="getDataFiles($event)"></app-upload-file>
                                 </div>
@@ -510,9 +520,9 @@
                             <hr>
                             <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-2 m-grid-3 lg-grid-4">
                                 <div *ngFor="let item of Specializations; let i = index">
-                                    <div *ngIf="!item.exam" >
-                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="englishName{{i}}"
-                                            type="checkbox">
+                                    <div *ngIf="!item.exam">
+                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox"
+                                            name="englishName{{i}}" type="checkbox">
                                         <span>{{item.spanishName}}</span>
                                     </div>
                                 </div>
@@ -522,13 +532,14 @@
                             <hr>
                             <section class="ed-grid rows-gap s-gap-05 m-gap-2 s-grid-2 m-grid-3 lg-grid-9">
                                 <div *ngFor="let item of Internacionales; let i = index">
-                                        <div>
-                                            <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="examName{{i}}"
-                                                type="checkbox">
-                                            <span>{{item.spanishName}}</span>
-                                        </div>
+                                    <div>
+                                        <input [(ngModel)]="item.checked" class="m-espe-checkbox" name="examName{{i}}"
+                                            type="checkbox">
+                                        <span>{{item.spanishName}}</span>
+                                    </div>
                                 </div>
                             </section>
+                            <br>
                             <div class="m-title-input">Tipo de Inglés </div>
                             <hr>
                             <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-5"
@@ -546,6 +557,7 @@
                                 </div>
                                 <div class="m-cols-3"></div>
                             </section>
+                            <br>
                             <div class="m-title-input">Edades que enseño</div>
                             <hr>
                             <section class="ed-grid rows-gap s-gap-05 m-gap-1 s-grid-1 m-grid-3 lg-grid-6">
@@ -557,8 +569,8 @@
                             </section>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Horarios">
-                          <!--   <app-calendar viewButtons=false CalendarVista="Week" (responseData)="getSchedules($event)">
-                            </app-calendar> -->
+                            <app-calendar viewButtons=false CalendarVista="Week" (responseData)="getSchedules($event)">
+                            </app-calendar>
                         </div>
                     </div>
                 </div>
@@ -568,7 +580,7 @@
                 <button (click)="SendInformation(modelteacher)" [disabled]="!teacherform.form.valid"
                     class="btn btn-primary">
                     Agregar Profesor</button>
-                <button routerLink="/teacher" class="btn btn-danger">Cancelar</button>
+                <button (click)="cancelTeacher()" class="btn btn-danger">Cancelar</button>
             </aside>
         </article>
     </section>

@@ -17,7 +17,7 @@ export class MainLayoutComponent implements OnInit {
     this.translateService.changeExpanded.subscribe(data => {
       this.expanded = data
     })
-    /*     document.getElementById("m-body").style.overflow="hidden" */
+       
     /*   
       setTimeout(() => {
         let alto= this.elementView.nativeElement.offsetHeight ;

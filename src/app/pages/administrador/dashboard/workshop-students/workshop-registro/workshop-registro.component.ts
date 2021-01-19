@@ -135,13 +135,14 @@ export class WorkshopRegistroComponent implements OnInit {
     })
   }
   arrayFile = []
+  profilePic:string;
   getDataFiles(dataFiles) {
     this.studentsModel.resourceDTO = []
     dataFiles.forEach(element => {
       if (element.typeUpload == "profile") {
-        document.getElementById("photoperfil")["src"] = element.url
+        this.profilePic=element.url
       }
-      this.arrayFile.push({ id: element.id, name: element.nameGroup })
+      this.arrayFile.push({ id: element.id, name: element.nameGroup, url: element.url })
     });
     this.studentsModel.resourceDTO = this.arrayFile;
     let hash = {};
@@ -175,5 +176,30 @@ export class WorkshopRegistroComponent implements OnInit {
       }
     }
     return ok;
+  }
+  cancelTeacher(){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-info',
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: '<div class="m-title-input m-border-line">Cancelar </div>',
+      html: `<div class="m-subtitle"> Se cancelara agregar un nuevo usuario</div> 
+      <div class="m-confirm-text">¿Desea confirmar?</div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/workshop-student']);
+
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel) { }
+    })
   }
 }

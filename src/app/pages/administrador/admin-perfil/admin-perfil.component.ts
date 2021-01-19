@@ -5,6 +5,7 @@ import { GeneralService } from '../../../services/general.service';
 import Swal from 'sweetalert2'
 import { countries } from '../../../../assets/countries/countries'
 import { states } from '../../../../assets/countries/states'
+import { Router } from '@angular/router';
 import { day, month, year, codigoPais } from '../../../../assets/countries/birthDate'
 @Component({
   selector: 'app-admin-perfil',
@@ -49,6 +50,7 @@ export class AdminPerfilComponent implements OnInit {
     private translate: TranslateService,
     private translateLabelService: TranslateLabelService,
     private generalService: GeneralService,
+    private router: Router,
   ) {
     this.translate.setDefaultLang(this.localeLang);
   }
@@ -72,16 +74,26 @@ export class AdminPerfilComponent implements OnInit {
     }
     let jsonUser = this.generalService.parseJwt(dataToken);
     this.generalService.userDetail({ email: jsonUser.sub }).subscribe(data => {
+      console.log(data)
       if (data.statusText == "OK") {
         this.modelAdmin = data.objetoRespuesta
         this.modelAdmin.emailConfirm = this.modelAdmin.email;
-        this.modelAdmin.birthmonth = this.modelAdmin.birthmonth.toString()
-        this.modelAdmin.birthday = this.modelAdmin.birthday.toString()
-        this.modelAdmin.birthyear = this.modelAdmin.birthyear.toString()
+        if(data.objetoRespuesta.birthmonth){
+          this.modelAdmin.birthmonth = this.modelAdmin.birthmonth.toString()
+        }
+        if(data.objetoRespuesta.birthday){
+          this.modelAdmin.birthday = this.modelAdmin.birthday.toString()
+        }
+        if(data.objetoRespuesta.birthyear){
+          this.modelAdmin.birthyear = this.modelAdmin.birthyear.toString()
+        }
         this.viewStatesBirth(this.modelAdmin.birthCountry);
         this.viewStatesResident(this.modelAdmin.residentCountry);
         if (data.objetoRespuesta.profilePic) {
-          document.getElementById("photoperfil")["src"] = this.modelAdmin.profilePic
+          this.profilePic=data.objetoRespuesta.profilePic
+        /*   setTimeout(() => {
+            document.getElementById("photoperfil")["src"] = data.objetoRespuesta.profilePic
+          }, 1); */
         }
 
       }
@@ -94,11 +106,12 @@ export class AdminPerfilComponent implements OnInit {
     })
   }
   arrayFile = []
+  profilePic:string;
   getDataFiles(dataFiles) {
     this.modelAdmin.resourceDTO = []
     dataFiles.forEach(element => {
       if (element.typeUpload == "profile") {
-        document.getElementById("photoperfil")["src"] = element.url
+        this.profilePic=element.url
       }
       this.arrayFile.push({ id: element.id, name: element.nameGroup, url: element.url })
     });
@@ -141,17 +154,7 @@ export class AdminPerfilComponent implements OnInit {
     if (!emailErr) {
       return
     }
-    this.generalService.editProfilebyRole(this.modelAdmin).subscribe(data => {
-      if (data.statusText == "OK") {
-        if (this.modelAdmin.email && this.modelAdmin.newpassword) {
-          const passErr = this.validatePassword();
-          if (!passErr) {
-            return
-          }
-          this.editPassword(this.modelAdmin.email, this.modelAdmin.newpassword)
-        }
-        this.generalService.updateUserProfile(data.objetoRespuesta.name, data.objetoRespuesta.lastName)
-
+    console.log(this.modelAdmin)
         const swalWithBootstrapButtons = Swal.mixin({
           customClass: {
             confirmButton: 'btn btn-info',
@@ -171,27 +174,40 @@ export class AdminPerfilComponent implements OnInit {
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Datos actualizados.',
-              showConfirmButton: false,
-              timer: 1500
+            this.generalService.editProfilebyRole(this.modelAdmin).subscribe(data => {
+              if (data.statusText == "OK") {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Datos actualizados.',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+                if (this.modelAdmin.email && this.modelAdmin.newpassword) {
+                  const passErr = this.validatePassword();
+                  if (!passErr) {
+                    return
+                  }
+                  this.editPassword(this.modelAdmin.email, this.modelAdmin.newpassword)
+                }
+                this.generalService.updateUserProfile(data.objetoRespuesta.name, data.objetoRespuesta.lastName)
+              } else {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Ocurrio un problema!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
             })
+           
           } else if (
             result.dismiss === Swal.DismissReason.cancel) { }
         })
-      } else {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Ocurrio un problema!',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
+   
 
-    })
+
   }
 
 
@@ -253,5 +269,30 @@ export class AdminPerfilComponent implements OnInit {
       }
     }
     return this.errorEqualPass;
+  }
+  cancelTeacher(){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-info',
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: '<div class="m-title-input m-border-line">Cancelar </div>',
+      html: `<div class="m-subtitle"> Se cancelara agregar un nuevo usuario</div> 
+      <div class="m-confirm-text">¿Desea confirmar?</div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/teacher']);
+
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel) { }
+    })
   }
 }
