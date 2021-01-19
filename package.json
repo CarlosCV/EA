@@ -30,6 +30,7 @@
     "angular-calendar": "^0.28.22",
     "chart.js": "^2.9.4",
     "date-fns": "^2.16.1",
+    "express": "^4.17.1",
     "file-saver": "^2.0.5",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
@@ -37,8 +38,10 @@
     "ng-recaptcha": "^6.0.2",
     "ng2-charts": "^2.4.2",
     "ngx-file-drop": "^10.0.0",
+    "path": "^0.12.7",
     "rrule": "^2.6.6",
     "rxjs": "~6.5.5",
+    "save": "^2.4.0",
     "socket.io-client": "^2.3.1",
     "sweetalert2": "^10.10.1",
     "tslib": "^2.0.0",
@@ -67,6 +70,6 @@
   },
   "engines": {
     "node": "10.14.2",
-      "npm": "6.4.1"
+    "npm": "6.4.1"
   }
 }
