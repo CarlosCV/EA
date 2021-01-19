@@ -40,7 +40,7 @@ const routes: Routes = [
       { path: 'payments', loadChildren: () => import('../administrador/finanzas/payments/payments.module').then(m => m.PaymentsModule), canActivate: [AuthGuard], data: {  roles: [Role.student,Role.admin] } },
       { path: 'payments/student', loadChildren: () => import('../administrador/finanzas/payments/student-list/student-list.module').then(m => m.StudentListModule), canActivate: [AuthGuard], data: {  roles: [Role.student,Role.admin] } },
       //EXAMENES
-      { path: 'evaluations', loadChildren: () => import('../administrador/examenes/evaluations/evaluations.module').then(m => m.EvaluationsModule), canActivate: [AuthGuard], data: {  roles: [Role.student,Role.admin] } },
+     // { path: 'evaluations', loadChildren: () => import('../administrador/examenes/evaluations/evaluations.module').then(m => m.EvaluationsModule), canActivate: [AuthGuard], data: {  roles: [Role.student,Role.admin] } },
       //TALLERES
       { path: 'workshop-student', loadChildren: () => import('../administrador/dashboard/workshop-students/workshop-students.module').then(m => m.WorkshopStudentsModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } },
       { path: 'workshop-student/add', loadChildren: () => import('../administrador/dashboard/workshop-students/workshop-registro/workshop-registro.module').then(m => m.WorkshopRegistroModule), canActivate: [AuthGuard], data: { roles: [Role.student,Role.admin] } },
